@@ -4,7 +4,7 @@ This repository holds WDL workflows and Docker build scripts for alpha satellite
 
 ## alphaSat-HMMER
 
-WDL of the [HumAS-HMMER For AnVIL)(https://github.com/fedorrik/HumAS-HMMER_for_AnVIL) workflow -- which is a modified version of [HumAS-HMMER](https://github.com/enigene/HumAS-HMMER).
+WDL of the [HumAS-HMMER For AnVIL](https://github.com/fedorrik/HumAS-HMMER_for_AnVIL) workflow -- which is a modified version of [HumAS-HMMER](https://github.com/enigene/HumAS-HMMER).
 
 ### Inputs
 

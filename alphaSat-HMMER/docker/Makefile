@@ -1,6 +1,6 @@
 # Definitions
 repository = juklucas
-identifier = alphaSat-HMMER
+identifier = alphasat_hmmer
 version = 0.0.1
 git_commit ?= $(shell git log --pretty=oneline -n 1 | cut -f1 -d " ")
 name = ${repository}/${identifier}

@@ -89,7 +89,7 @@ task alphaSat_HMMER {
 		memory: memSizeGB + " GB"
 		cpu: threadCount
 		disks: "local-disk " + final_disk_dize + " SSD"
-		docker: "juklucas:alphaSat-HMMER"
+		docker: "juklucas/alphasat_hmmer@sha256:a1f331d2b80f24a2e9d6c26450f6520cd52c4f71a9db769c11f4a4e771279d88"
 		preemptible: 1
 	}
 
