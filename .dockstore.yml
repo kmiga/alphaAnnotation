@@ -1,0 +1,8 @@
+version: 1.2
+workflows:
+   -  name: alphaSat-HMMER
+      subclass: WDL
+      testParameterFiles:
+         - /alphaSat-HMMER/test/alphaSat-HMMER-local.json
+      primaryDescriptorPath: alphaSat-HMMER/alphaSat-HMMER.wdl
+

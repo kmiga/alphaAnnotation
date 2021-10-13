@@ -1,0 +1,5 @@
+{
+  "alphaSat-HMMER_workflow.alphaSat-HMMER.input_fastas": ["alphaAnnotation/test/input_files/test.fa"],
+  "alphaSat-HMMER_workflow.alphaSat-HMMER.hmm_profile": "alphaAnnotation/test/input_files/AS-HORs-hmmer3.0-170921.hmm",
+  "alphaSat-HMMER_workflow.alphaSat-HMMER.hmm_profile_SF": "alphaAnnotation/test/input_files/AS-SFs-hmmer3.0.290621.hmm"
+}
