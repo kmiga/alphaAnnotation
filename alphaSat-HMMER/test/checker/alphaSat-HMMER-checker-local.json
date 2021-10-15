@@ -1,0 +1,10 @@
+{
+  "checker_alphaSat_HMMER.hmm_profile_SF": "alphaAnnotation/alphaSat-HMMER/test/input_files/AS-SFs-hmmer3.0.290621.hmm",
+  "checker_alphaSat_HMMER.input_fastas": ["alphaAnnotation/alphaSat-HMMER/test/input_files/test.fa"],
+  "checker_alphaSat_HMMER.hmm_profile": "alphaAnnotation/alphaSat-HMMER/test/input_files/AS-HORs-hmmer3.0-170921.hmm",
+  "checker_alphaSat_HMMER.truth_files": ["alphaAnnotation/alphaSat-HMMER/test/truth_files/AS-HOR+SF-vs-test.bed",
+                                         "alphaAnnotation/alphaSat-HMMER/test/truth_files/AS-HOR-vs-test.bed",
+                                         "alphaAnnotation/alphaSat-HMMER/test/truth_files/AS-SF-vs-test.bed",
+                                         "alphaAnnotation/alphaSat-HMMER/test/truth_files/AS-strand-vs-test.bed"]
+}
+
