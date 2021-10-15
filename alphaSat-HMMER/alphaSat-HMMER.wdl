@@ -53,9 +53,12 @@ task alphaSat_HMMER {
 				INPUT_FILE="${INPUT_FILE%.gz}"
 			fi
 
-			## If named *.fa, just copy the file to new directory
+			## Copy file to input_fasta_dir. Change suffix to .fa if neccesary.
 			if [[ $INPUT_FILE =~ \.fa$ ]]; then
 				cp $INPUT_FILE .
+			elif [[ $INPUT_FILE =~ \.fasta$ ]]; then
+				BASENAME=$(basename "${INPUT_FILE}" .fasta)
+				cp $INPUT_FILE ./${BASENAME}.fa
 			else
 				echo "Files must be named with fa suffix"
 				exit 1
