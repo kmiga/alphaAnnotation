@@ -41,7 +41,7 @@ WORKDIR /opt/
 
 RUN git clone https://github.com/fedorrik/HumAS-HMMER_for_AnVIL.git \
 	&& cd HumAS-HMMER_for_AnVIL \
-	&& git reset --hard 4d9ae0d65eb05db6d0556b785d94bc558c223a53 \
+	&& git reset --hard a07bcd1fbfb211ad291b863f6b5bb79916d42839 \
 	&& chmod +x hmmer-run.sh hmmer-run_SF.sh hmmertblout2bed.awk
 
 ENV PATH=/opt/HumAS-HMMER_for_AnVIL:$PATH
