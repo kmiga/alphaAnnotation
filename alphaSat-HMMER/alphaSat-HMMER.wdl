@@ -94,6 +94,7 @@ task alphaSat_HMMER {
 		Int memSizeGB   = 4
 		Int threadCount = 8
 		Int addldisk    = 10
+		Int preempts    = 2
 	}
 	
 	parameter_meta {
@@ -165,7 +166,7 @@ task alphaSat_HMMER {
 		cpu: threadCount
 		disks: "local-disk " + final_disk_dize + " SSD"
 		docker: "juklucas/alphasat_hmmer@sha256:9204a6a1ef91a2dd228122620d199f388a2d714a3bbb7250751b63f75fba7b5b"
-		preemptible: 1
+		preemptible: preempts
 	}
 }
 
