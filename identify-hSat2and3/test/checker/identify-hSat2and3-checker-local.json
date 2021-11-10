@@ -1,0 +1,4 @@
+{
+  "checker_identify_hSat2and3.input_fasta": "alphaAnnotation/identify-hSat2and3/test/input_files/TEST_INPUT_hg002.chrY.v2.fasta",
+  "checker_identify_hSat2and3.truth_files": ["alphaAnnotation/identify-hSat2and3/test/truth_files/TEST_INPUT_hg002.chrY.v2.HSat2and3_Regions.bed"]
+}

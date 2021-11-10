@@ -5,4 +5,9 @@ workflows:
       testParameterFiles:
          - /alphaSat-HMMER/test/alphaSat-HMMER-local.json
       primaryDescriptorPath: alphaSat-HMMER/alphaSat-HMMER.wdl
+  -  name: identify-hSat2and3
+      subclass: WDL
+      testParameterFiles:
+         - /identify-hSat2and3/test/identify-hSat2and3-local.json
+      primaryDescriptorPath: identify-hSat2and3/identify-hSat2and3.wdl
 
