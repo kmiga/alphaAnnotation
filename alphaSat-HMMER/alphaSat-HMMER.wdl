@@ -115,6 +115,9 @@ task alphaSat_HMMER {
 		mkdir input_fasta_dir
 		cd input_fasta_dir
 
+		## Troubleshoot slow runtime
+		date 
+
 		## script expects all input sequences to be in one directory
 		## files must be named *.fa
 		INPUT_FILES=(~{sep=" " input_fastas})
@@ -149,12 +152,20 @@ task alphaSat_HMMER {
 		## Set number of threads (reserve one thread for master node)
 		NHMMER_THREADS=$((~{threadCount} - 1))
 
+		## Troubleshoot slow runtime
+		date 
+
 		## Run HumAS-HMMER, output: AS-HOR+SF, AS-HOR, AS-strand
 		hmmer-run.sh input_fasta_dir ~{hmm_profile} ${NHMMER_THREADS}
+
+		## Troubleshoot slow runtime
+		date 
 
 		## Run HumAS-HMMER, output: AS-SF
 		hmmer-run_SF.sh input_fasta_dir ~{hmm_profile_SF} ${NHMMER_THREADS}
 
+		## Troubleshoot slow runtime
+		date 
 	>>>
 
 	output {
