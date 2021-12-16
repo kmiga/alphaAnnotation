@@ -71,7 +71,7 @@ task extract_contigs_in_region {
         samtools index $bamFileName
 
         ## Pull contig names for contigs which overlap region specified
-        samtools view ~{aligned_bam} ~{region} \
+        samtools view $bamFileName ~{region} \
             | cut -f1 \
             | uniq \
             > contig_names.txt
