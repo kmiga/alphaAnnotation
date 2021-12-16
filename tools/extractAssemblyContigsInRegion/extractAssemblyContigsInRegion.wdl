@@ -66,14 +66,14 @@ task extract_contigs_in_region {
         ## copy file to working dir (so index file is written in working dir)
         cp ~{aligned_bam} .
 
-
         ## Index bam to allow random alignment retrieval
         samtools index $bamFileName
+
 
         ## Pull contig names for contigs which overlap region specified
         samtools view $bamFileName ~{region} \
             | cut -f1 \
-            | uniq \
+            | sort | uniq \
             > contig_names.txt
 
 
@@ -87,6 +87,7 @@ task extract_contigs_in_region {
         else
             ln -s ~{input_fasta}
         fi 
+
 
         ## Extract sequences and write to output file
         samtools faidx $fastaFN `cat contig_names.txt` > ~{contigs_fn}
