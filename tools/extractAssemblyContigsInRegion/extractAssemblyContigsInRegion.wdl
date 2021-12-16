@@ -51,7 +51,7 @@ task extract_contigs_in_region {
     # Estimate disk size required
     Int aligned_bam_size = ceil(size(aligned_bam, "GB"))    
     Int input_fasta_size = ceil(size(input_fasta, "GB"))  
-    Int final_disk_dize  = aligned_bam_size + input_fasta_size * 4 + addldisk
+    Int final_disk_dize  = aligned_bam_size * 2 + input_fasta_size * 4 + addldisk
 
     ## Output file name
     String contigs_fn    = "${sample_id}.${output_file_tag}_contigs.fa"
@@ -59,8 +59,16 @@ task extract_contigs_in_region {
     command <<<
         set -eux -o pipefail
 
+
+       ## Get basename of file
+        bamFileName=$(basename -- "~{aligned_bam}")
+        
+        ## copy file to working dir (so index file is written in working dir)
+        cp ~{aligned_bam} .
+
+
         ## Index bam to allow random alignment retrieval
-        samtools index ~{aligned_bam}
+        samtools index $bamFileName
 
         ## Pull contig names for contigs which overlap region specified
         samtools view ~{aligned_bam} ~{region} \
