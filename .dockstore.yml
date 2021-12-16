@@ -10,4 +10,6 @@ workflows:
       testParameterFiles:
          - /identify-hSat2and3/test/identify-hSat2and3-local.json
       primaryDescriptorPath: identify-hSat2and3/identify-hSat2and3.wdl
-
+  -  name: extractAssemblyContigsInRegion
+      subclass: WDL
+      primaryDescriptorPath: tools/extractAssemblyContigsInRegion/extractAssemblyContigsInRegion.wdl
