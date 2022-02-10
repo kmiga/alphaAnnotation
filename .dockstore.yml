@@ -13,3 +13,6 @@ workflows:
   -  name: extractAssemblyContigsInRegion
       subclass: WDL
       primaryDescriptorPath: tools/extractAssemblyContigsInRegion/extractAssemblyContigsInRegion.wdl
+  -  name: ntrprism-to-bedgraph
+      subclass: WDL
+      primaryDescriptorPath: NTRprism/ntrprism_to_bedgraph.wdl
