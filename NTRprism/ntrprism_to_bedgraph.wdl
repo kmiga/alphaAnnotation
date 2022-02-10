@@ -32,7 +32,7 @@ task split_fasta {
         File input_fasta
 
         String output_file_tag = "split"        
-        Int window_size   = 10000
+        Int window_size   = 50000
 
         Int memSizeGB = 4
         Int diskSizeGB = 64
@@ -87,8 +87,10 @@ task ntrprism {
 
     input {
         File split_fasta
-        String sample_name = "sample"        
+        String sample_name = "sample"  
 
+
+        String output_file_tag = "ntrprism"
         Int bin_size = 1
         Int total_span = 1000
         Int kmer_min_count = 30
@@ -97,10 +99,10 @@ task ntrprism {
 
         Int memSizeGB = 4
         Int diskSizeGB = 64
-        String dockerImage = "juklucas/ntrprism:latest"
+        String dockerImage = "juklucas/ntrprism:0.0.1@sha256:6b0c3d60c03f92e4202b06c1cde20c8703f0d758ac9ab94c0f510af7c70c6b53"
     }
 
-    # String output_fasta_fn = "${sample_name}.${output_file_tag}.fasta"
+    String output_bedgraph_fn = "${sample_name}_${output_file_tag}.bedgraph"
 
     command <<<
 
@@ -132,13 +134,13 @@ task ntrprism {
         awk -v OFS='\t' -v CUTOFF=$CUTOFF '$5<CUTOFF {$4=0} 1' NTRprism_TopHits_colsums.bed > NTRprism_TopHits_colsums_zeroed.bed
 
         ## Just print begraph columns
-        cut -f1,2,3,4 NTRprism_TopHits_colsums_zeroed.bed > NTRprism_TopHits.bedgraph
+        cut -f1,2,3,4 NTRprism_TopHits_colsums_zeroed.bed > ~{output_bedgraph_fn}
          
     >>>
 
     output {
         File top_hits_file  = glob("*NTRprism_TopHits.txt")[0]
-        File bedgraph       = "NTRprism_TopHits.bedgraph"
+        File bedgraph       = output_bedgraph_fn
     }
 
     runtime {
