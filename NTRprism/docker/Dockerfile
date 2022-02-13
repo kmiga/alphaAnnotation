@@ -3,16 +3,20 @@ FROM rocker/r-base:4.0.4
 MAINTAINER Julian Lucas, juklucas@ucsc.edu
 
 
+RUN apt-get update && \
+    apt-get install -y git
+
 
 ## Install NTRprism
 WORKDIR /opt/
 
-RUN wget https://github.com/altemose/NTRprism/archive/refs/tags/v1.0.0.tar.gz \
-	&& tar -xvf v1.0.0.tar.gz \
-	&& cd NTRprism-1.0.0 \
-	&& chmod +x NTRprism_PlotHeatmap.r NTRprism_PlotSpectrum.r NTRprism_ProcessFasta_v0.21.pl
+RUN git clone https://github.com/altemose/NTRprism.git && \
+    cd NTRprism && \
+    git reset --hard 438fb135cc7dca4d19ab636ba97d94fbe544feaf && \
+	chmod +x NTRprism_PlotHeatmap.r NTRprism_PlotSpectrum.r NTRprism_ProcessFasta_v0.22.pl
 
-ENV PATH=/opt/NTRprism-1.0.0:$PATH
+ENV PATH=/opt:$PATH
+
 
 RUN R -e "install.packages(c('ggplot2', 'reshape2'))"
 
