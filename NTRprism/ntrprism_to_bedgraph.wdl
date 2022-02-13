@@ -21,6 +21,7 @@ workflow ntrprism_to_bedgraph {
     output {
         File split_fasta_out = split_fasta.split_fasta
         File top_hits_file   = ntrprism.top_hits_file
+        File bedgraph        = ntrprism.bedgraph
     }
 }
 
@@ -92,14 +93,15 @@ task ntrprism {
 
         String output_file_tag = "ntrprism"
         Int bin_size = 1
-        Int total_span = 1000
+        Int total_span = 5000
         Int kmer_min_count = 30
         Int kmer_length = 6
         Float score_cutoff = 0.01
+        Int suppress_matrix_output = 1
 
         Int memSizeGB = 4
         Int diskSizeGB = 64
-        String dockerImage = "juklucas/ntrprism:0.0.1@sha256:6b0c3d60c03f92e4202b06c1cde20c8703f0d758ac9ab94c0f510af7c70c6b53"
+        String dockerImage = "juklucas/ntrprism:0.0.1@sha256:c4c190fc09db43783a0fedddb9d3d3ebda230fd18d0cbbd8eaff039ff720cf13"
     }
 
     String output_bedgraph_fn = "${sample_name}_${output_file_tag}.bedgraph"
@@ -112,13 +114,14 @@ task ntrprism {
         set -o xtrace
 
         ## Call NTRprism
-        perl /opt/NTRprism-1.0.0/NTRprism_ProcessFasta_v0.21.pl \
+        perl /opt/NTRprism/NTRprism_ProcessFasta_v0.22.pl \
             ~{split_fasta} \
             ~{sample_name} \
             ~{bin_size} \
             ~{total_span} \
             ~{kmer_min_count} \
-            ~{kmer_length}
+            ~{kmer_length} \
+            ~{suppress_matrix_output}
 
         ## create bed file from TopHits
         cut -f1,2 *NTRprism_TopHits.txt | tr '.' '\t' > NTRprism_TopHits.bed
