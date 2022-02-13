@@ -123,9 +123,13 @@ task ntrprism {
             ~{kmer_length} \
             ~{suppress_matrix_output}
 
-        ## create bed file from TopHits
-        cut -f1,2 *NTRprism_TopHits.txt | tr '.' '\t' > NTRprism_TopHits.bed
-        
+        ## create bed file from TopHits 
+        ## be careful to not just split on the dots (a contig can have a dot in the name)
+        ## for an example HPRC (TopHit) row: 
+        ##          HG00621#2#JAHBCC010000001.1.0.50000.6 becomes 
+        ##          HG00621#2#JAHBCC010000001.1    0   50000   6
+        sed -r 's/^(.*)\.([0-9]+)\.([0-9]+)\t/\1\t\2\t\3\t/' < *NTRprism_TopHits.txt | cut -f1,2,3,4 > NTRprism_TopHits.bed
+
         ## create file w/ just colsums values for top hit (have as seperate file to avoid splitting . above)
         cut -f7 *NTRprism_TopHits.txt > tophit_colsum.txt
 
