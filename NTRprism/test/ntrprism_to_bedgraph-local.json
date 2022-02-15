@@ -1,0 +1,4 @@
+{
+  "ntrprism_to_bedgraph.input_fasta": "alphaAnnotation/NTRprism/test/input_files/NTRprism_to_BedGraph/chm13_test.fa",
+  "ntrprism_to_bedgraph.sample_name": "test"
+}
