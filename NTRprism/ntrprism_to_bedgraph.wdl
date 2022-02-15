@@ -18,10 +18,16 @@ workflow ntrprism_to_bedgraph {
             sample_name = sample_name
     } 
 
+    call tophits_to_bedgraph {
+        input:
+            tophits_file = ntrprism.tophits_file,
+            sample_name  = sample_name
+    }
+
     output {
         File split_fasta_out = split_fasta.split_fasta
-        File top_hits_file   = ntrprism.top_hits_file
-        File bedgraph        = ntrprism.bedgraph
+        File tophits_file    = ntrprism.tophits_file
+        File bedgraph        = tophits_to_bedgraph.bedgraph
     }
 }
 
@@ -88,23 +94,19 @@ task ntrprism {
 
     input {
         File split_fasta
+        
         String sample_name = "sample"  
 
-
-        String output_file_tag = "ntrprism"
         Int bin_size = 1
         Int total_span = 5000
         Int kmer_min_count = 30
         Int kmer_length = 6
-        Float score_cutoff = 0.01
         Int suppress_matrix_output = 1
 
         Int memSizeGB = 4
         Int diskSizeGB = 64
         String dockerImage = "juklucas/ntrprism:0.0.1@sha256:c4c190fc09db43783a0fedddb9d3d3ebda230fd18d0cbbd8eaff039ff720cf13"
     }
-
-    String output_bedgraph_fn = "${sample_name}_${output_file_tag}.bedgraph"
 
     command <<<
 
@@ -122,16 +124,52 @@ task ntrprism {
             ~{kmer_min_count} \
             ~{kmer_length} \
             ~{suppress_matrix_output}
+         
+    >>>
+
+    output {
+        File tophits_file  = glob("*NTRprism_TopHits.txt")[0]
+    }
+
+    runtime {
+        memory: memSizeGB + " GB"
+        disks: "local-disk " + diskSizeGB + " SSD"
+        docker: dockerImage
+        preemptible: 1
+    }
+}
+
+task tophits_to_bedgraph {
+
+    input {
+        File tophits_file
+        String sample_name = "sample"  
+        String output_file_tag = "ntrprism"
+        Float score_cutoff = 0.01
+
+        Int memSizeGB = 4
+        Int diskSizeGB = 64
+        String dockerImage = "juklucas/ntrprism:0.0.1@sha256:c4c190fc09db43783a0fedddb9d3d3ebda230fd18d0cbbd8eaff039ff720cf13"
+    }
+
+    String output_bedgraph_fn = "${sample_name}_${output_file_tag}.bedgraph"
+
+    command <<<
+
+        set -o pipefail
+        set -e
+        set -u
+        set -o xtrace
 
         ## create bed file from TopHits 
         ## be careful to not just split on the dots (a contig can have a dot in the name)
         ## for an example HPRC (TopHit) row: 
         ##          HG00621#2#JAHBCC010000001.1.0.50000.6 becomes 
         ##          HG00621#2#JAHBCC010000001.1    0   50000   6
-        sed -r 's/^(.*)\.([0-9]+)\.([0-9]+)\t/\1\t\2\t\3\t/' < *NTRprism_TopHits.txt | cut -f1,2,3,4 > NTRprism_TopHits.bed
+        sed -r 's/^(.*)\.([0-9]+)\.([0-9]+)\t/\1\t\2\t\3\t/' < ~{tophits_file} | cut -f1,2,3,4 > NTRprism_TopHits.bed
 
         ## create file w/ just colsums values for top hit (have as seperate file to avoid splitting . above)
-        cut -f7 *NTRprism_TopHits.txt > tophit_colsum.txt
+        cut -f7 ~{tophits_file} > tophit_colsum.txt
 
         ## add colsums (that we will use to filter with) to bed file
         paste NTRprism_TopHits.bed tophit_colsum.txt > NTRprism_TopHits_colsums.bed
@@ -146,8 +184,7 @@ task ntrprism {
     >>>
 
     output {
-        File top_hits_file  = glob("*NTRprism_TopHits.txt")[0]
-        File bedgraph       = output_bedgraph_fn
+        File bedgraph = output_bedgraph_fn
     }
 
     runtime {
