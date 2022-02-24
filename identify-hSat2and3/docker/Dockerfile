@@ -12,8 +12,8 @@ WORKDIR /opt/
 
 RUN git clone https://github.com/altemose/chm13_hsat.git \
 	&& cd chm13_hsat \
-	&& git reset --hard 1096d62a929fecc0ede419fb4141d17441b4283f \
-	&& chmod +x Assembly_HSat2and3_v2.pl
+	&& git reset --hard 2e8c31a93cb73400037e45151cf4023a0a3706d7 \
+	&& chmod +x Assembly_HSat2and3_v3.pl
 
 ENV PATH=/opt/chm13_hsat:$PATH
 
