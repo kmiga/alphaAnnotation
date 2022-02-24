@@ -49,7 +49,7 @@ task identify_hSat2and3 {
 		cp /opt/chm13_hsat/HSat3_kmers.txt .
 
 		## Call annotation script:
-		perl /opt/chm13_hsat/Assembly_HSat2and3_v2.pl $INPUT_FILE
+		perl /opt/chm13_hsat/Assembly_HSat2and3_v3.pl $INPUT_FILE
 	>>>
 
 	output {
@@ -60,7 +60,7 @@ task identify_hSat2and3 {
 		memory: memSizeGB + " GB"
 		cpu: threadCount
 		disks: "local-disk " + final_disk_dize + " SSD"
-		docker: "juklucas/identify_hsat2and3@sha256:c28a72e1b27f11618b83d23007ae629da737897df07f853775b77fbde50470cc"
+		docker: "juklucas/identify_hsat2and3@sha256:f5ed821c44c6167c84c3691dd0bc9dd049ed1dd4a2d1146f2ae58a02c41b8958"
 		preemptible: 1
 	}
 
