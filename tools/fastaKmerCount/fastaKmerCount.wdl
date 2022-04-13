@@ -24,16 +24,21 @@ task countKmers {
 
     command <<<
 
-        INPUT_FILE="~{inputFasta}"
+        inputFastaFN=$(basename -- "~{inputFasta}")
 
-        if [[ $INPUT_FILE =~ \.gz$ ]]; then
-            gunzip -f $INPUT_FILE
-            INPUT_FILE="${INPUT_FILE%.gz}"
-        fi
+        ## first check if inputFasta needs to be unzipped
+        if [[ $inputFastaFN =~ \.gz$ ]]; then
+            cp ~{inputFasta} .
+            gunzip -f $inputFastaFN
+            inputFastaFN="${inputFastaFN%.gz}"
+        else
+            ln -s ~{inputFasta}
+        fi 
+
 
         ## linearize assembly (in case the assembly is split over multiple lines)
         awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' \
-            $INPUT_FILE \
+            $inputFastaFN \
             > assembly_single_linecontigs.fa
 
         ## grep each kmer
