@@ -16,3 +16,6 @@ workflows:
   -  name: ntrprism-to-bedgraph
       subclass: WDL
       primaryDescriptorPath: NTRprism/ntrprism_to_bedgraph.wdl
+  -  name: fastaKmerCount
+      subclass: WDL
+      primaryDescriptorPath: tools/fastaKmerCount/fastaKmerCount.wdl
