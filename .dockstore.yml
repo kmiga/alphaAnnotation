@@ -19,3 +19,6 @@ workflows:
   -  name: fastaKmerCount
       subclass: WDL
       primaryDescriptorPath: tools/fastaKmerCount/fastaKmerCount.wdl
+  -  name: readKmerCount
+      subclass: WDL
+      primaryDescriptorPath: tools/readKmerCount/readKmerCount.wdl
