@@ -18,7 +18,7 @@ task readKmerCount {
         File? cram_reference
 
         Int memSizeGB   = 4
-        Int threadCount = 4
+        Int threadCount = 2
         Int addldisk    = 10
         Int preempts    = 2
     }
