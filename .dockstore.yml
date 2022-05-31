@@ -16,6 +16,9 @@ workflows:
   -  name: ntrprism-to-bedgraph
       subclass: WDL
       primaryDescriptorPath: NTRprism/ntrprism_to_bedgraph.wdl
+  -  name: alphaSatHOR-StV
+      subclass: WDL
+      primaryDescriptorPath: HOR-StV/HOR-StV.wdl 
   -  name: fastaKmerCount
       subclass: WDL
       primaryDescriptorPath: tools/fastaKmerCount/fastaKmerCount.wdl
