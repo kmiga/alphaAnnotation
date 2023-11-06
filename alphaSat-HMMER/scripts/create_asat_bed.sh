@@ -10,7 +10,8 @@
 ## Call with 
 #  ./create_asat_bed.sh \
 #     assembly_AS-HOR-vs-CHM13.bed \
-#     assembly_AS-SF-vs-CHM13.bed
+#     assembly_AS-SF-vs-CHM13.bed \
+#     output_file_name.bed
 
 
 ## Color scheme for output:
@@ -22,6 +23,10 @@
 
 hor_bed=$1
 monomeric_bed=$2
+out_bed=$3
+
+## Needed later in order to call python3 ${SCRIPT_DIR}/merge_overlaps.py
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 
 ###############################################################################
@@ -50,8 +55,8 @@ unique_values=( $(cut -f4 HOR_basenames_sortbyhor.bed | uniq) )
 ##                                 Merge HORs                                ##
 ###############################################################################
 
-## clean up, just in case of rerun
-rm HOR_basenames_merged.bed
+## clean up, just in case of rerun (don't print error if it doesn't exist)
+rm HOR_basenames_merged.bed 2> /dev/null || true
 
 # Merge entries for each unique value separately
 for value in ${unique_values[@]}; do
@@ -158,7 +163,7 @@ grep -v -x \
 
 ## Look for HORs like hor(S3C1H2-A) and hor(S3C1H2-B) that overlap and combine
 ## (when neccesary) into hor(S3C1H2-A,B)
-python3 merge_overlaps.py \
+python3 ${SCRIPT_DIR}/merge_overlaps.py \
     -i HOR_basenames_merged_sorted_wout_monomeric_cleaned.bed \
     -o HOR_basenames_merged_sorted_wout_monomeric_cleaned_mergeoverlaps.bed
 
@@ -202,5 +207,5 @@ bedtools subtract \
 cat HOR_basenames_merged_sorted_wout_monomeric_cleaned_mergeoverlaps_sorted.bed \
     merged_mon_cleaned.bed \
     | bedtools sort \
-    > asat_for_censat.bed
+    > $out_bed
 
