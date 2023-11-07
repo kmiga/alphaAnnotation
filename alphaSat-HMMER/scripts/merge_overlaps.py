@@ -127,7 +127,7 @@ while i < (len(input_bed_df)-1):
 
 ## bedtools doesn't updated thickStart/thickEnd when intersecting or subtracting
 merged_hor_df['thickStart'] = merged_hor_df['start']
-merged_hor_df['end'] = merged_hor_df['end']
+merged_hor_df['thickEnd'] = merged_hor_df['end']
 
 
 ###############################################################################
