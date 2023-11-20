@@ -32,10 +32,11 @@ workflow alphaSat_HMMER_workflow {
 	}
 
 	output {
-		File as_hor_sf_bed = combine_beds.as_hor_sf_bed
-		File as_strand_bed = combine_beds.as_strand_bed
-		File as_hor_bed    = combine_beds.as_hor_bed
-		File as_sf_bed     = combine_beds.as_sf_bed
+		File as_hor_sf_bed  = combine_beds.as_hor_sf_bed
+		File as_strand_bed  = combine_beds.as_strand_bed
+		File as_hor_bed     = combine_beds.as_hor_bed
+		File as_sf_bed      = combine_beds.as_sf_bed
+		File as_summary_bed = combine_beds.as_summary_bed
 	}
 
 	meta {
@@ -197,33 +198,42 @@ task combine_beds {
 		Int diskSizeGB = 64
 	}
 
-	String as_hor_sf_bed_out = "AS-HOR+SF-vs-~{sample_id}.bed"
-	String as_strand_bed_out = "AS-strand-vs-~{sample_id}.bed"
-	String as_hor_bed_out    = "AS-HOR-vs-~{sample_id}.bed"
-	String as_sf_bed_out     = "AS-SF-vs-~{sample_id}.bed"
+	String as_hor_sf_bed_out  = "AS-HOR+SF-vs-~{sample_id}.bed"
+	String as_strand_bed_out  = "AS-strand-vs-~{sample_id}.bed"
+	String as_hor_bed_out     = "AS-HOR-vs-~{sample_id}.bed"
+	String as_sf_bed_out      = "AS-SF-vs-~{sample_id}.bed"
+	String as_summary_bed_out = "ASat_~{sample_id}.bed"
 
 	command <<<
-		set -eux -o pipefail
+		# set -eux -o pipefail
 
+		## Combine scattered results into one file
 		cat ~{sep=" " as_hor_sf_beds} | sort -k 1,1 -k2,2n > ~{as_hor_sf_bed_out}
 		cat ~{sep=" " as_strand_beds} | sort -k 1,1 -k2,2n > ~{as_strand_bed_out}
 		cat ~{sep=" " as_hor_beds} | sort -k 1,1 -k2,2n > ~{as_hor_bed_out}
 		cat ~{sep=" " as_sf_beds} | sort -k 1,1 -k2,2n > ~{as_sf_bed_out}
 
+		## Summarize the monomer-level annotation into regional annotations (HOR, dHOR, etc.)
+		/opt/scripts/create_asat_bed.sh \
+			~{as_hor_bed_out} \
+			~{as_sf_bed_out} \
+			> ~{as_summary_bed_out}
+
 	>>>
 
 	output {
-		File as_hor_sf_bed = as_hor_sf_bed_out
-		File as_strand_bed = as_strand_bed_out
-		File as_hor_bed    = as_hor_bed_out
-		File as_sf_bed     = as_sf_bed_out
+		File as_hor_sf_bed  = as_hor_sf_bed_out
+		File as_strand_bed  = as_strand_bed_out
+		File as_hor_bed     = as_hor_bed_out
+		File as_sf_bed      = as_sf_bed_out
+		File as_summary_bed = as_summary_bed_out
 	}
 
 	runtime {
 		memory: memSizeGB + " GB"
 		cpu: threadCount
 		disks: "local-disk " + diskSizeGB + " SSD"
-		docker: "biocontainers/bedtools@sha256:c042e405f356bb44cc0d7a87b4528d793afb581f0961db1d6da6e0a7e1fd3467"
+		docker: "juklucas/alphasat_summarize@sha256:7591e61b16e68dd88b6409a76df93ea66a5e932e2bccc3fea4782ad4a5643f5c"
 		preemptible: 1
 	}
 
