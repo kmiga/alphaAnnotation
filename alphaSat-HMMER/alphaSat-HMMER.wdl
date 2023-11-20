@@ -217,7 +217,7 @@ task combine_beds {
 		/opt/scripts/create_asat_bed.sh \
 			~{as_hor_bed_out} \
 			~{as_sf_bed_out} \
-			> ~{as_summary_bed_out}
+			~{as_summary_bed_out}
 
 	>>>
 
