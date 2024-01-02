@@ -71,34 +71,34 @@ task createAnnotations {
 
         # HSAT1A - SAR - 5kb merge color code 145,255,0
         head ~{RMOut}
-        grep SAR ~{RMOut} > HSAT1A.bed
+        grep SAR ~{RMOut} > HSAT1A.bed || true
         bedtools merge -d 5000 -i HSAT1A.bed > HSAT1A.merged.bed
         sed 's/$/\thsat1A\t0\t.\t.\t.\t145,255,0/' HSAT1A.merged.bed > HSAT1A.merged.named.bed
         awk '$7=$2' OFS='\t' HSAT1A.merged.named.bed | awk '$8=$3' OFS='\t' > HSAT1A.part.bed
 
         # HSAT1B - HSATI - 5kb merge color code 0,153,76
-        grep -w "HSATI" ~{RMOut} > HSAT1B.bed
+        grep -w "HSATI" ~{RMOut} > HSAT1B.bed || true
         bedtools merge -d 5000 -i HSAT1B.bed > HSAT1B.merged.bed
         sed 's/$/\thsat1B\t0\t.\t.\t.\t0,153,76/' HSAT1B.merged.bed > HSAT1B.merged.named.bed
         awk '$7=$2' OFS='\t' HSAT1B.merged.named.bed | awk '$8=$3' OFS='\t' > HSAT1B.part.bed
 
         # BetaSats - BSAT, LSAU, BSR 250,153,255
-        grep -e BSAT -e LSAU -e BSR ~{RMOut} > BSAT.bed
+        grep -e BSAT -e LSAU -e BSR ~{RMOut} > BSAT.bed || true
         bedtools sort -i BSAT.bed > BSAT.sorted.bed
         bedtools merge -d 5000 -c 4 -o distinct -i BSAT.sorted.bed > BSAT.merged.bed
         sed 's/$/\t0\t.\t.\t.\t250,153,255/' BSAT.merged.bed > BSAT.merged.named.bed
         awk '$7=$2' OFS='\t' BSAT.merged.named.bed | awk '$8=$3' OFS='\t' | awk '$4="bSat("$4")"' OFS='\t' > BSAT.part.bed
 
         # GammaSats - GSAT, TAR1 
-        grep -e GSAT -e TAR1 ~{RMOut} > GSAT.bed
+        grep -e GSAT -e TAR1 ~{RMOut} > GSAT.bed || true
         bedtools sort -i GSAT.bed > GSAT.sorted.bed
         bedtools merge -d 5000 -c 4 -o distinct -i GSAT.sorted.bed > GSAT.merged.bed
         sed 's/$/\t0\t.\t.\t.\t172,51,199/' GSAT.merged.bed > GSAT.merged.named.bed
         awk '$7=$2' OFS='\t' GSAT.merged.named.bed | awk '$8=$3' OFS='\t' | awk '$4="gSat("$4")"' OFS='\t' > GSAT.part.bed
 
         # P-Censat - CER, SATR, SST1, ACRO - many more - 1 kb merge more fine tuned 0,204,204
-        grep -e CER -e SATR -e SST1 -e ACRO -e rnd -e HSAT5 -e 5SRNA -e TAF11 -e HSAT4  ~{RMOut} > cenSAT.bed
-        grep -v BSAT cenSAT.bed > cenSAT.filtered.bed
+        grep -e CER -e SATR -e SST1 -e ACRO -e rnd -e HSAT5 -e 5SRNA -e TAF11 -e HSAT4  ~{RMOut} > cenSAT.bed || true
+        grep -v BSAT cenSAT.bed > cenSAT.filtered.bed || true
         bedtools sort -i cenSAT.filtered.bed > cenSAT.sorted.bed
         bedtools merge -d 2000 -c 4 -o distinct -i cenSAT.sorted.bed > cenSAT.merged.bed
         sed 's/$/\t0\t.\t.\t.\t0,204,204/' cenSAT.merged.bed > cenSAT.merged.named.bed
@@ -122,7 +122,7 @@ task createAnnotations {
 
         # create the CT annotation and define centromere intervals
         bedtools merge -d 2000000 -i ~{fName}.sorted.bed > centromeres.bed
-        grep active ~{aSatBed} > active_arrays.bed
+        grep active ~{aSatBed} > active_arrays.bed || true
         bedtools intersect -wa -u -a centromeres.bed -b active_arrays.bed > ~{fName}.active.centromeres.bed
         awk '{print $1, $2, $3}'  OFS='\t' ~{fName}.active.centromeres.bed > active_centromeres.bed
         bedtools coverage -a active_centromeres.bed -b ~{fName}.sorted.bed -d | awk '{ if ($5 == 0) { print $1, ($2+$4-1), ($2+$4)} }' OFS='\t' | bedtools merge | awk '{print $1, $2, ($3) }' OFS='\t' > CT.bed

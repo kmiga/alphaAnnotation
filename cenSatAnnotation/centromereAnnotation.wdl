@@ -57,6 +57,8 @@ workflow centromereAnnotation {
 		File as_strand_bed=alphaSat_HMMER_workflow.as_strand_bed
 		File as_hor_bed=alphaSat_HMMER_workflow.as_hor_bed
 		File as_sf_bed=alphaSat_HMMER_workflow.as_sf_bed
+        File cenSatAnnotations=cenSatAnnotation.cenSatAnnotations
+        File centromeres=cenSatAnnotation.centromeres
     }
 
     parameter_meta {
