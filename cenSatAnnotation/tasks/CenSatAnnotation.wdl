@@ -116,7 +116,7 @@ task createAnnotations {
         # close gaps smaller than 10 bp - avoid tiny CT annotations
         # this closes gaps by expanding the annotation upstream
         # double check how this works when implementing strandedness in the future 
-        bedtools closest -io -D a -iu -a ~{fName}.sorted.bed -b ~{fName}.sorted.bed | awk ' BEGIN {OFS="\t"} {if ($19 > 0 && $19 < 10) ($3=$8=($8+$19-2))} {print $1,$2,$3,$4,$5,$6,$7,$8,$9 }' > testGaps.out
+        bedtools closest -io -D a -iu -a ~{fName}.sorted.bed -b ~{fName}.sorted.bed | awk ' BEGIN {OFS="\t"} {if ($19 > 0 && $19 < 10) ($3=$8=($8+$19-1))} {print $1,$2,$3,$4,$5,$6,$7,$8,$9 }' > testGaps.out
         cat testGaps.out >  ~{fName}.sorted.bed
         rm testGaps.out
 
