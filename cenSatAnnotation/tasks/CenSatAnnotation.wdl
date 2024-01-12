@@ -6,7 +6,7 @@ workflow cenSatAnnotation{
          File aSatBed
          File HSatBed
          File rDNABed
-         String fName=basename(sub(sub(sub(RMOut, "\\.bed$", ""), "\\.fastq$", ""), "\\.fa$", ""))
+         String fName=basename(sub(sub(sub(sub(RMOut, "\\.bed$", ""), "\\.fastq$", ""), "\\.fa$", ""), "\\.fasta$", ""))
         
          Int threadCount = 20
          Int preemptible = 1
@@ -70,7 +70,6 @@ task createAnnotations {
         
 
         # HSAT1A - SAR - 5kb merge color code 145,255,0
-        head ~{RMOut}
         grep SAR ~{RMOut} > HSAT1A.bed || true
         bedtools merge -d 5000 -i HSAT1A.bed > HSAT1A.merged.bed
         sed 's/$/\thsat1A\t0\t.\t.\t.\t145,255,0/' HSAT1A.merged.bed > HSAT1A.merged.named.bed
@@ -103,29 +102,96 @@ task createAnnotations {
         bedtools merge -d 2000 -c 4 -o distinct -i cenSAT.sorted.bed > cenSAT.merged.bed
         sed 's/$/\t0\t.\t.\t.\t0,204,204/' cenSAT.merged.bed > cenSAT.merged.named.bed
         awk '$7=$2' OFS='\t' cenSAT.merged.named.bed | awk '$8=$3' OFS='\t' | awk '$4="cenSat("$4")"' OFS='\t' > cenSAT.part.bed
-    
+
         # merge all annotations into one file and sort 
-        for f in *part.bed ; do cat $f >> ~{fName}.bed ; done 
-        cat ~{aSatBed} >> ~{fName}.bed
-        cat ~{HSatBed} >> ~{fName}.bed
-        cat ~{rDNABed} >> ~{fName}.bed
-        # sort out entries smaller than 1000 bp 
-        awk '($3-$2) >= 1000' ~{fName}.bed > ~{fName}.filtered.bed
-        bedtools sort -i ~{fName}.filtered.bed > ~{fName}.sorted.bed
+        for f in *part.bed ; do cat $f >> ~{fName}.cenSat.bed ; done 
+        bedtools sort -i ~{fName}.cenSat.bed > ~{fName}.cenSat.sorted.bed
+
+        # AlphaSat - resolve overlaps 
+        # merge any overlaps smaller than 400 bp to upstream annotation - 2+ alpha monomers 
+        bedtools closest -D a -iu -t last -a ~{aSatBed} -b ~{aSatBed} | awk ' BEGIN {OFS="\t"} {if ($19<1&&(($3-$11)<400)&&($2!=$11||$3!=$12)) {$3=$8=($11-1)}} {print $1,$2,$3,$4,$5,$6,$2,$3,$9}' > smallMerged.bed
+
+        # merge all alpha annotations for coverage calculation
+        bedtools merge -d 2000000 -i ~{aSatBed} > wholealpha.bed
+
+        # make a file of the regions with overlaps
+        bedtools coverage -a wholealpha.bed -b smallMerged.bed -d | awk '{if ($5 >= 2) {print $1, ($2+$4-1), ($2+$4)}}' OFS='\t' | bedtools sort -i stdin | bedtools merge > overlapping.smallMerged.bed
+        # add them to the final overlaps file 
+        cat overlapping.smallMerged.bed > ~{fName}.overlaps_resolved.bed
+        cat ~{fName}.overlaps_resolved.bed
+
+        # intersect the overlaps bed file 
+        bedtools intersect -wb -a smallMerged.bed -b overlapping.smallMerged.bed | awk '{print $1,$2,$3,$4,$5,$6,$2,$3,$9}' OFS='\t' | bedtools sort -i > mixedOverlaps.bed
+
+        # extract the names of overlapping alpha annotations
+        sed 's/.*(\(.*\))/\1/' mixedOverlaps.bed | awk '{print $1}' > alpha_names.txt
+
+        # cleaning up the alpha HOR names
+        awk 'FNR==NR{a[NR]=$1;next}{$4=a[FNR]}1' alpha_names.txt mixedOverlaps.bed | awk '{print $1, $2, $3, $4, $5,$6,$2,$3,$9}' OFS='\t' > mixedOverlaps.named.bed
+
+        # merge the overlapping regions
+        bedtools merge -c 4 -o distinct -i mixedOverlaps.named.bed > mixedOverlaps.merged.bed
+
+        # format bed entries 
+        sed 's/$/\t0\t.\t.\t.\t240,128,128/' mixedOverlaps.merged.bed > mixedOverlaps.merged.named.bed
+        awk '$7=$2' OFS='\t' mixedOverlaps.merged.named.bed | awk '$8=$3' OFS='\t' | awk '$4="mixedAlpha("$4")"' OFS='\t' > mixedOverlaps.part.bed
+        bedtools subtract -a smallMerged.bed -b mixedOverlaps.part.bed | awk '{print $1,$2,$3,$4,$5,$6,$2,$3,$9}' OFS='\t'  > overlapping.filtered.part.bed
+
+        # create the final alpha file 
+        cat mixedOverlaps.part.bed  > overlapsResolved.alpha.bed
+        cat overlapping.filtered.part.bed >> overlapsResolved.alpha.bed
+        bedtools sort -i overlapsResolved.alpha.bed > overlapsResolved.alpha.sorted.bed
+
+        # Merge HSAT annotations that are near eachother - this removes strand information that exists in the script currently 
+        grep HSat2 ~{HSatBed} > HSAT2.bed || true 
+        bedtools sort -i HSAT2.bed | bedtools merge -d 50 -c 4 -o distinct -i stdin > HSAT2.merged.bed 
+        sed 's/$/\t0\t.\t.\t.\t51,51,102/' HSAT2.merged.bed > HSAT2.merged.named.bed
+        awk '$7=$2' OFS='\t' HSAT2.merged.named.bed | awk '$8=$3' OFS='\t' > HSAT23.bed
+
+        grep HSat3 ~{HSatBed} > HSAT3.bed || true 
+        bedtools sort -i HSAT3.bed | bedtools merge -d 50 -c 4 -o distinct -i stdin > HSAT3.merged.bed 
+        sed 's/$/\t0\t.\t.\t.\t120,161,187/' HSAT3.merged.bed > HSAT3.merged.named.bed
+        awk '$7=$2' OFS='\t' HSAT3.merged.named.bed | awk '$8=$3' OFS='\t' >> HSAT23.bed
+        bedtools sort -i HSAT23.bed > HSAT23.sorted.bed
+
+        # now resolve any existing overlaps within any of the files and record any instances of overlaps 
+        # first find overlaps and add to final tracking file 
+        bedtools intersect -a overlapsResolved.alpha.sorted.bed -b HSAT23.sorted.bed | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
+        bedtools intersect -a overlapsResolved.alpha.sorted.bed -b ~{fName}.cenSat.sorted.bed | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
+        bedtools intersect -a overlapsResolved.alpha.sorted.bed -b ~{rDNABed} | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
+        bedtools intersect -a HSAT23.sorted.bed -b ~{fName}.cenSat.sorted.bed | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
+        bedtools intersect -a HSAT23.sorted.bed -b ~{rDNABed} | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
+        bedtools intersect -a ~{rDNABed} -b ~{fName}.cenSat.sorted.bed | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
+        bedtools sort -i ~{fName}.overlaps_resolved.bed > ~{fName}.sorted.resolved_overlaps.bed
+        
+
+        # remove overlapping regions and Final merge of annotations into one file 
+        # alpha - remove any overlaps with HSAT or censat 
+        bedtools subtract -a overlapsResolved.alpha.sorted.bed -b HSAT23.sorted.bed | bedtools subtract -a stdin -b ~{fName}.cenSat.sorted.bed > ~{fName}.bed
+        # censat - remove any overlaps with HSAT
+        bedtools subtract -a ~{fName}.cenSat.sorted.bed -b HSAT23.sorted.bed >> ~{fName}.bed
+        # HSat - subtract any existing annotations because I was still seeing overlaps 
+        cat HSAT23.sorted.bed >> ~{fName}.bed
+        # rDNA - remove any overlaps with any other annotations - this one is the roughest annotations so we trust the overlaps more
+        bedtools subtract -a ~{rDNABed} -b overlapsResolved.alpha.sorted.bed | bedtools subtract -a stdin -b HSAT23.sorted.bed | bedtools subtract -a stdin -b ~{fName}.cenSat.sorted.bed >> ~{fName}.bed
+
+        # sort out entries smaller than 800 bp - removes single monomers etc
+        # also fix that bedtools subtract only alters columns 2 and 3 and not 7 and 8 & subtract one from end because bedtools subtract leaves overlaps of 1 bp 
+        # this will be fixed in the next steps 
+        awk '($3-$2) >= 800' ~{fName}.bed  > ~{fName}.filtered.bed
+        bedtools sort -i ~{fName}.filtered.bed | awk '{print $1, $2, ($3-1), $4, $5,$6,$2,($3-1),$9}' OFS='\t' > ~{fName}.sorted.bed
         
         # close gaps smaller than 10 bp - avoid tiny CT annotations
         # this closes gaps by expanding the annotation upstream
         # double check how this works when implementing strandedness in the future 
-        bedtools closest -io -D a -iu -a ~{fName}.sorted.bed -b ~{fName}.sorted.bed | awk ' BEGIN {OFS="\t"} {if ($19 > 0 && $19 < 10) ($3=$8=($8+$19-1))} {print $1,$2,$3,$4,$5,$6,$7,$8,$9 }' > testGaps.out
-        cat testGaps.out >  ~{fName}.sorted.bed
-        rm testGaps.out
+        bedtools closest -io -D a -iu -a ~{fName}.sorted.bed -b ~{fName}.sorted.bed | awk ' BEGIN {OFS="\t"} {if ($19 > 0 && $19 < 10) ($3=$8=($8+$19-1))} {print $1,$2,$3,$4,$5,$6,$2,$3,$9 }' > tmp.txt && mv tmp.txt ~{fName}.sorted.bed
 
         # create the CT annotation and define centromere intervals
         bedtools merge -d 2000000 -i ~{fName}.sorted.bed > centromeres.bed
         grep active ~{aSatBed} > active_arrays.bed || true
         bedtools intersect -wa -u -a centromeres.bed -b active_arrays.bed > ~{fName}.active.centromeres.bed
         awk '{print $1, $2, $3}'  OFS='\t' ~{fName}.active.centromeres.bed > active_centromeres.bed
-        bedtools coverage -a active_centromeres.bed -b ~{fName}.sorted.bed -d | awk '{ if ($5 == 0) { print $1, ($2+$4-1), ($2+$4)} }' OFS='\t' | bedtools merge | awk '{print $1, $2, ($3) }' OFS='\t' > CT.bed
+        bedtools coverage -a active_centromeres.bed -b ~{fName}.sorted.bed -d | awk '{ if ($5 == 0) { print $1, ($2+$4-1), ($2+$4)} }' OFS='\t' | bedtools merge | awk '{print $1, $2, $3}' OFS='\t' > CT.bed
 
         sed 's/$/\tct\t0\t.\t.\t.\t224,224,224/' CT.bed > CT.named.bed
         awk '$7=$2' OFS='\t' CT.named.bed | awk '$8=$3' OFS='\t' >> ~{fName}.sorted.bed
@@ -135,13 +201,19 @@ task createAnnotations {
         bedtools sort -i ~{fName}.sorted.bed >> ~{fName}.cenSat.bed
 
         # clean up the directory 
+        rm CT*bed
+        rm active_arrays.bed
+        rm *SAT*bed
         rm *merged*bed
         rm *sorted.bed
         rm *filtered.bed
         rm *part.bed
+        rm overlap*bed
+        rm mixed*bed
 
     >>> 
     output {
+        File overlaps_resolved = "~{fName}.sorted.resolved_overlaps.bed"
         File cenSatAnnotations = "~{fName}.cenSat.bed"
         File centromeres = "~{fName}.active.centromeres.bed"
     }
