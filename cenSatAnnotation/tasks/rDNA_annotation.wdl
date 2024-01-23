@@ -4,7 +4,7 @@ workflow annotateRDNA {
     input {
         File fasta 
         File hmm_profile
-        String fName=basename(sub(sub(sub(fasta, "\\.gz$", ""), "\\.fastq$", ""), "\\.fa$", ""))
+        String fName=basename(sub(sub(sub(fasta, "\\.gz$", ""), "\\.fasta$", ""), "\\.fa$", ""))
         
         Int threadCount = 32
         Int preemptible = 1
@@ -95,9 +95,13 @@ task annotateContig {
         ln -s /opt/HumAS-HMMER_for_AnVIL/hmmertblout2bed.awk .
         #HMMER analysis
         nhmmer --cpu ~{threadCount} --notextw --noali --tblout ~{subsequenceName}.out -o /dev/null ~{hmm_profile} ~{subsequence}
-        awk -v th=0.7 -f hmmertblout2bed.awk ~{subsequenceName}.out > ~{subsequenceName}.bed
-        rm ~{subsequenceName}.out
+        awk -v th=0.7 -f hmmertblout2bed.awk ~{subsequenceName}.out > ~{subsequenceName}.bed || true && echo -e 'chrFAKE\t0\t1' > ~{subsequenceName}.bed
+        
         sort -k 1.4,1 -k 2,2n ~{subsequenceName}.bed > ~{subsequenceName}.sorted.bed
+        
+        # cleanup 
+        rm ~{subsequenceName}.out
+        rm ~{subsequenceName}.bed
 
     >>>
 
@@ -133,20 +137,18 @@ task finalizeFiles {
         
 
         # concatenate the bed file
-        cat ~{sep=' ' bedFiles} > ~{fName}.bed
+        cat ~{sep=' ' bedFiles} | bedtools sort -i stdin > ~{fName}.bed
+        bedtools merge -d 50000 -i ~{fName}.bed > ~{fName}.merged.bed
 
-        # sort the bed file 
-        bedtools sort -i ~{fName}.bed > ~{fName}.sorted.bed
-
-        bedtools merge -d 50000 -i ~{fName}.sorted.bed > ~{fName}.merged.bed
         # filtering out anything smaller than 10kb 
         awk '($3-$2) >= 10000' ~{fName}.merged.bed > ~{fName}.filtered.bed
         sed 's/$/\trDNA\t0\t.\t.\t.\t0,0,0/' ~{fName}.filtered.bed > ~{fName}.rDNA.bed
-        awk '$7=$2' OFS='\t' ~{fName}.rDNA.bed | awk '$8=$3' OFS='\t' > ~{fName}.rDNA.part.bed
+        awk '$7=$2' OFS='\t' ~{fName}.rDNA.bed | awk '$8=$3' OFS='\t' > tmp.bed && mv tmp.bed ~{fName}.rDNA.bed
 
     >>>
     output {
-        File rDNAbed = "~{fName}.rDNA.part.bed"
+        File rDNAraw = "~{fName}.bed"
+        File rDNAbed = "~{fName}.rDNA.bed"
     }
 
     runtime {

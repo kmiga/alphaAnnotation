@@ -14,7 +14,7 @@ workflow centromereAnnotation {
         File rDNAhmm_profile
         File AS_hmm_profile
         File AS_hmm_profile_SF
-        String fName=basename(sub(sub(sub(fasta, "\\.bed$", ""), "\\.fastq$", ""), "\\.fa$", ""))
+        String fName=basename(sub(sub(sub(fasta, "\\.bed$", ""), "\\.fasta$", ""), "\\.fa$", ""))
 
     }
 
@@ -113,7 +113,7 @@ task formatAssembly {
     while IFS= read -r line; do
         if [[ $line == ">"* ]]; then
             # If it's a header line, replace dashes with underscores and write it to the logfile to keep track of
-            modified_line=$(echo "$line" | tr '-' '_')
+            modified_line=$(echo "$line" | tr ':*;-' '_')
             echo "$line $modified_line" | sed 's/>//g' >> ~{fName}.headers.txt
             echo "$modified_line" >> ~{fName}.formatted.fa
         else 

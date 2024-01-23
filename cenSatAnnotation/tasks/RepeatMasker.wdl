@@ -5,7 +5,7 @@ workflow RepeatMasker{
     input {
          File fasta
          File RM2Bed
-         String fName=basename(sub(sub(sub(fasta, "\\.gz$", ""), "\\.fastq$", ""), "\\.fa$", ""))
+         String fName=basename(sub(sub(sub(fasta, "\\.gz$", ""), "\\.fasta$", ""), "\\.fa$", ""))
         
          Int threadCount = 32
          Int preemptible = 1
@@ -79,11 +79,6 @@ task createArray {
     }
     command <<<
 
-        #sanitize the fasta headers 
-        sed -i 's/:/_/g' ~{fasta}
-        sed -i 's/-/_/g' ~{fasta}
-        sed -i 's/ /_/g' ~{fasta}
-
         awk '/^>/ { file=substr($1,2) ".fa" } { print > file }' ~{fasta}
 
     >>>
@@ -115,7 +110,11 @@ task maskContig {
         set -o xtrace
 
         RepeatMasker -s -pa 8 -e ncbi ~{subsequence} -dir .
-
+        # for small contigs - if there are no repeats found put the unmasked sequence in and create a dummy 
+        if ! test -f ~{subsequenceName}.masked; then cat ~{subsequence} > ~{subsequenceName}.masked \
+        && touch ~{subsequenceName}.tbl \
+        && touch ~{subsequenceName}.out \
+        ; fi 
     >>>
 
     output {
