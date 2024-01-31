@@ -14,7 +14,7 @@ workflow centromereAnnotation {
         File rDNAhmm_profile
         File AS_hmm_profile
         File AS_hmm_profile_SF
-        String fName=basename(sub(sub(sub(fasta, "\\.bed$", ""), "\\.fasta$", ""), "\\.fa$", ""))
+        String fName=basename(sub(sub(sub(fasta, "\\.gz$", ""), "\\.fasta$", ""), "\\.fa$", ""))
 
     }
 
@@ -106,24 +106,38 @@ task formatAssembly {
         set -u
         set -o xtrace
 
-    #make sure there are no duplicate headers
-    awk '/^>/ && seen[$1]++ {print "Error: Duplicate header found:", $1; exit 1}' ~{fasta}
+        # check that file is not empty and is in the correct format 
+        if [ ! -s ~{fasta} ]; then echo "Fasta file is empty" ; exit 2 ; fi
 
-    #loop through fasta file, and rename all dashes to underscoores
-    while IFS= read -r line; do
-        if [[ $line == ">"* ]]; then
-            # If it's a header line, replace dashes with underscores and write it to the logfile to keep track of
-            modified_line=$(echo "$line" | tr ':*;-' '_')
-            echo "$line $modified_line" | sed 's/>//g' >> ~{fName}.headers.txt
-            echo "$modified_line" >> ~{fName}.formatted.fa
+        # unzip the fasta if it is zipped 
+        if [[ ~{fasta} =~ \.gz$ ]] ; then
+            gunzip -fc ~{fasta} > ~{fName}.fa 
         else 
-            echo "$line" >> ~{fName}.formatted.fa
+            cat ~{fasta} > ~{fName}.fa 
         fi
-    done < ~{fasta}
+        
+        cat ~{fName}.fa 
 
-    #make sure there are no sequence name conflicts after renaming
-    #this is so that when we will be renaming back, there will only be one correct option
-    awk 'NR==FNR{map[$1]=$2; next} $2 in map && $1 != map[$2]{print "Error: "$2" found on a different row than "$1; exit 1}' ~{fName}.headers.txt ~{fName}.headers.txt
+        # check that file is nucleotide sequences and not proteins 
+        
+        #make sure there are no duplicate headers
+        awk '/^>/ && seen[$1]++ {print "Error: Duplicate header found:", $1; exit 1}' ~{fName}.fa
+
+        #loop through fasta file, and rename all dashes to underscoores
+        while IFS= read -r line; do
+            if [[ $line == ">"* ]]; then
+                # If it's a header line, replace dashes with underscores and write it to the logfile to keep track of
+                modified_line=$(echo "$line" | tr ':*;-' '_')
+                echo "$line $modified_line" | sed 's/>//g' >> ~{fName}.headers.txt
+                echo "$modified_line" >> ~{fName}.formatted.fa
+            else 
+                echo "$line" >> ~{fName}.formatted.fa
+            fi
+        done < ~{fName}.fa
+
+        #make sure there are no sequence name conflicts after renaming
+        #this is so that when we will be renaming back, there will only be one correct option
+        awk 'NR==FNR{map[$1]=$2; next} $2 in map && $1 != map[$2]{print "Error: "$2" found on a different row than "$1; exit 1}' ~{fName}.headers.txt ~{fName}.headers.txt
 
 
     >>>
