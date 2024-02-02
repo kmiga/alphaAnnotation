@@ -64,9 +64,7 @@ for value in ${unique_values[@]}; do
     # require final size to be at least 5 monomers (171 * 5 = 855 --> 900)
     # then merge any blocks that are separated by LINEs (~6000 --> 6500)
     bedtools merge -c 4 -o distinct -d 350 -i <(grep -Fw $value HOR_basenames.bed) \
-    | awk -v min_length="$min_length" '($3-$2) >= 900' \
-    | bedtools merge  -d 6500 -c 4 -o distinct \
-        >> HOR_basenames_merged.bed
+    | awk -v min_length="$min_length" '($3-$2) >= 900' >> HOR_basenames_merged.bed
 done
 
 
@@ -79,7 +77,7 @@ sort -k1,1 -k2,2n HOR_basenames_merged.bed -o HOR_basenames_merged_sorted.bed
 ###############################################################################
 
 ## Pull just S4/S5 from HOR groupings
-grep -E "S4|S5" \
+grep -E "S5" \
     HOR_basenames_merged_sorted.bed \
     > HOR_basenames_merged_sorted_S4_S5.bed
 
@@ -107,6 +105,7 @@ cat \
     | awk 'BEGIN{OFS="\t"} {print $1,$2,$3,$4}' \
     | bedtools sort \
     > HOR_basenames_merged_sorted_S4_S5_to_remove.bed 
+
 
 
 # Can't use bedtools subtract here
@@ -200,12 +199,46 @@ bedtools subtract \
     > merged_mon_cleaned.bed
 
 
+
 ###############################################################################
-##                                   Combine                                 ##
+##                    Combine and Merge over LINES                           ##
 ###############################################################################
 
 cat HOR_basenames_merged_sorted_wout_monomeric_cleaned_mergeoverlaps_sorted.bed \
     merged_mon_cleaned.bed \
     | bedtools sort \
-    > $out_bed
+    > Summary.sorted.bed
+    
+# Find the unique bins again 
+unique_bins=$(cut -f4 Summary.sorted.bed | sort -u)
+
+## clean up, just in case of rerun (don't print error if it doesn't exist)
+rm Summary_LINEmerged.bed 2> /dev/null || true
+
+# Merge over LINEs 
+for value in ${unique_bins[@]}; do
+    # merge any blocks that are separated by LINEs (~6000 --> 6500)
+    grep -Fw $value Summary.sorted.bed \
+    | bedtools merge -c 4 -o distinct -d 6500 -i stdin \
+    | bedtools sort -i  \
+    >> Summary_LINEmerged.bed
+done
+
+# Fix the labels once again 
+cat Summary_LINEmerged.bed \
+    | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "100", ".", $2, $3, "255,255,255"}' \
+    | awk 'BEGIN{OFS="\t"} {
+            if ($4 ~ /H1L/) {
+                $9="250,0,0"
+            } else if ($4 ~ /d/) {
+                $9="153,0,0"
+            } else if ($4 ~ /mon/) {
+                $9="255,204,153"
+            } else {
+                $9="255,146,0"
+            }
+            print }' \
+        | bedtools sort -i \
+        > $out_bed
+
 
