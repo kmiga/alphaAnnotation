@@ -123,17 +123,9 @@ task formatAssembly {
         #make sure there are no duplicate headers
         awk '/^>/ && seen[$1]++ {print "Error: Duplicate header found:", $1; exit 1}' ~{fName}.fa
 
-        #loop through fasta file, and rename all dashes to underscoores
-        while IFS= read -r line; do
-            if [[ $line == ">"* ]]; then
-                # If it's a header line, replace dashes with underscores and write it to the logfile to keep track of
-                modified_line=$(echo "$line" | tr ':*;-' '_')
-                echo "$line $modified_line" | sed 's/>//g' >> ~{fName}.headers.txt
-                echo "$modified_line" >> ~{fName}.formatted.fa
-            else 
-                echo "$line" >> ~{fName}.formatted.fa
-            fi
-        done < ~{fName}.fa
+        #replace all instances of :,*,;, and - to underscores in sequence names and record the
+        #correspondence to the unmodified names
+        tee >( awk '{if (substr($1,1,1) == ">") { orig=substr($1,2); gsub(/[:*;-]/, "_", $1); print orig, substr($1,2) } }'  > ~{fName}.headers.txt ) < ~{fName}.fa | awk '{ if (substr($1,1,1) == ">") { gsub(/[:*;-]/, "_", $1) } print $1 }'  > ~{fName}.formatted.fa
 
         #make sure there are no sequence name conflicts after renaming
         #this is so that when we will be renaming back, there will only be one correct option
