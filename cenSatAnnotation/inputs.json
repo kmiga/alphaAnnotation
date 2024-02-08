@@ -1,7 +1,3 @@
 { 
-"centromereAnnotation.fasta":"/path/to/fasta.fa",
-"centromereAnnotation.RM2Bed":"../utilities/RM2Bed.py",
-"centromereAnnotation.rDNAhmm_profile":"../utilities/rDNA.hmm",
-"centromereAnnotation.AS_hmm_profile": "../utilities/AS-HORs-hmmer3.3.2-120124.hmm",
-"centromereAnnotation.AS_hmm_profile_SF":"../utilities/AS-SFs-hmmer3.0.290621.hmm"
+"centromereAnnotation.fasta":"../utilities/testData/chm13_testIntervals.fa"
 }

@@ -10,10 +10,10 @@ import "./tasks/CenSatAnnotation.wdl" as finalizeCenSat
 workflow centromereAnnotation {
     input {
         File fasta 
-        File RM2Bed 
-        File rDNAhmm_profile
-        File AS_hmm_profile
-        File AS_hmm_profile_SF
+        String RM2Bed="../utilities/RM2Bed.py"
+        String rDNAhmm_profile="../utilities/rDNA.hmm"
+        String AS_hmm_profile="../utilities/AS-HORs-hmmer3.3.2-120124.hmm"
+        String AS_hmm_profile_SF="../utilities/AS-SFs-hmmer3.0.290621.hmm"
         String fName=basename(sub(sub(sub(fasta, "\\.gz$", ""), "\\.fasta$", ""), "\\.fa$", ""))
 
     }
@@ -80,11 +80,11 @@ workflow centromereAnnotation {
     }
 
     parameter_meta {
-        fasta: "Non gzipped Assembly for annotation"
-        RM2Bed: "RepeatMasker to bed python script https://github.com/rmhubley/RepeatMasker/blob/master/util/RM2Bed.py"
-        rDNAhmm_profile: "https://github.com/hloucks/Satellite-RepeatMasker/blob/main/rDNA.hmm"
-        AS_hmm_profile: "main AS hmm profile"
-        AS_hmm_profile_SF: "AS hmm profile for creation of AS-SF bed file"
+        fasta: "Assembly for annotation"
+        RM2Bed: "Optional input RepeatMasker to bed python script https://github.com/rmhubley/RepeatMasker/blob/master/util/RM2Bed.py"
+        rDNAhmm_profile: "Optional input hmm profile, can be found in alphaAnnotation/utilites"
+        AS_hmm_profile: "Optional input hmm profile, can be found in alphaAnnotation/utilites"
+        AS_hmm_profile_SF: "Optional input hmm profile, can be found in alphaAnnotation/utilites"
     }
     meta {
         author: "Hailey Loucks"
@@ -116,8 +116,6 @@ task formatAssembly {
             cat ~{fasta} > ~{fName}.fa 
         fi
         
-        cat ~{fName}.fa 
-
         # check that file is nucleotide sequences and not proteins 
         
         #make sure there are no duplicate headers

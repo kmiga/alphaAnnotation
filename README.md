@@ -46,16 +46,16 @@ There are five main workflows that are run, all except the finalization workflow
 - [rDNA Annotation Script](cenSatAnnotation/tasks/rDNA_annotation.wdl ) - This script uses an HMM built from the beginning and the end of the rDNA repeat unit and merges to find the complete annotation. 
 - [CenSat Annotation finalization script](cenSatAnnotation/tasks/CenSatAnnotation.wdl) - The script takes the file outputs of the four above scripts and combines them into a single output file. It includes logic that joins the satellites annotated by RepeatMasker, annotates the active centromere and centromere transition regions, and adds colors for easier visualization. This workflow must be run as part of the cenSatAnnotation workflow and can't be run on its own. 
 
-### Example of how to run the cenSatAnnotation workflow with cromwell 
+## Quickstart cenSat annotation with cromwell 
 
 ```
 # clone the entire repo 
 git clone https://github.com/kmiga/alphaAnnotation.git
 
-# switch into directory of workflow you would like to run 
+# switch into correct directory  
 cd alphaAnnotation/cenSatAnnotation/ 
 
-# run the workflow with cromwell 
+# run the workflow - running without changing inputs file will run on test data
 java -jar path/to/cromwell-XY.jar run centromereAnnotation.wdl -i inputs.json > cenSattest.txt 
 
 ```
