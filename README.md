@@ -10,7 +10,7 @@ Cromwell requires Java version 11 or later.
 
 Take a look at the [Cromwell Documentation](https://cromwell.readthedocs.io/en/stable/tutorials/FiveMinuteIntro/) before you get started. 
 
-Download the latest version of cromwell and make it executable. 
+Download the latest version of cromwell and make it executable. (Replace XY with newest version number)  
 ```
 wget https://github.com/broadinstitute/cromwell/releases/download/86/cromwell-XY.jar
 chmod +x cromwell-XY.jar 
@@ -26,9 +26,8 @@ Each of our workflows will have an example inputs.json in their directory. Here 
 
 ```
 cat inputs.json
-{
- "workflow.input1":"/path/to/input1.file",
- "workflow.input2":"/path/to/input2.file"
+{ 
+"centromereAnnotation.fasta":"../utilities/testData/chm13_testIntervals.fa"
 }
 ```
 
@@ -40,11 +39,11 @@ To create a completed CenSat annotation bed file, run the [cenSatAnnotation](cen
 This workflow will execute all other required workflows in this repo. 
 
 There are five main workflows that are run, all except the finalization workflow can also be run individually. 
-- [AlphaSat annotation](alphaSat-HMMER/alphaSat-HMMER.wdl) - This script takes the HumAS-HMMER output and summarizes these annotations into the following bins, active HOR, HOR, diverged HOR, and monomeric
-- [HSAT2/3 annotation](identify-hSat2and3/identify-hSat2and3.wdl) - This is Nick Altemose’ HSAT annotation script. 
-- [RepeatMasker Annotation](cenSatAnnotation/tasks/RepeatMasker.wdl) - This script runs repeatmasker on each contig from assembly and converts the output into a bed file. 
+- [AlphaSat annotation](alphaSat-HMMER/alphaSat-HMMER.wdl) - This script runs Fedor Ryabov's [HumAS-HMMER](https://github.com/fedorrik/HumAS-HMMER_for_AnVIL) and summarizes the alpha satellite annotations into the following bins, active HOR, HOR, diverged HOR, and monomeric. 
+- [HSAT2/3 annotation](identify-hSat2and3/identify-hSat2and3.wdl) - This is [Nick Altemose’ HSAT annotation script](https://github.com/altemose/chm13_hsat)
+- [RepeatMasker Annotation](cenSatAnnotation/tasks/RepeatMasker.wdl) - This script runs [RepeatMasker](http://repeatmasker.org) on each contig from assembly and converts the output into a bed file. 
 - [rDNA Annotation Script](cenSatAnnotation/tasks/rDNA_annotation.wdl ) - This script uses an HMM built from the beginning and the end of the rDNA repeat unit and merges to find the complete annotation. 
-- [CenSat Annotation finalization script](cenSatAnnotation/tasks/CenSatAnnotation.wdl) - The script takes the file outputs of the four above scripts and combines them into a single output file. It includes logic that joins the satellites annotated by RepeatMasker, annotates the active centromere and centromere transition regions, and adds colors for easier visualization. This workflow must be run as part of the cenSatAnnotation workflow and can't be run on its own. 
+- [CenSat Annotation finalization script](cenSatAnnotation/tasks/CenSatAnnotation.wdl) - The script takes the file outputs of the four above scripts and combines them into a single output file. It includes logic that joins the satellites annotated by RepeatMasker, annotates the active centromere and centromere transition regions, and adds colors for easier visualization. This workflow must be run as part of the cenSatAnnotation workflow and can't be run without the inputs of the above scripts. 
 
 ## Quickstart cenSat annotation with cromwell 
 
@@ -56,7 +55,10 @@ git clone https://github.com/kmiga/alphaAnnotation.git
 cd alphaAnnotation/cenSatAnnotation/ 
 
 # run the workflow - running without changing inputs file will run on test data
+# make sure to substitute the file path to the correct cromwell version 
 java -jar path/to/cromwell-XY.jar run centromereAnnotation.wdl -i inputs.json > cenSattest.txt 
 
 ```
 
+### Citations 
+A.F.A. Smit, R. Hubley & P. Green RepeatMasker at http://repeatmasker.org
