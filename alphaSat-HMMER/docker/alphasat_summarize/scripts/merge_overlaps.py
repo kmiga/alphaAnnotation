@@ -1,11 +1,6 @@
 import argparse
 import pandas as pd
 import pybedtools
-import warnings
-
-warnings.simplefilter(action='ignore', category=FutureWarning)
-## suppress this warning in particular...
-# The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
 
 ## Call with
 ## Assumes sorted inputs
@@ -36,7 +31,6 @@ output_fn      = args.output_file
 # Read in the BED file 
 column_names = ['chr', 'start', 'end', 'name', 'score', 'strand', 'thickStart', 'thickEnd', 'itemRgb']
 input_bed_df = pd.read_csv(input_bed_fp, sep='\t', header=None, names=column_names)
-
 
 ## create new df to put merged (or not) regions into
 merged_hor_df = pd.DataFrame(columns = column_names)
@@ -112,18 +106,21 @@ while i < (len(input_bed_df)-1):
 
 
         ## Actually add the regions that are split and overlapped to new dataframe
-        merged_hor_df = merged_hor_df.append(a_minus_b_df)
-        merged_hor_df = merged_hor_df.append(b_minus_a_df)
-        merged_hor_df = merged_hor_df.append(a_inter_b_df)
         
+        
+        merged_hor_df = pd.concat([merged_hor_df, a_minus_b_df])
+        merged_hor_df = pd.concat([merged_hor_df, b_minus_a_df])
+        merged_hor_df = pd.concat([merged_hor_df, a_inter_b_df])
+
         ## skip next row (since it was merged)
         i += 2
-
     ## no need to merge, just add to new data frame
     else:
-        merged_hor_df = merged_hor_df.append(input_bed_df.loc[input_bed_df.index[i]])
+        merged_hor_df = pd.concat([merged_hor_df, input_bed_df.loc[[input_bed_df.index[i]]]])
         i += 1
 
+# Add the final row to the database
+merged_hor_df = pd.concat([merged_hor_df, input_bed_df.loc[[input_bed_df.index[len(input_bed_df)-1]]]])
 
 ## bedtools doesn't updated thickStart/thickEnd when intersecting or subtracting
 merged_hor_df['thickStart'] = merged_hor_df['start']
@@ -133,7 +130,6 @@ merged_hor_df['thickEnd'] = merged_hor_df['end']
 ###############################################################################
 ##                                  DONE                                     ##
 ###############################################################################
-
 
 merged_hor_df.to_csv(output_fn, sep='\t', header=None, index=False)
 

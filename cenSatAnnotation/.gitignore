@@ -1,0 +1,4 @@
+cromwell-workflow-logs/
+cromwell-executions/
+logfiles/
+myInputs.json

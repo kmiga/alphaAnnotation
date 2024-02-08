@@ -1,0 +1,6 @@
+{ 
+"alphaSat_HMMER_workflow.input_fasta":"/path/to/fasta.fa",
+"alphaSat_HMMER_workflow.hmm_profile": "../utilities/AS-HORs-hmmer3.3.2-120124.hmm",
+"alphaSat_HMMER_workflow.hmm_profile_SF":"../utilities/AS-SFs-hmmer3.0.290621.hmm",
+"alphaSat_HMMER_workflow.sample_id":"Assembly_name"
+}

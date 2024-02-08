@@ -49,7 +49,12 @@ task identify_hSat2and3 {
 		cp /opt/chm13_hsat/HSat3_kmers.txt .
 
 		## Call annotation script:
-		perl /opt/chm13_hsat/Assembly_HSat2and3_v3.pl $INPUT_FILE
+		perl /opt/chm13_hsat/Assembly_HSat2and3_v3.pl $INPUT_FILE || true 
+
+		# In case of empty output 
+		if ! test -f *HSat2and3_Regions.bed; \
+		then echo -e 'chrFAKE\t0\t1\tHSat3\t0\t-\t0\t1\t120,161,187' > placeholder.HSat2and3_Regions.bed \
+		; fi
 	>>>
 
 	output {
