@@ -108,8 +108,11 @@ task maskContig {
         set -e
         set -u
         set -o xtrace
+        
+        # each parallel job uses 4 threads, budget 4 threads per job, rounding up
+        NPARALLEL=$(( (~{threadCount} + 3) / 4 ))
 
-        RepeatMasker -s -pa 8 -e ncbi ~{subsequence} -dir .
+        RepeatMasker -s -pa ${NPARALLEL} -e ncbi ~{subsequence} -dir .
         # for small contigs - if there are no repeats found put the unmasked sequence in and create a dummy 
         if ! test -f ~{subsequenceName}.masked; then cat ~{subsequence} > ~{subsequenceName}.masked \
         && touch ~{subsequenceName}.tbl \
