@@ -1,4 +1,4 @@
-# Miga Lab Centromeric Satellite Annotaiton Repository 
+# Miga Lab Centromeric Satellite Annotation Repository 
 
 This repository contains WDL workflows created by the Miga lab and collaborators to annotate centromeric satellites.
 
