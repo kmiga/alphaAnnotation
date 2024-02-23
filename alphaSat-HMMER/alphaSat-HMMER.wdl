@@ -149,21 +149,17 @@ task alphaSat_HMMER {
 		## localize hmmertblout2bed script (needed for hmmer run calls)
 		ln -s /opt/HumAS-HMMER_for_AnVIL/hmmertblout2bed.awk .
 
-
-		## Set number of threads (reserve one thread for master node)
-		NHMMER_THREADS=$((~{threadCount} - 1))
-
 		## Troubleshoot slow runtime
 		date 
 
 		## Run HumAS-HMMER, output: AS-HOR+SF, AS-HOR, AS-strand
-		hmmer-run.sh input_fasta_dir ~{hmm_profile} ${NHMMER_THREADS}
+		hmmer-run.sh input_fasta_dir ~{hmm_profile} ~{threadCount}
 
 		## Troubleshoot slow runtime
 		date 
 
 		## Run HumAS-HMMER, output: AS-SF
-		hmmer-run_SF.sh input_fasta_dir ~{hmm_profile_SF} ${NHMMER_THREADS}
+		hmmer-run_SF.sh input_fasta_dir ~{hmm_profile_SF} ~{threadCount}
 
 		## Troubleshoot slow runtime
 		date 
