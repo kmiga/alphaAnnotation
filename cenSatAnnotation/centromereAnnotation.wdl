@@ -54,6 +54,7 @@ workflow centromereAnnotation {
         input:
             RMOut=RepeatMasker.repeatMaskerBed,
             aSatBed=alphaSat_HMMER_workflow.as_summary_bed,
+            aSatStrand=alphaSat_HMMER_workflow.as_strand_bed,
             HSatBed=identify_hSat2and3_wf.hSat_2and3_bed,
             rDNABed=annotateRDNA.rDNAbed
     }
@@ -67,6 +68,7 @@ workflow centromereAnnotation {
             as_hor_bed=alphaSat_HMMER_workflow.as_hor_bed,
             as_sf_bed=alphaSat_HMMER_workflow.as_sf_bed,
             cenSatAnnotations=cenSatAnnotation.cenSatAnnotations,
+            cenSatStrand=cenSatAnnotation.cenSatStrand,
             centromeres=cenSatAnnotation.centromeres
     }
 
@@ -152,6 +154,7 @@ task renameFinalOutputs {
         File as_hor_bed
         File as_sf_bed
         File cenSatAnnotations
+        File cenSatStrand
         File centromeres
     }
     command <<<
@@ -167,6 +170,7 @@ task renameFinalOutputs {
         awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{as_hor_bed} > ~{fName}.as_hor.bed
         awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{as_sf_bed} > ~{fName}.as_sf.bed
         awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{cenSatAnnotations} > ~{fName}.cenSat.bed
+        awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{cenSatStrand} > ~{fName}.SatelliteStrand.bed
         awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{centromeres} > ~{fName}.active.centromeres.bed
 
     >>>
@@ -177,6 +181,7 @@ task renameFinalOutputs {
         File final_as_hor_bed="~{fName}.as_hor.bed"
         File final_as_sf_bed="~{fName}.as_sf.bed"
         File final_cenSatAnnotations="~{fName}.cenSat.bed"
+        File final_cenSatStrand="~{fName}.SatelliteStrand.bed"
         File final_centromeres="~{fName}.active.centromeres.bed"
     }
 
