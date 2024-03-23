@@ -95,13 +95,14 @@ task annotateContig {
         ln -s /opt/HumAS-HMMER_for_AnVIL/hmmertblout2bed.awk .
         #HMMER analysis
         nhmmer --cpu ~{threadCount} --notextw --noali --tblout ~{subsequenceName}.out -o /dev/null ~{hmm_profile} ~{subsequence}
-        awk -v th=0.7 -f hmmertblout2bed.awk ~{subsequenceName}.out > ~{subsequenceName}.bed || true && echo -e 'chrFAKE\t0\t1' > ~{subsequenceName}.bed
+
+        awk -v th=0.7 -f hmmertblout2bed.awk ~{subsequenceName}.out > ~{subsequenceName}.bed || echo -e 'chrFAKE\t0\t1' > ~{subsequenceName}.bed
         
         sort -k 1.4,1 -k 2,2n ~{subsequenceName}.bed > ~{subsequenceName}.sorted.bed
         
         # cleanup 
-        rm ~{subsequenceName}.out
-        rm ~{subsequenceName}.bed
+        #rm ~{subsequenceName}.out
+        #rm ~{subsequenceName}.bed
 
     >>>
 
@@ -141,8 +142,7 @@ task finalizeFiles {
         bedtools merge -d 50000 -i ~{fName}.bed > ~{fName}.merged.bed
 
         # filtering out anything smaller than 10kb 
-        awk '($3-$2) >= 10000' ~{fName}.merged.bed > ~{fName}.filtered.bed
-        sed 's/$/\trDNA\t0\t.\t.\t.\t0,0,0/' ~{fName}.filtered.bed > ~{fName}.rDNA.bed
+        sed 's/$/\trDNA\t0\t.\t.\t.\t0,0,0/' ~{fName}.merged.bed > ~{fName}.rDNA.bed
         awk '$7=$2' OFS='\t' ~{fName}.rDNA.bed | awk '$8=$3' OFS='\t' > tmp.bed && mv tmp.bed ~{fName}.rDNA.bed
 
     >>>
