@@ -76,7 +76,7 @@ task createAnnotations {
 
         # HSAT1A - SAR - 5kb merge color code 145,255,0
         grep SAR ~{RMOut} > HSAT1A.bed || true
-        if [-s HSAT1A.bed]; then
+        if [ -s HSAT1A.bed ]; then
             bedtools merge -c 6 -o distinct -s -d 50 -i HSAT1A.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "hsat1A", "0", $4, $2, $3, "."}' > strandInfo.bed  # store for strand information later 
             bedtools merge -d 5000 -i HSAT1A.bed > HSAT1A.merged.bed
             sed 's/$/\thsat1A\t0\t.\t.\t.\t145,255,0/' HSAT1A.merged.bed > HSAT1A.merged.named.bed
@@ -85,7 +85,7 @@ task createAnnotations {
 
         # HSAT1B - HSATI - 5kb merge color code 0,153,76
         grep -w "HSATI" ~{RMOut} > HSAT1B.bed || true
-        if [-s HSAT1B.bed]; then
+        if [ -s HSAT1B.bed ]; then
             bedtools merge -d 5000 -i HSAT1B.bed > HSAT1B.merged.bed
             bedtools merge -c 6 -o distinct -s -d 50 -i HSAT1B.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "hsat1B", "0", $4, $2, $3, "."}' >> strandInfo.bed  # store for strand information later 
             sed 's/$/\thsat1B\t0\t.\t.\t.\t0,153,76/' HSAT1B.merged.bed > HSAT1B.merged.named.bed
@@ -94,7 +94,7 @@ task createAnnotations {
 
         # BetaSats - BSAT, LSAU, BSR 250,153,255
         grep -e BSAT -e LSAU -e BSR ~{RMOut} > BSAT.bed || true
-        if [-s BSAT.bed]; then
+        if [ -s BSAT.bed ]; then
             bedtools sort -i BSAT.bed > BSAT.sorted.bed
             bedtools merge -c 4,6 -o distinct -s -d 50 -i BSAT.sorted.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed # store for strand information later 
             bedtools merge -d 5000 -c 4 -o distinct -i BSAT.sorted.bed > BSAT.merged.bed 
@@ -104,7 +104,7 @@ task createAnnotations {
 
         # GammaSats - GSAT, TAR1 
         grep -e GSAT -e TAR1 ~{RMOut} > GSAT.bed || true
-        if [-s GSAT.bed]; then
+        if [ -s GSAT.bed ]; then
             bedtools sort -i GSAT.bed > GSAT.sorted.bed
             bedtools merge -c 4,6 -o distinct -s -d 50 -i GSAT.sorted.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed || true # store for strand information later 
             bedtools merge -d 5000 -c 4 -o distinct -i GSAT.sorted.bed > GSAT.merged.bed || true
@@ -115,7 +115,7 @@ task createAnnotations {
         # P-Censat - CER, SATR, SST1, ACRO - many more - 1 kb merge more fine tuned 0,204,204
         grep -e CER -e SATR -e SST1 -e ACRO -e rnd -e HSAT5 -e 5SRNA -e TAF11 -e HSAT4  ~{RMOut} > cenSAT.bed || true
         grep -v BSAT cenSAT.bed > cenSAT.filtered.bed || true
-        if [-s cenSAT.filtered.bed]; then
+        if [ -s cenSAT.filtered.bed ]; then
             bedtools sort -i cenSAT.filtered.bed > cenSAT.sorted.bed
             bedtools merge -c 4,6 -o distinct -s -d 150 -i cenSAT.sorted.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed || true # store for strand information later 
             bedtools merge -d 2000 -c 4 -o distinct -i cenSAT.sorted.bed > cenSAT.merged.bed || true
