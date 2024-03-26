@@ -77,7 +77,7 @@ sort -k1,1 -k2,2n HOR_basenames_merged.bed -o HOR_basenames_merged_sorted.bed
 ###############################################################################
 
 ## Pull just S4/S5 from HOR groupings
-grep -E "S5" \
+grep -E "S4|S5" \
     HOR_basenames_merged_sorted.bed \
     > HOR_basenames_merged_sorted_S4_S5.bed
 
@@ -175,6 +175,7 @@ bedtools sort \
 ##                               Monomeric                                   ##
 ###############################################################################
 
+
 ## find monomers that aren't in HORs
 bedtools subtract \
     -A \
@@ -184,29 +185,19 @@ bedtools subtract \
 
 ## Merge across large gaps (LINEs) and add monomeric name and color
 bedtools merge \
-    -d 10000 \
+    -d 6500 \
     -c 4 -o distinct \
     -i sf_not_in_merged_hor.bed \
     | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "mon", "100", ".", $2, $3, "255,204,153"}' \
     > merged_mon.bed 
 
-## Subtract again to make sure merged monomers don't span over HORs
-## Need to rewrite line because bedtools doesn't cut thick/thin cols 7/8
-bedtools subtract \
-    -a merged_mon.bed \
-    -b HOR_basenames_merged_sorted_wout_monomeric_cleaned_mergeoverlaps_sorted.bed \
-    | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "mon", "100", ".", $2, $3, "255,204,153"}' \
-    > merged_mon_cleaned.bed
-
 
 
 ###############################################################################
-##                    Combine and Merge over LINES                           ##
+##                                Merge over LINES                           ##
 ###############################################################################
 
-cat HOR_basenames_merged_sorted_wout_monomeric_cleaned_mergeoverlaps_sorted.bed \
-    merged_mon_cleaned.bed \
-    | bedtools sort \
+bedtools sort -i HOR_basenames_merged_sorted_wout_monomeric_cleaned_mergeoverlaps_sorted.bed \
     > Summary.sorted.bed
     
 # Find the unique bins again 
@@ -223,6 +214,14 @@ for value in ${unique_bins[@]}; do
     | bedtools sort -i  \
     >> Summary_LINEmerged.bed
 done
+
+## Subtract mon agains HORS to make sure merged monomers don't span over HORs
+bedtools subtract \
+    -a merged_mon.bed \
+    -b Summary_LINEmerged.bed \
+    | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "mon", "100", ".", $2, $3, "255,204,153"}' \
+    >> Summary_LINEmerged.bed
+
 
 # Fix the labels once again 
 cat Summary_LINEmerged.bed \
