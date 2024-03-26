@@ -229,7 +229,7 @@ task combine_beds {
 		memory: memSizeGB + " GB"
 		cpu: threadCount
 		disks: "local-disk " + diskSizeGB + " SSD"
-		docker: "juklucas/alphasat_summarize@sha256:4600e88c2878a8af44ddf3652111ec43e734b614a9026872a94a0e8dcb00fc19"
+		docker: "juklucas/alphasat_summarize@sha256:872277a3a780c676d32f61045043b638e07889e63faa0de054e5f3d7d362f7b4"
 		preemptible: 1
 	}
 
