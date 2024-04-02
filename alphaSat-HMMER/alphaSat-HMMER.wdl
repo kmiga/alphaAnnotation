@@ -229,7 +229,7 @@ task combine_beds {
 	>>>
 
 	output {
-		File output_bed  = output_bed
+		File output_bed  = out_bed_fn
 	}
 
 	runtime {
