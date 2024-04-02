@@ -5,7 +5,7 @@ workflow alphaSat_HMMER_workflow {
 		File input_fasta
 		File hmm_profile
 		File hmm_profile_SF
-		String sample_id
+		String assembly_id
 	}
 
 	call split_fasta {
@@ -22,21 +22,47 @@ workflow alphaSat_HMMER_workflow {
 		}
 	}
 
-	call combine_beds {
+	call combine_beds as combine_hor_beds {
 		input:
-			as_hor_sf_beds = alphaSat_HMMER.as_hor_sf_bed,
-			as_strand_beds = alphaSat_HMMER.as_strand_bed,
-			as_hor_beds    = alphaSat_HMMER.as_hor_bed,
-			as_sf_beds     = alphaSat_HMMER.as_sf_bed,
-			sample_id      = sample_id
+			beds           = alphaSat_HMMER.as_hor_bed,
+			assembly_id    = assembly_id,
+			tag            = "alphasat_HOR"
+	}
+
+	call combine_beds as combine_hor_sf_beds {
+		input:
+			beds           = alphaSat_HMMER.as_hor_sf_bed,
+			assembly_id    = assembly_id,
+			tag            = "alphasat_HOR_SF"			
+	}
+
+	call combine_beds as combine_sf_beds {
+		input:
+			beds           = alphaSat_HMMER.as_sf_bed,
+			assembly_id    = assembly_id,
+			tag            = "alphasat_SF"
+	}
+
+	call combine_beds as combine_strand_beds {
+		input:
+			beds           = alphaSat_HMMER.as_strand_bed,
+			assembly_id    = assembly_id,
+			tag            = "alphasat_strand"			
+	}
+
+	call summarize_alpha {
+		input:
+			as_hor_bed   = combine_hor_beds.output_bed,
+			as_sf_bed    = combine_sf_beds.output_bed,
+			assembly_id  = assembly_id
 	}
 
 	output {
-		File as_hor_sf_bed  = combine_beds.as_hor_sf_bed
-		File as_strand_bed  = combine_beds.as_strand_bed
-		File as_hor_bed     = combine_beds.as_hor_bed
-		File as_sf_bed      = combine_beds.as_sf_bed
-		File as_summary_bed = combine_beds.as_summary_bed
+		File as_hor_bed     = combine_hor_beds.output_bed
+		File as_hor_sf_bed  = combine_hor_sf_beds.output_bed
+		File as_sf_bed      = combine_sf_beds.output_bed				
+		File as_strand_bed  = combine_strand_beds.output_bed
+		File as_summary_bed = summarize_alpha.as_summary_bed
 	}
 
 	meta {
@@ -183,45 +209,62 @@ task alphaSat_HMMER {
 
 task combine_beds {
 	input {
-		Array[File] as_hor_sf_beds
-		Array[File] as_strand_beds
-		Array[File] as_hor_beds
-		Array[File] as_sf_beds
-		String sample_id
+		Array[File] beds
+		String tag = "combined"
+		String assembly_id
 
-		Int memSizeGB   = 4
+		Int memSizeGB   = 8
 		Int threadCount = 1
 		Int diskSizeGB = 64
 	}
 
-	String as_hor_sf_bed_out  = "AS-HOR+SF-vs-~{sample_id}.bed"
-	String as_strand_bed_out  = "AS-strand-vs-~{sample_id}.bed"
-	String as_hor_bed_out     = "AS-HOR-vs-~{sample_id}.bed"
-	String as_sf_bed_out      = "AS-SF-vs-~{sample_id}.bed"
-	String as_summary_bed_out = "ASat_~{sample_id}.bed"
+	String out_bed_fn  = "~{assembly_id}_~{tag}.bed"
 
 	command <<<
-		# set -eux -o pipefail
+		set -eux -o pipefail
 
 		## Combine scattered results into one file
-		cat ~{sep=" " as_hor_sf_beds} | sort -k 1,1 -k2,2n > ~{as_hor_sf_bed_out}
-		cat ~{sep=" " as_strand_beds} | sort -k 1,1 -k2,2n > ~{as_strand_bed_out}
-		cat ~{sep=" " as_hor_beds} | sort -k 1,1 -k2,2n > ~{as_hor_bed_out}
-		cat ~{sep=" " as_sf_beds} | sort -k 1,1 -k2,2n > ~{as_sf_bed_out}
-
-		## Summarize the monomer-level annotation into regional annotations (HOR, dHOR, etc.)
-		/opt/scripts/create_asat_bed.sh \
-			~{as_hor_bed_out} \
-			~{as_sf_bed_out} \
-			~{as_summary_bed_out}
+		cat ~{sep=" " beds} | sort -k 1,1 -k2,2n > ~{out_bed_fn}
 
 	>>>
 
 	output {
-		File as_hor_sf_bed  = as_hor_sf_bed_out
-		File as_strand_bed  = as_strand_bed_out
-		File as_hor_bed     = as_hor_bed_out
-		File as_sf_bed      = as_sf_bed_out
+		File output_bed  = output_bed
+	}
+
+	runtime {
+		memory: memSizeGB + " GB"
+		cpu: threadCount
+		disks: "local-disk " + diskSizeGB + " SSD"
+		docker: "juklucas/alphasat_summarize@sha256:872277a3a780c676d32f61045043b638e07889e63faa0de054e5f3d7d362f7b4"
+		preemptible: 1
+	}
+
+}
+
+task summarize_alpha {
+	input {
+		File as_hor_bed
+		File as_sf_bed
+		String assembly_id
+
+		Int memSizeGB   = 4
+		Int threadCount = 1
+		Int diskSizeGB = 32
+	}
+
+	String as_summary_bed_out = "~{assembly_id}_asat.bed"
+
+	command <<<
+
+		## Summarize the monomer-level annotation into regional annotations (HOR, dHOR, etc.)
+		/opt/scripts/create_asat_bed.sh \
+			~{as_hor_bed} \
+			~{as_sf_bed} \
+			~{as_summary_bed_out}
+	>>>
+
+	output {
 		File as_summary_bed = as_summary_bed_out
 	}
 
