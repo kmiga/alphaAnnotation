@@ -5,15 +5,15 @@ workflow kmc_count_wf {
     call kmc_count
 
     output {
-        File kmc_count_suf     = kmc_count.kmc_count_suf_out
-        File kmc_count_pre     = kmc_count.kmc_count_pre_out
+        # File kmc_count_suf     = kmc_count.kmc_count_suf_out
+        # File kmc_count_pre     = kmc_count.kmc_count_pre_out
         File kmc_common_txt    = kmc_count.kmc_common_txt_out
     }
 
     meta {
         author: "Julian Lucas"
         email: "juklucas@ucsc.edu"
-        description: "[KMC](https://github.com/refresh-bio/KMC) DB creation and intersection with DB of interest. Outputs both DB and text dump of intersection."
+        description: "[KMC](https://github.com/refresh-bio/KMC) DB creation and intersection with DB of interest. Outputs a text dump of intersection."
     }
 }
 
@@ -98,8 +98,8 @@ task kmc_count {
     >>>
 
     output {
-        File kmc_count_pre_out     = "~{sample_db_name}.kmc_pre"
-        File kmc_count_suf_out     = "~{sample_db_name}.kmc_suf"
+        # File kmc_count_pre_out     = "~{sample_db_name}.kmc_pre"
+        # File kmc_count_suf_out     = "~{sample_db_name}.kmc_suf"
         File kmc_common_txt_out    = glob("~{sample_db_name}_kmc_leftjoin_*.txt")[0]
     }
 
