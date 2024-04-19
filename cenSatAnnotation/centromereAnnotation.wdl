@@ -6,6 +6,7 @@ import "./tasks/rDNA_annotation.wdl" as rDNA_annotation
 import "../identify-hSat2and3/identify-hSat2and3.wdl" as hSat2and3
 import "../alphaSat-HMMER/alphaSat-HMMER.wdl" as alphaSat
 import "./tasks/CenSatAnnotation.wdl" as finalizeCenSat
+import "./tasks/gap_Annotation.wdl" as gapWorkflow
 
 workflow centromereAnnotation {
     input {
@@ -50,13 +51,19 @@ workflow centromereAnnotation {
             sample_id=fName
     }
 
+    call gapWorkflow.annotateGaps as annotateGaps {
+        input:
+            fasta=formatAssembly.formattedFasta
+    }
+
     call finalizeCenSat.cenSatAnnotation as cenSatAnnotation {
         input:
             RMOut=RepeatMasker.repeatMaskerBed,
             aSatBed=alphaSat_HMMER_workflow.as_summary_bed,
             aSatStrand=alphaSat_HMMER_workflow.as_strand_bed,
             HSatBed=identify_hSat2and3_wf.hSat_2and3_bed,
-            rDNABed=annotateRDNA.rDNAbed
+            rDNABed=annotateRDNA.rDNAbed,
+            gapBed=annotateGaps.gapBed
     }
 
     call renameFinalOutputs {

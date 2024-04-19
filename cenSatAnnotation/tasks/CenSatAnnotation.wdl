@@ -7,6 +7,7 @@ workflow cenSatAnnotation{
          File aSatStrand
          File HSatBed
          File rDNABed
+         File gapBed
          String fName=basename(sub(sub(sub(sub(RMOut, "\\.bed$", ""), "\\.fastq$", ""), "\\.fa$", ""), "\\.fasta$", ""))
         
          Int threadCount = 20
@@ -23,6 +24,7 @@ workflow cenSatAnnotation{
             aSatStrand=aSatStrand,
             HSatBed=HSatBed,
             rDNABed=rDNABed,
+            gapBed=gapBed,
             fName=fName,
 
             preemptible=preemptible,
@@ -58,6 +60,7 @@ task createAnnotations {
         File aSatStrand
         File HSatBed
         File rDNABed
+        File gapBed
         String fName
 
         Int memSizeGB
@@ -170,12 +173,12 @@ task createAnnotations {
         bedtools merge -c 4,6 -d 150 -o distinct -i ~{HSatBed} | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed # retain the strand information 
         
         grep HSat2 ~{HSatBed} > HSAT2.bed || true 
-        bedtools sort -i HSAT2.bed | bedtools merge -d 50 -c 4 -o distinct -i stdin > HSAT2.merged.bed 
+        bedtools sort -i HSAT2.bed | bedtools merge -d 300 -c 4 -o distinct -i stdin > HSAT2.merged.bed 
         sed 's/$/\t0\t.\t.\t.\t51,51,102/' HSAT2.merged.bed > HSAT2.merged.named.bed
         awk '$7=$2' OFS='\t' HSAT2.merged.named.bed | awk '$8=$3' OFS='\t' > HSAT23.bed
 
         grep HSat3 ~{HSatBed} > HSAT3.bed || true 
-        bedtools sort -i HSAT3.bed | bedtools merge -d 50 -c 4 -o distinct -i stdin > HSAT3.merged.bed 
+        bedtools sort -i HSAT3.bed | bedtools merge -d 300 -c 4 -o distinct -i stdin > HSAT3.merged.bed 
         sed 's/$/\t0\t.\t.\t.\t120,161,187/' HSAT3.merged.bed > HSAT3.merged.named.bed
         awk '$7=$2' OFS='\t' HSAT3.merged.named.bed | awk '$8=$3' OFS='\t' >> HSAT23.bed
         bedtools sort -i HSAT23.bed > HSAT23.sorted.bed
@@ -210,6 +213,12 @@ task createAnnotations {
         # close gaps smaller than 10 bp - avoid tiny CT annotations
         # this closes gaps by expanding the annotation upstream
         bedtools closest -io -D a -iu -a ~{fName}.sorted.bed -b ~{fName}.sorted.bed | awk ' BEGIN {OFS="\t"} {if ($19 > 0 && $19 < 10) ($3=$8=($8+$19-1))} {print $1,$2,$3,$4,$5,$6,$2,$3,$9 }' > tmp.txt && mv tmp.txt ~{fName}.sorted.bed
+
+        # now add the gap annotations - these override any existing annotation 
+        bedtools subtract -a ~{fName}.sorted.bed -b ~{gapBed} > ~{fName}.gap.merged.bed
+        cat ~{gapBed} >> ~{fName}.gap.merged.bed
+        bedtools sort -i ~{fName}.gap.merged.bed > ~{fName}.sorted.bed
+
 
         # create the CT annotation and define centromere intervals
         bedtools merge -d 2000000 -i ~{fName}.sorted.bed > centromeres.bed
