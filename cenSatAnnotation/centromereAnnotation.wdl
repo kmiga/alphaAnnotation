@@ -48,7 +48,7 @@ workflow centromereAnnotation {
             input_fasta=formatAssembly.formattedFasta,
             hmm_profile=AS_hmm_profile,
             hmm_profile_SF=AS_hmm_profile_SF,
-            sample_id=fName
+            assembly_id=fName
     }
 
     call gapWorkflow.annotateGaps as annotateGaps {

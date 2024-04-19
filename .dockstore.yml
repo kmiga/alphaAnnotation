@@ -25,3 +25,6 @@ workflows:
   -  name: readKmerCount
       subclass: WDL
       primaryDescriptorPath: tools/readKmerCount/readKmerCount.wdl
+  -  name: kmcCount
+      subclass: WDL
+      primaryDescriptorPath: tools/kmcCount/kmcCount.wdl  
