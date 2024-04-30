@@ -213,9 +213,10 @@ task createAnnotations {
         # close gaps smaller than 10 bp - avoid tiny CT annotations
         # this closes gaps by expanding the annotation upstream
         bedtools closest -io -D a -iu -a ~{fName}.sorted.bed -b ~{fName}.sorted.bed | awk ' BEGIN {OFS="\t"} {if ($19 > 0 && $19 < 10) ($3=$8=($8+$19-1))} {print $1,$2,$3,$4,$5,$6,$2,$3,$9 }' > tmp.txt && mv tmp.txt ~{fName}.sorted.bed
-
+       
         # now add the gap annotations - these override any existing annotation 
-        bedtools subtract -a ~{fName}.sorted.bed -b ~{gapBed} > ~{fName}.gap.merged.bed
+        cat ~{gapBed} | awk '($3-$2) >= 1'  > ~{gapBed}.filtered
+        bedtools subtract -a ~{fName}.sorted.bed -b ~{gapBed}.filtered > ~{fName}.gap.merged.bed
         cat ~{gapBed} >> ~{fName}.gap.merged.bed
         bedtools sort -i ~{fName}.gap.merged.bed > ~{fName}.sorted.bed
 
