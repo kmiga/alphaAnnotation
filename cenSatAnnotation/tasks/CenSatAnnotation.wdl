@@ -210,9 +210,9 @@ task createAnnotations {
         awk '($3-$2) >= 800' ~{fName}.bed  > ~{fName}.filtered.bed
         bedtools sort -i ~{fName}.filtered.bed | awk '{print $1, $2, ($3-1), $4, $5,$6,$2,($3-1),$9}' OFS='\t' > ~{fName}.sorted.bed
         
-        # close gaps smaller than 10 bp - avoid tiny CT annotations
+        # close gaps smaller than 2000 bp - avoid tiny CT annotations
         # this closes gaps by expanding the annotation upstream
-        bedtools closest -io -D a -iu -a ~{fName}.sorted.bed -b ~{fName}.sorted.bed | awk ' BEGIN {OFS="\t"} {if ($19 > 0 && $19 < 10) ($3=$8=($8+$19-1))} {print $1,$2,$3,$4,$5,$6,$2,$3,$9 }' > tmp.txt && mv tmp.txt ~{fName}.sorted.bed
+        bedtools closest -io -D a -iu -a ~{fName}.sorted.bed -b ~{fName}.sorted.bed | awk ' BEGIN {OFS="\t"} {if ($19 > 0 && $19 < 2000) ($3=$8=($8+$19-1))} {print $1,$2,$3,$4,$5,$6,$2,$3,$9 }' > tmp.txt && mv tmp.txt ~{fName}.sorted.bed
        
         # now add the gap annotations - these override any existing annotation 
         cat ~{gapBed} | awk '($3-$2) >= 1'  > ~{gapBed}.filtered
