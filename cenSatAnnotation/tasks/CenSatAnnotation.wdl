@@ -208,16 +208,16 @@ task createAnnotations {
         # also fix that bedtools subtract only alters columns 2 and 3 and not 7 and 8 & subtract one from end because bedtools subtract leaves overlaps of 1 bp 
         # this will be fixed in the next steps 
         awk '($3-$2) >= 800' ~{fName}.bed  > ~{fName}.filtered.bed
-        bedtools sort -i ~{fName}.filtered.bed | awk '{print $1, $2, ($3-1), $4, $5,$6,$2,($3-1),$9}' OFS='\t' > ~{fName}.sorted.bed
+        bedtools sort -i ~{fName}.filtered.bed | awk '{print $1, $2, ($3-1), $4, $5, $6, $2, ($3-1) ,$9}' OFS='\t' > ~{fName}.sorted.bed
         
         # close gaps smaller than 2000 bp - avoid tiny CT annotations
         # this closes gaps by expanding the annotation upstream
-        bedtools closest -io -D a -iu -a ~{fName}.sorted.bed -b ~{fName}.sorted.bed | awk ' BEGIN {OFS="\t"} {if ($19 > 0 && $19 < 2000) ($3=$8=($8+$19-1))} {print $1,$2,$3,$4,$5,$6,$2,$3,$9 }' > tmp.txt && mv tmp.txt ~{fName}.sorted.bed
+        bedtools closest -io -D a -iu -a ~{fName}.sorted.bed -b ~{fName}.sorted.bed | awk ' BEGIN {OFS="\t"} {if ($19 > 0 && $19 < 2000) ($3=($8+$19-1))} {print $1,$2,$3,$4,$5,$6,$2,$3,$9 }' > tmp.txt && mv tmp.txt ~{fName}.sorted.bed
        
-        # now add the gap annotations - these override any existing annotation 
+        # now add the gap annotations - these override any existing annotation - fix the subtract overlaps again also
         cat ~{gapBed} | awk '($3-$2) >= 1'  > ~{gapBed}.filtered
-        bedtools subtract -a ~{fName}.sorted.bed -b ~{gapBed}.filtered > ~{fName}.gap.merged.bed
-        cat ~{gapBed} >> ~{fName}.gap.merged.bed
+        bedtools subtract -a ~{fName}.sorted.bed -b ~{gapBed}.filtered | awk '{print $1, $2, ($3-1), $4, $5,$6, $2, ($3-1) ,$9}' OFS='\t'> ~{fName}.gap.merged.bed
+        cat ~{gapBed} | awk '{print $1, $2, ($3-1), $4, $5,$6, $2, ($3-1) ,$9}' OFS='\t' >> ~{fName}.gap.merged.bed
         bedtools sort -i ~{fName}.gap.merged.bed > ~{fName}.sorted.bed
 
 
