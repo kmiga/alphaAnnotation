@@ -210,15 +210,15 @@ task createAnnotations {
         awk '($3-$2) >= 800' ~{fName}.bed  > ~{fName}.filtered.bed
         bedtools sort -i ~{fName}.filtered.bed | awk '{print $1, $2, ($3-1), $4, $5, $6, $2, ($3-1) ,$9}' OFS='\t' > ~{fName}.sorted.bed
         
-        # close gaps smaller than 2000 bp - avoid tiny CT annotations
-        # this closes gaps by expanding the annotation upstream
-        bedtools closest -io -D a -iu -a ~{fName}.sorted.bed -b ~{fName}.sorted.bed | awk ' BEGIN {OFS="\t"} {if ($19 > 0 && $19 < 2000) ($3=($8+$19-1))} {print $1,$2,$3,$4,$5,$6,$2,$3,$9 }' > tmp.txt && mv tmp.txt ~{fName}.sorted.bed
-       
         # now add the gap annotations - these override any existing annotation - fix the subtract overlaps again also
         cat ~{gapBed} | awk '($3-$2) >= 1'  > ~{gapBed}.filtered
         bedtools subtract -a ~{fName}.sorted.bed -b ~{gapBed}.filtered | awk '{print $1, $2, ($3-1), $4, $5,$6, $2, ($3-1) ,$9}' OFS='\t'> ~{fName}.gap.merged.bed
         cat ~{gapBed} | awk '{print $1, $2, ($3-1), $4, $5,$6, $2, ($3-1) ,$9}' OFS='\t' >> ~{fName}.gap.merged.bed
         bedtools sort -i ~{fName}.gap.merged.bed > ~{fName}.sorted.bed
+
+        # close gaps smaller than 2000 bp - avoid tiny CT annotations
+        # this closes gaps by expanding the annotation upstream
+        bedtools closest -io -D a -iu -a ~{fName}.sorted.bed -b ~{fName}.sorted.bed | awk ' BEGIN {OFS="\t"} {if ($19 > 0 && $19 < 2000) ($3=($8+$19-1))} {print $1,$2,$3,$4,$5,$6,$2,$3,$9 }' > tmp.txt && mv tmp.txt ~{fName}.sorted.bed
 
 
         # create the CT annotation and define centromere intervals
@@ -238,8 +238,8 @@ task createAnnotations {
         # Finalize the strand track 
         # first let's add the strand information into our strand file 
         bedtools merge -c 4,6 -o distinct -s -d 500 -i ~{aSatStrand} | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "AS_strand", "0", $5, $2, $3, "."}' >> strandInfo.bed 
-        # Now sort and rename the entries 
-        bedtools sort -i strandInfo.bed > strandInfo.sorted.bed
+        # Now sort, rename, and filter out any tiny annotations
+        bedtools sort -i strandInfo.bed | awk '($3-$2) >= 500' > strandInfo.sorted.bed
         echo 'track name="'~{fName}'_Satellite_Strand" visibility=2 itemRgb="On"' > ~{fName}.SatelliteStrand.bed
         cat strandInfo.sorted.bed | awk 'BEGIN{OFS="\t"} {if ($6 == "+") {($4=($4"_Plus_Strand")) && ($9="0,0,255")} else {($4=($4"_Minus_Strand")) && ($9="255,0,0")} print}' >> ~{fName}.SatelliteStrand.bed
         
