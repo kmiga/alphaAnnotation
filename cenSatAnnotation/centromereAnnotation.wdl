@@ -85,6 +85,7 @@ workflow centromereAnnotation {
         File as_hor_bed=renameFinalOutputs.final_as_hor_bed
         File as_sf_bed=renameFinalOutputs.final_as_sf_bed
         File cenSatAnnotations=renameFinalOutputs.final_cenSatAnnotations
+        File cenSatStrand=renameFinalOutputs.final_cenSatStrand
         File centromeres=renameFinalOutputs.final_centromeres
     }
 
