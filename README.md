@@ -38,11 +38,12 @@ To create a completed CenSat annotation bed file, run the [cenSatAnnotation](cen
 
 This workflow will execute all other required workflows in this repo. 
 
-There are five main workflows that are run, all except the finalization workflow can also be run individually. 
+There are six main workflows that are run, all except the finalization workflow can also be run individually. 
 - [AlphaSat annotation](alphaSat-HMMER/alphaSat-HMMER.wdl) - This script runs Fedor Ryabov's [HumAS-HMMER](https://github.com/fedorrik/HumAS-HMMER_for_AnVIL) and summarizes the alpha satellite annotations into the following bins, active HOR, HOR, diverged HOR, and monomeric. 
 - [HSAT2/3 annotation](identify-hSat2and3/identify-hSat2and3.wdl) - This is [Nick Altemose’ HSAT annotation script](https://github.com/altemose/chm13_hsat)
 - [RepeatMasker Annotation](cenSatAnnotation/tasks/RepeatMasker.wdl) - This script runs [RepeatMasker](http://repeatmasker.org) on each contig from assembly and converts the output into a bed file. 
 - [rDNA Annotation Script](cenSatAnnotation/tasks/rDNA_annotation.wdl ) - This script uses an HMM built from the beginning and the end of the rDNA repeat unit and merges to find the complete annotation. 
+- [GAP Annotation Script](enSatAnnotation/tasks/gap_Annotation.wdl) - This script annotates the gaps that exist in the assembly using [seqtk gap](https://github.com/lh3/seqtk)
 - [CenSat Annotation finalization script](cenSatAnnotation/tasks/CenSatAnnotation.wdl) - The script takes the file outputs of the four above scripts and combines them into a single output file. It includes logic that joins the satellites annotated by RepeatMasker, annotates the active centromere and centromere transition regions, and adds colors for easier visualization. This workflow must be run as part of the cenSatAnnotation workflow and can't be run without the inputs of the above scripts. 
 
 ## Quickstart cenSat annotation with cromwell 
@@ -80,6 +81,8 @@ Other Centromeric Satellite annotations - Annotated with RepeatMasker
 Centromere Transition (ct)  
 Centromeres are defined by merging all above satellite annotations within 2MB (bedtools merge) and then identifying the region containing the active array. Any stretch of sequence not annotated within this region is marked "ct"
 
+
+## For more information please reference [this google document](https://docs.google.com/document/d/1zEtyfLcON3xcP1YyRLHxTFpm7pe-lvy_apZM0my8lNI/edit?usp=sharing)
 
 
 ### Citations 
