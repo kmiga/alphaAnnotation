@@ -39,7 +39,7 @@ task callGaps {
     }
     command <<<
 
-    seqtk gap -l 1 ~{fasta} > ~{fName}.gaps.bed
+    seqtk gap -l 2 ~{fasta} > ~{fName}.gaps.bed
 
     # add formatting + color 
     cat ~{fName}.gaps.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "GAP", "0", ".", $2, $3, "169,169,169"}' > ~{fName}.gaps.filtered.bed 

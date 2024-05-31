@@ -16,7 +16,7 @@ wget https://github.com/broadinstitute/cromwell/releases/download/86/cromwell-XY
 chmod +x cromwell-XY.jar 
 ```
 
-Now you can run any WDL workflow on the command line with this template:
+Now you can run any WDL workflow on the command line with this template:  
 `java -jar cromwell-XY.jar run workflow.wdl -i inputs.json > cromwellLog.txt`
 
 I recommend directing the output to a log file to make troubleshooting easier, but if you would rather everything be printed to your terminal you can remove the `> cromwellLog.txt` above.
@@ -59,6 +59,28 @@ cd alphaAnnotation/cenSatAnnotation/
 java -jar path/to/cromwell-XY.jar run centromereAnnotation.wdl -i inputs.json > cenSattest.txt 
 
 ```
+
+## Overview of the Annotation bins 
+
+Alpha-Satellites - Annotated with [Fedor Ryabov’s HumAS-HMMER](https://github.com/fedorrik/HumAS-HMMER_for_AnVIL) and simplified into the following bins:
+- Active alpha (active_hor) 
+- diverged HORS (dhor) 
+- monomeric HORs (mon)
+- mixed alpha (mixedAlpha) - alpha regions that can't be sorted into above categories 
+
+Human Satellites 2 and 3 - Annotated with [Nick Altemose’s HSAT2/3 script](https://github.com/altemose/chm13_hsat)
+
+Other Centromeric Satellite annotations - Annotated with RepeatMasker
+- HSAT1A - SAR in DFAM
+- HSAT1B - HSAT1 in DFAM
+- Gamma - includes all GSAT and TAR1 in DFAM
+- Beta - BSR, LSAU, and BSAT in DFAM
+- CenSat - other centromeric satellites CER, SATR, SST1, ACRO, HSAT4, HSAT5, TAF11  
+
+Centromere Transition (ct)  
+Centromeres are defined by merging all above satellite annotations within 2MB (bedtools merge) and then identifying the region containing the active array. Any stretch of sequence not annotated within this region is marked "ct"
+
+
 
 ### Citations 
 A.F.A. Smit, R. Hubley & P. Green RepeatMasker at http://repeatmasker.org
