@@ -80,7 +80,7 @@ task createAnnotations {
         # HSAT1A - SAR - 5kb merge color code 145,255,0
         grep SAR ~{RMOut} > HSAT1A.bed || true
         if [ -s HSAT1A.bed ]; then
-            bedtools merge -c 6 -o distinct -s -d 50 -i HSAT1A.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "hsat1A", "0", $4, $2, $3, "."}' > strandInfo.bed  # store for strand information later 
+            bedtools merge -s -c 6 -o distinct -s -d 50 -i HSAT1A.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "hsat1A", "0", $4, $2, $3, "."}' > strandInfo.bed  # store for strand information later 
             bedtools merge -d 5000 -i HSAT1A.bed > HSAT1A.merged.bed
             sed 's/$/\thsat1A\t0\t.\t.\t.\t145,255,0/' HSAT1A.merged.bed > HSAT1A.merged.named.bed
             awk '$7=$2' OFS='\t' HSAT1A.merged.named.bed | awk '$8=$3' OFS='\t' > HSAT1A.part.bed
@@ -89,7 +89,7 @@ task createAnnotations {
         # HSAT1B - HSATI - 5kb merge color code 0,153,76
         grep -w "HSATI" ~{RMOut} > HSAT1B.bed || true
         if [ -s HSAT1B.bed ]; then
-            bedtools merge -d 5000 -i HSAT1B.bed > HSAT1B.merged.bed
+            bedtools merge -s -d 5000 -i HSAT1B.bed > HSAT1B.merged.bed
             bedtools merge -c 6 -o distinct -s -d 50 -i HSAT1B.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "hsat1B", "0", $4, $2, $3, "."}' >> strandInfo.bed  # store for strand information later 
             sed 's/$/\thsat1B\t0\t.\t.\t.\t0,153,76/' HSAT1B.merged.bed > HSAT1B.merged.named.bed
             awk '$7=$2' OFS='\t' HSAT1B.merged.named.bed | awk '$8=$3' OFS='\t' > HSAT1B.part.bed
@@ -99,7 +99,7 @@ task createAnnotations {
         grep -e BSAT -e LSAU -e BSR ~{RMOut} > BSAT.bed || true
         if [ -s BSAT.bed ]; then
             bedtools sort -i BSAT.bed > BSAT.sorted.bed
-            bedtools merge -c 4,6 -o distinct -s -d 50 -i BSAT.sorted.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed # store for strand information later 
+            bedtools merge -s -c 4,6 -o distinct -s -d 50 -i BSAT.sorted.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed # store for strand information later 
             bedtools merge -d 5000 -c 4 -o distinct -i BSAT.sorted.bed > BSAT.merged.bed 
             sed 's/$/\t0\t.\t.\t.\t250,153,255/' BSAT.merged.bed > BSAT.merged.named.bed
             awk '$7=$2' OFS='\t' BSAT.merged.named.bed | awk '$8=$3' OFS='\t' | awk '$4="bSat("$4")"' OFS='\t' > BSAT.part.bed
@@ -109,7 +109,7 @@ task createAnnotations {
         grep -e GSAT -e TAR1 ~{RMOut} > GSAT.bed || true
         if [ -s GSAT.bed ]; then
             bedtools sort -i GSAT.bed > GSAT.sorted.bed
-            bedtools merge -c 4,6 -o distinct -s -d 50 -i GSAT.sorted.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed || true # store for strand information later 
+            bedtools merge -s -c 4,6 -o distinct -s -d 50 -i GSAT.sorted.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed || true # store for strand information later 
             bedtools merge -d 5000 -c 4 -o distinct -i GSAT.sorted.bed > GSAT.merged.bed || true
             sed 's/$/\t0\t.\t.\t.\t172,51,199/' GSAT.merged.bed > GSAT.merged.named.bed
             awk '$7=$2' OFS='\t' GSAT.merged.named.bed | awk '$8=$3' OFS='\t' | awk '$4="gSat("$4")"' OFS='\t' > GSAT.part.bed
@@ -120,7 +120,7 @@ task createAnnotations {
         grep -v BSAT cenSAT.bed > cenSAT.filtered.bed || true
         if [ -s cenSAT.filtered.bed ]; then
             bedtools sort -i cenSAT.filtered.bed > cenSAT.sorted.bed
-            bedtools merge -c 4,6 -o distinct -s -d 150 -i cenSAT.sorted.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed || true # store for strand information later 
+            bedtools merge -s -c 4,6 -o distinct -s -d 150 -i cenSAT.sorted.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed || true # store for strand information later 
             bedtools merge -d 2000 -c 4 -o distinct -i cenSAT.sorted.bed > cenSAT.merged.bed || true
             sed 's/$/\t0\t.\t.\t.\t0,204,204/' cenSAT.merged.bed > cenSAT.merged.named.bed
             awk '$7=$2' OFS='\t' cenSAT.merged.named.bed | awk '$8=$3' OFS='\t' | awk '$4="cenSat("$4")"' OFS='\t' > cenSAT.part.bed
@@ -170,7 +170,7 @@ task createAnnotations {
         bedtools sort -i overlapsResolved.alpha.bed > overlapsResolved.alpha.sorted.bed
 
         # Merge HSAT annotations that are near eachother - this removes strand information that exists in the script currently 
-        bedtools merge -c 4,6 -d 150 -o distinct -i ~{HSatBed} | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed # retain the strand information 
+        bedtools merge -s -c 4,6 -d 150 -o distinct -i ~{HSatBed} | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed # retain the strand information 
         
         grep HSat2 ~{HSatBed} > HSAT2.bed || true 
         bedtools sort -i HSAT2.bed | bedtools merge -d 300 -c 4 -o distinct -i stdin > HSAT2.merged.bed 
@@ -212,8 +212,8 @@ task createAnnotations {
         
         # now add the gap annotations - these override any existing annotation - fix the subtract overlaps again also
         cat ~{gapBed} | awk '($3-$2) >= 1'  > ~{gapBed}.filtered
-        bedtools subtract -a ~{fName}.sorted.bed -b ~{gapBed}.filtered | awk '{print $1, $2, ($3-1), $4, $5,$6, $2, ($3-1) ,$9}' OFS='\t'> ~{fName}.gap.merged.bed
-        cat ~{gapBed} | awk '{print $1, $2, ($3-1), $4, $5,$6, $2, ($3-1) ,$9}' OFS='\t' >> ~{fName}.gap.merged.bed
+        bedtools subtract -a ~{fName}.sorted.bed -b ~{gapBed}.filtered | awk '{print $1, $2, $3, $4, $5,$6, $2, ($3-1) ,$9}' OFS='\t'> ~{fName}.gap.merged.bed
+        cat ~{gapBed} | awk '{print $1, $2, $3, $4, $5,$6, $2, $3 ,$9}' OFS='\t' >> ~{fName}.gap.merged.bed
         bedtools sort -i ~{fName}.gap.merged.bed > ~{fName}.sorted.bed
 
         # close gaps smaller than 2000 bp - avoid tiny CT annotations
@@ -237,7 +237,7 @@ task createAnnotations {
 
         # Finalize the strand track 
         # first let's add the strand information into our strand file 
-        bedtools merge -c 4,6 -o distinct -s -d 500 -i ~{aSatStrand} | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "AS_strand", "0", $5, $2, $3, "."}' >> strandInfo.bed 
+        bedtools merge -s -c 4,6 -o distinct -s -d 500 -i ~{aSatStrand} | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "AS_strand", "0", $5, $2, $3, "."}' >> strandInfo.bed 
         # Now sort, rename, and filter out any tiny annotations
         bedtools sort -i strandInfo.bed | awk '($3-$2) >= 500' > strandInfo.sorted.bed
         echo 'track name="'~{fName}'_Satellite_Strand" visibility=2 itemRgb="On"' > ~{fName}.SatelliteStrand.bed
