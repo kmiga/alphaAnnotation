@@ -15,8 +15,11 @@ Inputs:
 Outputs:
     bed file of annotated regions for cenp-B and pjAlpha
 
-Script reads in fasta and subsets to bed regions. Users regular expressions
+Script reads in fasta and subsets to bed regions. Uses regular expressions
 to search for cenp-B and pjAlpha binding sites. 
+
+This script is just a python implementation of Karen Miga's
+cenpB_Box.parser.2.pl script. 
 
 """
 
