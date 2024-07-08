@@ -82,10 +82,10 @@ grep -E "S4|S5" \
     > HOR_basenames_merged_sorted_S4_S5.bed
 
 
-## Find units that aren't over a theoretical HOR unit size of 5kb (170bp * 30)
+## Find units that are larger than 2kb - changed 7/8/24 by HL
 ## Improve later by actually looking up what the HOR lengths should be
 ## Just went with something cautious for now...
-awk -v OFS='\t' '$3 - $2 <= 5000' \
+awk -v OFS='\t' '$3 - $2 <= 2000' \
     HOR_basenames_merged_sorted_S4_S5.bed \
     > HOR_basenames_merged_sorted_S4_S5_short.bed
 
@@ -116,13 +116,13 @@ grep -v -x \
     | awk 'BEGIN{OFS="\t"} {
             if ($4 ~ /H1L/) {
                 $4="active_hor("$4")"
-                $9="250,0,0"
+                $9="153,0,0"
             } else if ($4 ~ /d/) {
                 $4="dhor("$4")"
-                $9="153,0,0"
+                $9="244,146,0"
             } else {
                 $4="hor("$4")"
-                $9="255,146,0"
+                $9="255,102,0"
             }
             print }' \
     > HOR_basenames_merged_sorted_wout_monomeric.bed
@@ -228,13 +228,13 @@ cat Summary_LINEmerged.bed \
     | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "100", ".", $2, $3, "255,255,255"}' \
     | awk 'BEGIN{OFS="\t"} {
             if ($4 ~ /H1L/) {
-                $9="250,0,0"
-            } else if ($4 ~ /d/) {
                 $9="153,0,0"
+            } else if ($4 ~ /d/) {
+                $9="255,146,0"
             } else if ($4 ~ /mon/) {
                 $9="255,204,153"
             } else {
-                $9="255,146,0"
+                $9="255,102,0" 
             }
             print }' \
         | bedtools sort -i \
