@@ -13,7 +13,7 @@ workflow centromereAnnotation {
         File fasta 
         File RM2Bed="../utilities/RM2Bed.py"
         File rDNAhmm_profile="../utilities/rDNA1.0.hmm"
-        File AS_hmm_profile="../utilities/AS-HORs-hmmer3.3.2-120124.hmm"
+        File AS_hmm_profile="../utilities/AS-HORs-hmmer3.4-071024.hmm"
         File AS_hmm_profile_SF="../utilities/AS-SFs-hmmer3.0.290621.hmm"
         String fName=basename(sub(sub(sub(fasta, "\\.gz$", ""), "\\.fasta$", ""), "\\.fa$", ""))
 
