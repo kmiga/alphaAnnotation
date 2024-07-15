@@ -41,8 +41,8 @@ WORKDIR /opt/
 
 RUN git clone https://github.com/fedorrik/HumAS-HMMER_for_AnVIL.git \
 	&& cd HumAS-HMMER_for_AnVIL \
-	&& git reset --hard a57ec9d3cf50da5a381b52d870f35c536b81f1fd \
-	&& chmod +x hmmer-run.sh hmmer-run_SF.sh hmmertblout2bed.awk
+	&& git reset --hard f7e1e13b0d63e2007b53d90b274875a079750ee2 \
+	&& chmod +x hmmer-run.sh hmmer-run_SF.sh hmmertblout2bed.awk overlap_filter.py
 
 ENV PATH=/opt/HumAS-HMMER_for_AnVIL:$PATH
 
