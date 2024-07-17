@@ -1,7 +1,7 @@
 # Definitions
 repository = juklucas
 identifier = alphasat_hmmer
-version = 0.0.3
+version = 0.0.4
 git_commit ?= $(shell git log --pretty=oneline -n 1 | cut -f1 -d " ")
 name = ${repository}/${identifier}
 tag = ${version}--${git_commit}

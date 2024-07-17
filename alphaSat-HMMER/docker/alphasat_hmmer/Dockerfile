@@ -1,12 +1,11 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 MAINTAINER Julian Lucas, juklucas@ucsc.edu
 
 
 RUN apt-get update && apt-get install -y \
-    python-pip \
-    python \
-    python3.5 \
+    python3-pip \
+    python3 \
     wget \
     git \
     pigz
