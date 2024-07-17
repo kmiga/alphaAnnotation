@@ -7,10 +7,10 @@ workflow RepeatMasker{
          File RM2Bed
          String fName=basename(sub(sub(sub(fasta, "\\.gz$", ""), "\\.fasta$", ""), "\\.fa$", ""))
         
-         Int threadCount = 32
+         Int threadCount = 8
          Int preemptible = 1
-         Int diskSize = 32
-         Int memSizeGB = 32
+         Int diskSize    = 32
+         Int memSizeGB   = 16
      }
     
     call createArray {
@@ -127,6 +127,7 @@ task maskContig {
     }
 
     runtime {
+        cpu: threadCount        
         memory: memSizeGB + " GB"
         preemptible : preemptible
         disks: "local-disk " + diskSize + " SSD"
@@ -161,6 +162,7 @@ task outToBed {
     }
 
     runtime {
+        cpu: threadCount        
         memory: memSizeGB + " GB"
         preemptible : preemptible
         disks: "local-disk " + diskSize + " SSD"
@@ -202,6 +204,7 @@ task finalizeFiles {
     }
 
     runtime {
+        cpu: threadCount        
         memory: memSizeGB + " GB"
         preemptible : preemptible
         disks: "local-disk " + diskSize + " SSD"
