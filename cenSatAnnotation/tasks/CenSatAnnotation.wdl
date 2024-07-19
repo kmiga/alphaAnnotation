@@ -10,7 +10,7 @@ workflow cenSatAnnotation{
          File gapBed
          String fName=basename(sub(sub(sub(sub(RMOut, "\\.bed$", ""), "\\.fastq$", ""), "\\.fa$", ""), "\\.fasta$", ""))
         
-         Int threadCount = 20
+         Int threadCount = 4
          Int preemptible = 1
          Int diskSize = 32
          Int memSizeGB = 32
@@ -264,6 +264,7 @@ task createAnnotations {
     }
 
     runtime {
+        cpu: threadCount
         memory: memSizeGB + " GB"
         preemptible : preemptible
         disks: "local-disk " + diskSize + " SSD"

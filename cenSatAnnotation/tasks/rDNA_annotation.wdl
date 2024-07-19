@@ -5,11 +5,6 @@ workflow annotateRDNA {
         File fasta 
         File hmm_profile
         String fName=basename(sub(sub(sub(fasta, "\\.gz$", ""), "\\.fasta$", ""), "\\.fa$", ""))
-        
-        Int threadCount = 32
-        Int preemptible = 1
-        Int diskSize = 32
-        Int memSizeGB = 32
     }
 
     call createArray {
@@ -22,24 +17,14 @@ workflow annotateRDNA {
         call annotateContig {
             input:
             subsequence = subFasta,
-            hmm_profile = hmm_profile,
-
-            preemptible = preemptible,
-            threadCount = threadCount,
-            diskSize = diskSize,
-            memSizeGB = memSizeGB
+            hmm_profile = hmm_profile
         }
     }
 
     call finalizeFiles {
         input:
             bedFiles = annotateContig.outBed,
-            fName = fName,
-            
-            preemptible=preemptible,
-            threadCount=threadCount,
-            diskSize=diskSize,
-            memSizeGB=memSizeGB
+            fName = fName
     }
 
     output {
@@ -80,10 +65,11 @@ task annotateContig {
         File subsequence
         String subsequenceName=basename(subsequence)
         File hmm_profile
-        Int memSizeGB
-        Int preemptible
-        Int threadCount
-        Int diskSize
+
+        Int threadCount    = 8
+        Int memSizeGB      = 32        
+        Int diskSize       = 32
+        Int preemptible    = 1        
     }
     command <<<
         #handle potential errors and quit early
@@ -111,6 +97,7 @@ task annotateContig {
     }
 
     runtime {
+        cpu: threadCount
         memory: memSizeGB + " GB"
         preemptible : preemptible
         disks: "local-disk " + diskSize + " SSD"
@@ -124,10 +111,10 @@ task finalizeFiles {
         Array[File] bedFiles
         String fName
 
-        Int memSizeGB
-        Int preemptible
-        Int threadCount
-        Int diskSize
+        Int threadCount    = 2
+        Int memSizeGB      = 16        
+        Int diskSize       = 32
+        Int preemptible    = 1 
     }
     command <<<
         #handle potential errors and quit early
@@ -152,6 +139,7 @@ task finalizeFiles {
     }
 
     runtime {
+        cpu: threadCount
         memory: memSizeGB + " GB"
         preemptible : preemptible
         disks: "local-disk " + diskSize + " SSD"
