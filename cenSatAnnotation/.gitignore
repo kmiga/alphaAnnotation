@@ -18,3 +18,9 @@ hg38.fa*
 log.txt
 CHM13*
 chm13*
+analysis/
+sample_data.csv
+HG002/
+hg002v1.0.1.fasta.censat.json hg38.fa.censat.json
+HG002 HG002_censat_inputs.json HG002_censatv2.0_outputs.json
+slurm_logs/

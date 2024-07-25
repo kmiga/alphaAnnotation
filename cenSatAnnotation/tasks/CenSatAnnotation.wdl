@@ -77,21 +77,21 @@ task createAnnotations {
 
         
 
-        # HSAT1A - SAR - 5kb merge color code 145,255,0
+        # HSAT1A - SAR - 5kb merge color code 0,222,96
         grep SAR ~{RMOut} > HSAT1A.bed || true
         if [ -s HSAT1A.bed ]; then
             bedtools merge -s -c 6 -o distinct -s -d 50 -i HSAT1A.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "hsat1A", "0", $4, $2, $3, "."}' > strandInfo.bed  # store for strand information later 
             bedtools merge -d 5000 -i HSAT1A.bed > HSAT1A.merged.bed
-            sed 's/$/\thsat1A\t0\t.\t.\t.\t145,255,0/' HSAT1A.merged.bed > HSAT1A.merged.named.bed
+            sed 's/$/\tHSat1A\t0\t.\t.\t.\t0,222,96/' HSAT1A.merged.bed > HSAT1A.merged.named.bed
             awk '$7=$2' OFS='\t' HSAT1A.merged.named.bed | awk '$8=$3' OFS='\t' > HSAT1A.part.bed
         fi
 
-        # HSAT1B - HSATI - 5kb merge color code 0,153,76
+        # HSAT1B - HSATI - 5kb merge color code 27,153,139
         grep -w "HSATI" ~{RMOut} > HSAT1B.bed || true
         if [ -s HSAT1B.bed ]; then
-            bedtools merge -s -d 5000 -i HSAT1B.bed > HSAT1B.merged.bed
-            bedtools merge -c 6 -o distinct -s -d 50 -i HSAT1B.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "hsat1B", "0", $4, $2, $3, "."}' >> strandInfo.bed  # store for strand information later 
-            sed 's/$/\thsat1B\t0\t.\t.\t.\t0,153,76/' HSAT1B.merged.bed > HSAT1B.merged.named.bed
+            bedtools merge -d 5000 -i HSAT1B.bed > HSAT1B.merged.bed
+            bedtools merge -s -c 6 -o distinct -s -d 50 -i HSAT1B.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "hsat1B", "0", $4, $2, $3, "."}' >> strandInfo.bed  # store for strand information later 
+            sed 's/$/\tHSat1B\t0\t.\t.\t.\t27,153,139/' HSAT1B.merged.bed > HSAT1B.merged.named.bed
             awk '$7=$2' OFS='\t' HSAT1B.merged.named.bed | awk '$8=$3' OFS='\t' > HSAT1B.part.bed
         fi
 
@@ -129,7 +129,7 @@ task createAnnotations {
         # merge all annotations into one file and sort 
         touch decoy.part.bed
         for f in *part.bed ; do cat $f >> ~{fName}.cenSat.bed ; done 
-        bedtools sort -i ~{fName}.cenSat.bed > ~{fName}.cenSat.sorted.bed
+        bedtools sort -i ~{fName}.cenSat.bed | awk '($3-$2) >= 800' > ~{fName}.cenSat.sorted.bed
 
         # AlphaSat - resolve overlaps 
         # merge any overlaps smaller than 400 bp to upstream annotation - 2+ alpha monomers 
@@ -160,7 +160,7 @@ task createAnnotations {
         bedtools merge -c 4 -o distinct -i mixedOverlaps.named.sorted.bed > mixedOverlaps.merged.bed
 
         # format bed entries 
-        sed 's/$/\t0\t.\t.\t.\t240,128,128/' mixedOverlaps.merged.bed > mixedOverlaps.merged.named.bed
+        sed 's/$/\t0\t.\t.\t.\t204,0,0/' mixedOverlaps.merged.bed > mixedOverlaps.merged.named.bed
         awk '$7=$2' OFS='\t' mixedOverlaps.merged.named.bed | awk '$8=$3' OFS='\t' | awk '$4="mixedAlpha("$4")"' OFS='\t' > mixedOverlaps.part.bed
         bedtools subtract -a smallMerged.bed -b mixedOverlaps.part.bed | awk '{print $1,$2,$3,$4,$5,$6,$2,$3,$9}' OFS='\t'  > overlapping.filtered.part.bed
 
@@ -169,28 +169,47 @@ task createAnnotations {
         cat overlapping.filtered.part.bed >> overlapsResolved.alpha.bed
         bedtools sort -i overlapsResolved.alpha.bed > overlapsResolved.alpha.sorted.bed
 
-        # Merge HSAT annotations that are near eachother - this removes strand information that exists in the script currently 
-        bedtools merge -s -c 4,6 -d 150 -o distinct -i ~{HSatBed} | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed # retain the strand information 
-        
+        # Handle the HSAT annotations 
         grep HSat2 ~{HSatBed} > HSAT2.bed || true 
+        bedtools merge -s -c 4,6 -d 150 -o distinct -i HSAT2.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed
+        cat ~{gapBed} >> HSAT2.bed # this will ensure that the HSAT annotations go right up to any gaps in the array
         bedtools sort -i HSAT2.bed | bedtools merge -d 300 -c 4 -o distinct -i stdin > HSAT2.merged.bed 
-        sed 's/$/\t0\t.\t.\t.\t51,51,102/' HSAT2.merged.bed > HSAT2.merged.named.bed
+        
+        grep HSat3 ~{HSatBed} > HSAT3.bed || true 
+        bedtools merge -s -c 4,6 -d 150 -o distinct -i HSAT3.bed | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4, "0", $5, $2, $3, "."}' >> strandInfo.bed
+        cat ~{gapBed}>> HSAT3.bed # this will ensure that the HSAT annotations go right up to any gaps in the array 
+        bedtools sort -i HSAT3.bed | bedtools merge -d 300 -c 4 -o distinct -i stdin > HSAT3.merged.bed 
+
+        # Identify HSat2/3 where we can't resolve which is which 
+        bedtools intersect -a HSAT2.merged.bed -b HSAT3.merged.bed > HSAT23_unresolved.bed 
+        
+        # format the HSats and add them to their final files 
+        bedtools subtract -a HSAT2.merged.bed -b HSAT23_unresolved.bed > tmp.bed && mv tmp.bed HSAT2.merged.bed
+        sed 's/$/\t0\t.\t.\t.\t0,128,250 /' HSAT2.merged.bed > HSAT2.merged.named.bed
         awk '$7=$2' OFS='\t' HSAT2.merged.named.bed | awk '$8=$3' OFS='\t' > HSAT23.bed
 
-        grep HSat3 ~{HSatBed} > HSAT3.bed || true 
-        bedtools sort -i HSAT3.bed | bedtools merge -d 300 -c 4 -o distinct -i stdin > HSAT3.merged.bed 
-        sed 's/$/\t0\t.\t.\t.\t120,161,187/' HSAT3.merged.bed > HSAT3.merged.named.bed
+        bedtools subtract -a HSAT3.merged.bed -b HSAT23_unresolved.bed > tmp.bed && mv tmp.bed HSAT3.merged.bed
+        sed 's/$/\t0\t.\t.\t.\t51,81,137/' HSAT3.merged.bed > HSAT3.merged.named.bed
         awk '$7=$2' OFS='\t' HSAT3.merged.named.bed | awk '$8=$3' OFS='\t' >> HSAT23.bed
+
+        #'s/$/\thsat1B\t0\t.\t.\t.\t27,153,139/'
+        awk 'BEGIN {OFS="\t"} {$4 = "HSat2_3"; print}' HSAT23_unresolved.bed > temp && mv temp HSAT23_unresolved.bed 
+        sed 's/$/\t0\t.\t.\t.\t120,161,187/' HSAT23_unresolved.bed > HSAT23_unresolved.named.bed
+        awk '$7=$2' OFS='\t'  HSAT23_unresolved.named.bed | awk '$8=$3' OFS='\t' >> HSAT23.bed
+
         bedtools sort -i HSAT23.bed > HSAT23.sorted.bed
+
+        # Merge any rDNA annotations that are adjacent to the gaps 
+        cat ~{rDNABed} ~{gapBed} | bedtools sort -i stdin | bedtools merge -d 40000 -i stdin | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "rDNA", "0", ".", $2, $3, "102,47,144"}' > rDNA.merged.bed 
 
         # now resolve any existing overlaps within any of the files and record any instances of overlaps 
         # first find overlaps and add to final tracking file 
         bedtools intersect -a overlapsResolved.alpha.sorted.bed -b HSAT23.sorted.bed | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
         bedtools intersect -a overlapsResolved.alpha.sorted.bed -b ~{fName}.cenSat.sorted.bed | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
-        bedtools intersect -a overlapsResolved.alpha.sorted.bed -b ~{rDNABed} | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
+        bedtools intersect -a overlapsResolved.alpha.sorted.bed -b rDNA.merged.bed | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
         bedtools intersect -a HSAT23.sorted.bed -b ~{fName}.cenSat.sorted.bed | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
-        bedtools intersect -a HSAT23.sorted.bed -b ~{rDNABed} | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
-        bedtools intersect -a ~{rDNABed} -b ~{fName}.cenSat.sorted.bed | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
+        bedtools intersect -a HSAT23.sorted.bed -b rDNA.merged.bed  | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
+        bedtools intersect -a rDNA.merged.bed -b ~{fName}.cenSat.sorted.bed | awk '{print $1, $2, $3}' OFS='\t' >> ~{fName}.overlaps_resolved.bed
         bedtools sort -i ~{fName}.overlaps_resolved.bed > ~{fName}.sorted.resolved_overlaps.bed
         
 
@@ -202,24 +221,23 @@ task createAnnotations {
         # HSat - subtract any existing annotations because I was still seeing overlaps 
         cat HSAT23.sorted.bed >> ~{fName}.bed
         # rDNA - remove any overlaps with any other annotations - this one is the roughest annotations so we trust the overlaps more
-        bedtools subtract -a ~{rDNABed} -b overlapsResolved.alpha.sorted.bed | bedtools subtract -a stdin -b HSAT23.sorted.bed | bedtools subtract -a stdin -b ~{fName}.cenSat.sorted.bed >> ~{fName}.bed
+        bedtools subtract -a rDNA.merged.bed  -b overlapsResolved.alpha.sorted.bed | bedtools subtract -a stdin -b HSAT23.sorted.bed | bedtools subtract -a stdin -b ~{fName}.cenSat.sorted.bed >> ~{fName}.bed
 
         # sort out entries smaller than 800 bp - removes single monomers etc
         # also fix that bedtools subtract only alters columns 2 and 3 and not 7 and 8 & subtract one from end because bedtools subtract leaves overlaps of 1 bp 
         # this will be fixed in the next steps 
         awk '($3-$2) >= 800' ~{fName}.bed  > ~{fName}.filtered.bed
-        bedtools sort -i ~{fName}.filtered.bed | awk '{print $1, $2, ($3-1), $4, $5, $6, $2, ($3-1) ,$9}' OFS='\t' > ~{fName}.sorted.bed
-        
-        # now add the gap annotations - these override any existing annotation - fix the subtract overlaps again also
-        cat ~{gapBed} | awk '($3-$2) >= 1'  > ~{gapBed}.filtered
-        bedtools subtract -a ~{fName}.sorted.bed -b ~{gapBed}.filtered | awk '{print $1, $2, $3, $4, $5,$6, $2, ($3-1) ,$9}' OFS='\t'> ~{fName}.gap.merged.bed
-        cat ~{gapBed} | awk '{print $1, $2, $3, $4, $5,$6, $2, $3 ,$9}' OFS='\t' >> ~{fName}.gap.merged.bed
-        bedtools sort -i ~{fName}.gap.merged.bed > ~{fName}.sorted.bed
+        bedtools sort -i ~{fName}.filtered.bed | awk '{print $1, $2, $3, $4, $5, $6, $2, $3, $9}' OFS='\t' > ~{fName}.sorted.bed
 
         # close gaps smaller than 2000 bp - avoid tiny CT annotations
         # this closes gaps by expanding the annotation upstream
         bedtools closest -io -D a -iu -a ~{fName}.sorted.bed -b ~{fName}.sorted.bed | awk ' BEGIN {OFS="\t"} {if ($19 > 0 && $19 < 2000) ($3=($8+$19-1))} {print $1,$2,$3,$4,$5,$6,$2,$3,$9 }' > tmp.txt && mv tmp.txt ~{fName}.sorted.bed
 
+        # now add the gap annotations - these override any existing annotation - fix the subtract overlaps again also
+        cat ~{gapBed} | awk '($3-$2) >= 1'  > ~{gapBed}.filtered
+        bedtools subtract -a ~{fName}.sorted.bed -b ~{gapBed}.filtered | awk '{print $1, $2, $3, $4, $5, $6, $2, $3 ,$9}' OFS='\t'> ~{fName}.gap.merged.bed
+        cat ~{gapBed} | awk '{print $1, $2, $3, $4, $5, $6, $2, $3 ,$9}' OFS='\t' >> ~{fName}.gap.merged.bed
+        bedtools sort -i ~{fName}.gap.merged.bed > ~{fName}.sorted.bed
 
         # create the CT annotation and define centromere intervals
         bedtools merge -d 2000000 -i ~{fName}.sorted.bed > centromeres.bed
