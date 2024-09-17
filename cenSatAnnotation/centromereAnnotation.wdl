@@ -70,6 +70,7 @@ workflow centromereAnnotation {
         input:
             fName=fName,
             headers=formatAssembly.headers,
+            RMOut=RepeatMasker.repeatMaskerBed,
             as_hor_sf_bed=alphaSat_HMMER_workflow.as_hor_sf_bed,
             as_strand_bed=alphaSat_HMMER_workflow.as_strand_bed,
             as_hor_bed=alphaSat_HMMER_workflow.as_hor_bed,
@@ -80,6 +81,7 @@ workflow centromereAnnotation {
     }
 
     output {
+        File RMOut=renameFinalOutputs.final_repeatMaskerBed
         File as_hor_sf_bed=renameFinalOutputs.final_as_hor_sf_bed
         File as_strand_bed=renameFinalOutputs.final_as_strand_bed
         File as_hor_bed=renameFinalOutputs.final_as_hor_bed
@@ -157,6 +159,7 @@ task renameFinalOutputs {
     input{
         String fName
         File headers
+        File RMOut
         File as_hor_sf_bed
         File as_strand_bed
         File as_hor_bed
@@ -174,6 +177,7 @@ task renameFinalOutputs {
         set -o xtrace
 
         awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{as_hor_sf_bed} > ~{fName}.as_hor_sf.bed
+        awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{RMOut} > ~{fName}.RepeatMasker.bed
         awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{as_strand_bed} > ~{fName}.as_strand.bed
         awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{as_hor_bed} > ~{fName}.as_hor.bed
         awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{as_sf_bed} > ~{fName}.as_sf.bed
@@ -185,6 +189,7 @@ task renameFinalOutputs {
 
     output {
         File final_as_hor_sf_bed="~{fName}.as_hor_sf.bed"
+        File final_repeatMaskerBed="~{fName}.RepeatMasker.bed"
         File final_as_strand_bed="~{fName}.as_strand.bed"
         File final_as_hor_bed="~{fName}.as_hor.bed"
         File final_as_sf_bed="~{fName}.as_sf.bed"
