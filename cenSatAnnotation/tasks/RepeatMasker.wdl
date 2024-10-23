@@ -5,6 +5,7 @@ workflow RepeatMasker{
     input {
          File fasta
          File RM2Bed
+         File RMLib
          String fName=basename(sub(sub(sub(fasta, "\\.gz$", ""), "\\.fasta$", ""), "\\.fa$", ""))
         
          Int threadCount = 8
@@ -27,7 +28,8 @@ workflow RepeatMasker{
                 preemptible=preemptible,
                 threadCount=threadCount,
                 diskSize=diskSize,
-                memSizeGB=memSizeGB
+                memSizeGB=memSizeGB,
+                RMLib=RMLib
         }
         call outToBed {
             input:
@@ -46,6 +48,8 @@ workflow RepeatMasker{
         input:
             bedFiles=outToBed.RMbed,
             fastas=maskContig.maskedFa,
+            outFiles=maskContig.outFile,
+            alignFiles=maskContig.alignFile,
             fName=fName,
 
             preemptible=preemptible,
@@ -55,9 +59,12 @@ workflow RepeatMasker{
     }
 
     output {
-        Array[File] outTable = maskContig.outTable
+        File outTableGZ = finalizeFiles.outTableGZ
         File finalMaskedFasta = finalizeFiles.finalMaskedFasta
         File repeatMaskerBed = finalizeFiles.repeatMaskerBed
+        File repeatMaskerOut = finalizeFiles.repeatMaskerOut
+        File repeatMaskerTarGZout = finalizeFiles.outTableGZ
+        File repeatMaskerTarGZalign = finalizeFiles.tarGZalign
     }
     
 
@@ -94,6 +101,7 @@ task createArray {
 task maskContig {
     input {
         File subsequence
+        File RMLib
         String subsequenceName=basename(subsequence)
 
         Int memSizeGB
@@ -111,12 +119,21 @@ task maskContig {
         
         # each parallel job uses 4 threads, budget 4 threads per job, rounding up
         NPARALLEL=$(( (~{threadCount} + 3) / 4 ))
+        
+        wd=$(pwd)
+        cd /opt/RepeatMasker/Libraries/
+        time python3 ../famdb.py -i ./RepeatMaskerLib.h5 append ~{RMLib} --name 'homo_sapiens'
+        ls
+        cd $wd
 
-        RepeatMasker -s -pa ${NPARALLEL} -e ncbi ~{subsequence} -dir .
+
+        RepeatMasker -s -pa ${NPARALLEL} -e ncbi ~{subsequence} -species human -libdir /opt/RepeatMasker/Libraries/ -align -dir .
+
         # for small contigs - if there are no repeats found put the unmasked sequence in and create a dummy 
         if ! test -f ~{subsequenceName}.masked; then cat ~{subsequence} > ~{subsequenceName}.masked \
         && touch ~{subsequenceName}.tbl \
         && touch ~{subsequenceName}.out \
+        && touch ~{subsequenceName}.align \
         ; fi 
     >>>
 
@@ -124,6 +141,7 @@ task maskContig {
          File outFile = "~{subsequenceName}.out"
          File outTable = "~{subsequenceName}.tbl"
          File maskedFa = "~{subsequenceName}.masked"
+         File alignFile = "~{subsequenceName}.align"
     }
 
     runtime {
@@ -174,6 +192,8 @@ task finalizeFiles {
     input {
         Array[File] bedFiles
         Array[File] fastas
+        Array[File] outFiles
+        Array[File] alignFiles
         String fName
 
         Int memSizeGB
@@ -188,19 +208,38 @@ task finalizeFiles {
         set -u
         set -o xtrace
         
+        #concatenate the .out file 
+        cat ~{sep=' ' outFiles} > rm.tmp 
+        head -n 3 rm.tmp > ~{fName}.RepeatMasker.out
+        sed '1,3d' ~{sep=' ' outFiles} >> ~{fName}.RepeatMasker.out
+
         # concatenate the fasta 
         cat ~{sep=' ' fastas} > ~{fName}.masked.fasta
 
         # concatenate the bed file
         cat ~{sep=' ' bedFiles} > ~{fName}.bed
-
         # sort the bed file 
         bedtools sort -i ~{fName}.bed > ~{fName}.RM.bed
+
+        # make a tar.gz of the the align files
+        mkdir ~{fName}_align
+        ln -s ~{sep=' ' alignFiles} ~{fName}_align/
+        tar -chzf ~{fName}_align.tar.gz ~{fName}_align
+
+        # make a tar.gz of the out files 
+        mkdir ~{fName}_perChrom_out
+        ln -s ~{sep=' ' outFiles} ~{fName}_perChrom_out/
+        tar chzf ~{fName}_perChrom_out.tar.gz ~{fName}_perChrom_out
+        
+        
 
     >>> 
     output {
         File repeatMaskerBed = "~{fName}.RM.bed"
         File finalMaskedFasta = "~{fName}.masked.fasta"
+        File repeatMaskerOut = "~{fName}.RepeatMasker.out"
+        File tarGZalign = "~{fName}_align.tar.gz"
+        File outTableGZ = "~{fName}_perChrom_out.tar.gz"
     }
 
     runtime {

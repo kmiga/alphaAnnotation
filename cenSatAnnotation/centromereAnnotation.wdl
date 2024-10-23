@@ -15,8 +15,8 @@ workflow centromereAnnotation {
         File rDNAhmm_profile="../utilities/rDNA1.0.hmm"
         File AS_hmm_profile="../utilities/AS-HORs-hmmer3.4-071024.hmm"
         File AS_hmm_profile_SF="../utilities/AS-SFs-hmmer3.0.290621.hmm"
+        File RMLib
         String fName=basename(sub(sub(sub(fasta, "\\.gz$", ""), "\\.fasta$", ""), "\\.fa$", ""))
-
     }
 
     call formatAssembly {
@@ -28,7 +28,8 @@ workflow centromereAnnotation {
     call RepeatMasker.RepeatMasker as RepeatMasker {
         input:
             fasta=formatAssembly.formattedFasta,
-            RM2Bed=RM2Bed
+            RM2Bed=RM2Bed,
+            RMLib=RMLib
     }
 
     call rDNA_annotation.annotateRDNA as annotateRDNA {
@@ -70,7 +71,8 @@ workflow centromereAnnotation {
         input:
             fName=fName,
             headers=formatAssembly.headers,
-            RMOut=RepeatMasker.repeatMaskerBed,
+            RMBed=RepeatMasker.repeatMaskerBed,
+            RMOut=RepeatMasker.repeatMaskerOut,
             as_hor_sf_bed=alphaSat_HMMER_workflow.as_hor_sf_bed,
             as_strand_bed=alphaSat_HMMER_workflow.as_strand_bed,
             as_hor_bed=alphaSat_HMMER_workflow.as_hor_bed,
@@ -82,6 +84,9 @@ workflow centromereAnnotation {
 
     output {
         File RMOut=renameFinalOutputs.final_repeatMaskerBed
+        File header_key=formatAssembly.headers
+        File tarGZalign=RepeatMasker.repeatMaskerTarGZalign
+        File outTableGZ=RepeatMasker.outTableGZ
         File as_hor_sf_bed=renameFinalOutputs.final_as_hor_sf_bed
         File as_strand_bed=renameFinalOutputs.final_as_strand_bed
         File as_hor_bed=renameFinalOutputs.final_as_hor_bed
@@ -159,6 +164,7 @@ task renameFinalOutputs {
     input{
         String fName
         File headers
+        File RMBed
         File RMOut
         File as_hor_sf_bed
         File as_strand_bed
@@ -177,7 +183,8 @@ task renameFinalOutputs {
         set -o xtrace
 
         awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{as_hor_sf_bed} > ~{fName}.as_hor_sf.bed
-        awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{RMOut} > ~{fName}.RepeatMasker.bed
+        awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{RMBed} > ~{fName}.RepeatMasker.bed
+        awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{RMOut} > ~{fName}.RepeatMasker.out
         awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{as_strand_bed} > ~{fName}.as_strand.bed
         awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{as_hor_bed} > ~{fName}.as_hor.bed
         awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{headers} ~{as_sf_bed} > ~{fName}.as_sf.bed
@@ -190,6 +197,7 @@ task renameFinalOutputs {
     output {
         File final_as_hor_sf_bed="~{fName}.as_hor_sf.bed"
         File final_repeatMaskerBed="~{fName}.RepeatMasker.bed"
+        File final_repeatMaskerOut="~{fName}.RepeatMasker.out"
         File final_as_strand_bed="~{fName}.as_strand.bed"
         File final_as_hor_bed="~{fName}.as_hor.bed"
         File final_as_sf_bed="~{fName}.as_sf.bed"
