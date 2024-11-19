@@ -1,0 +1,1123 @@
+ID   Trinculo; SV 1; linear; unassigned DNA; STD; UNC; 320 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:
+CC       Type: Satellite
+CC       SubType:
+CC       Species: Hominoidea
+CC       SearchStages: 50
+CC       BufferStages:
+XX
+SQ   Sequence 320 BP; 70 A; 0 C; 210 G; 40 T; 0 other;
+     GGGAGGGAGG GAGGAAGAGG TGGTGTGTGG GAGGGAGGGA GGGAGGAAGA GGTGGTGTGT        60
+     GGGAGGGAGG GAGGGAGGAA GAGGTGGTGT GTGGGAGGGA GGGAGGGAGG AAGAGGTGGT       120
+     GTGTGGGAGG GAGGGAGGGA GGAAGAGGTG GTGTGTGGGA GGGAGGGAGG GAGGAAGAGG       180
+     TGGTGTGTGG GAGGGAGGGA GGGAGGAAGA GGTGGTGTGT GGGAGGGAGG GAGGGAGGAA       240
+     GAGGTGGTGT GTGGGAGGGA GGGAGGGAGG AAGAGGTGGT GTGTGGGAGG GAGGGAGGGA       300
+     GGAAGAGGTG GTGTGTGGGA                                                   320
+//
+ID   Despina-Galatea; SV 1; linear; unassigned DNA; STD; UNC; 319 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 319 BP; 44 A; 209 C; 0 G; 66 T; 0 other;
+     CCTCCCCACA CACCACCTCT TCCTCCCTCC CTCCCCACAC ACCACCTCTT CCTCCCTCCC        60
+     TCCCCACACA CCACCTCTTC CTCCCTCCCT CCCCACACAC CACCTCTTCC TCCCTCCCTC       120
+     CCCACACACC ACCTCTTCCT CCCTCCCTCC CCACACACCA CCTCTTCCTC CCTCCCTCCC       180
+     CACACACCAC CTCTTCCTCC CTCCCTCCCC ACACACCACC TCTTCCTCCC TCCCTCCCCA       240
+     CACACCACCT CTTCCTCCCT CCCTCCCCAC ACACCACCTC TTCCTCCCTC CCTCCCCACA       300
+     CACCACCTCT TCCTCCCTC                                                    319
+//
+ID   Halimede; SV 1; linear; unassigned DNA; STD; UNC; 319 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 319 BP; 66 A; 0 C; 209 G; 44 T; 0 other;
+     TGGGGAGGGA GGGAGGAAGA GGTGGTGTGT GGGGAGGGAG GGAGGAAGAG GTGGTGTGTG        60
+     GGGAGGGAGG GAGGAAGAGG TGGTGTGTGG GGAGGGAGGG AGGAAGAGGT GGTGTGTGGG       120
+     GAGGGAGGGA GGAAGAGGTG GTGTGTGGGG AGGGAGGGAG GAAGAGGTGG TGTGTGGGGA       180
+     GGGAGGGAGG AAGAGGTGGT GTGTGGGGAG GGAGGGAGGA AGAGGTGGTG TGTGGGGAGG       240
+     GAGGGAGGAA GAGGTGGTGT GTGGGGAGGG AGGGAGGAAG AGGTGGTGTG TGGGGAGGGA       300
+     GGGAGGAAGA GGTGGTGTG                                                    319
+//
+ID   Laomedeia; SV 1; linear; unassigned DNA; STD; UNC; 319 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 319 BP; 66 A; 0 C; 209 G; 44 T; 0 other;
+     GGGAGGGAGG GAGGAAGAGG TGGTGTGTGG GGAGGGAGGG AGGAAGAGGT GGTGTGTGGG        60
+     GAGGGAGGGA GGAAGAGGTG GTGTGTGGGG AGGGAGGGAG GAAGAGGTGG TGTGTGGGGA       120
+     GGGAGGGAGG AAGAGGTGGT GTGTGGGGAG GGAGGGAGGA AGAGGTGGTG TGTGGGGAGG       180
+     GAGGGAGGAA GAGGTGGTGT GTGGGGAGGG AGGGAGGAAG AGGTGGTGTG TGGGGAGGGA       240
+     GGGAGGAAGA GGTGGTGTGT GGGGAGGGAG GGAGGAAGAG GTGGTGTGTG GGGAGGGAGG       300
+     GAGGAAGAGG TGGTGTGTG                                                    319
+//
+ID   Larissa; SV 1; linear; unassigned DNA; STD; UNC; 304 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 304 BP; 96 A; 128 C; 48 G; 32 T; 0 other;
+     GTGGACACAC ACCACCATCG TGGACACACA CCACCATCGT GGACACACAC CACCATCGTG        60
+     GACACACACC ACCATCGTGG ACACACACCA CCATCGTGGA CACACACCAC CATCGTGGAC       120
+     ACACACCACC ATCGTGGACA CACACCACCA TCGTGGACAC ACACCACCAT CGTGGACACA       180
+     CACCACCATC GTGGACACAC ACCACCATCG TGGACACACA CCACCATCGT GGACACACAC       240
+     CACCATCGTG GACACACACC ACCATCGTGG ACACACACCA CCATCGTGGA CACACACCAC       300
+     CATC                                                                    304
+//
+ID   Naiad; SV 1; linear; unassigned DNA; STD; UNC; 430 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+XX
+SQ   Sequence 430 BP; 104 A; 201 C; 47 G; 78 T; 0 other;
+     CCCTACAGTC CCCTACTCAC GACCCCTACA GTCCCCTACT GACGACCTCC AGCGTAACCC        60
+     TACAGTGCCC TACTCACCAC ACCTAGTGTA ACGCTACAGT CCCCTACTCA CGACCCCTAC       120
+     AGTCTCCTAC TGACGACCTC CAGCGTAACC CTACAGTCCC CTACTCACCA CCCTAGTGTA       180
+     ACCCTACAGT CCCCTACTCA CGACCCCTAC AGTCCCCTAC TCACGACCTC CAGCGTAACC       240
+     CTACAGTCCC CTACTCACGA CACCTACAGT AACCCTACAG TCCCCTACTC ACGACCCCTA       300
+     CAGTCCCTAC TCACGACCCC TAGCGTAACC CTACAGTCCC CTACTCACGA CCCCTACAGT       360
+     CTCCTACCCA CGACCCCTAG CAGAACCCTA CAGTCCCCTA CTCACGACCC TACAGTCCCC       420
+     TACTCACGAA                                                              430
+//
+ID   Nereid; SV 1; linear; unassigned DNA; STD; UNC; 308 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 308 BP; 143 A; 11 C; 44 G; 110 T; 0 other;
+     AATATATATA TGGAATATAT ATATACGGAA TATATATATG GAATATATAT ATACGGAATA        60
+     TATATATGGA ATATATATAT ACGGAATATA TATATGGAAT ATATATATAC GGAATATATA       120
+     TATGGAATAT ATATATACGG AATATATATA TGGAATATAT ATATACGGAA TATATATATG       180
+     GAATATATAT ATACGGAATA TATATATGGA ATATATATAT ACGGAATATA TATATGGAAT       240
+     ATATATATAC GGAATATATA TATGGAATAT ATATATACGG AATATATATA TGGAATATAT       300
+     ATATACGG                                                                308
+//
+ID   Neso; SV 1; linear; unassigned DNA; STD; UNC; 312 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:     
+XX
+SQ   Sequence 312 BP; 130 A; 65 C; 0 G; 117 T; 0 other;
+     ATATATATCC ATATACATAT CCATATATAT ATCCATATAC ATATCCATAT ATATATCCAT        60
+     ATACATATCC ATATATATAT CCATATACAT ATCCATATAT ATATCCATAT ACATATCCAT       120
+     ATATATATCC ATATACATAT CCATATATAT ATCCATATAC ATATCCATAT ATATATCCAT       180
+     ATACATATCC ATATATATAT CCATATACAT ATCCATATAT ATATCCATAT ACATATCCAT       240
+     ATATATATCC ATATACATAT CCATATATAT ATCCATATAC ATATCCATAT ATATATCCAT       300
+     ATACATATCC AT                                                           312
+//
+ID   Proteus; SV 1; linear; unassigned DNA; STD; UNC; 315 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 315 BP; 189 A; 0 C; 0 G; 126 T; 0 other;
+     AAATATATAT ATAAATATAT AAATATATAT ATATAAAATA TATATATAAA TATATAAATA        60
+     TATATATATA AAATATATAT ATAAATATAT AAATATATAT ATATAAAATA TATATATAAA       120
+     TATATAAATA TATATATATA AAATATATAT ATAAATATAT AAATATATAT ATATAAAATA       180
+     TATATATAAA TATATAAATA TATATATATA AAATATATAT ATAAATATAT AAATATATAT       240
+     ATATAAAATA TATATATAAA TATATAAATA TATATATATA AAATATATAT ATAAATATAT       300
+     AAATATATAT ATATA                                                        315
+//
+ID   Psamathe; SV 1; linear; unassigned DNA; STD; UNC; 315 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 315 BP; 162 A; 18 C; 27 G; 108 T; 0 other;
+     AGATATTTAT GAAAGATAAA TATATACATA TATACAGATA TTTATGAAAG ATAAATATAT        60
+     ACATATATAC AGATATTTAT GAAAGATAAA TATATACATA TATACAGATA TTTATGAAAG       120
+     ATAAATATAT ACATATATAC AGATATTTAT GAAAGATAAA TATATACATA TATACAGATA       180
+     TTTATGAAAG ATAAATATAT ACATATATAC AGATATTTAT GAAAGATAAA TATATACATA       240
+     TATACAGATA TTTATGAAAG ATAAATATAT ACATATATAC AGATATTTAT GAAAGATAAA       300
+     TATATACATA TATAC                                                        315
+//
+ID   Sao; SV 1; linear; unassigned DNA; STD; UNC; 324 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 324 BP; 84 A; 60 C; 72 G; 108 T; 0 other;
+     CACTTCCTGG TTCATAGGGA AATTGTACAC TTCCTGGTTC ATAGGGAAAT TGTACACTTC        60
+     CTGGTTCATA GGGAAATTGT ACACTTCCTG GTTCATAGGG AAATTGTACA CTTCCTGGTT       120
+     CATAGGGAAA TTGTACACTT CCTGGTTCAT AGGGAAATTG TACACTTCCT GGTTCATAGG       180
+     GAAATTGTAC ACTTCCTGGT TCATAGGGAA ATTGTACACT TCCTGGTTCA TAGGGAAATT       240
+     GTACACTTCC TGGTTCATAG GGAAATTGTA CACTTCCTGG TTCATAGGGA AATTGTACAC       300
+     TTCCTGGTTC ATAGGGAAAT TGTA                                              324
+//
+ID   Thalassa; SV 1; linear; unassigned DNA; STD; UNC; 308 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 308 BP; 110 A; 44 C; 0 G; 154 T; 0 other;
+     TATATATATA TTCCTATATA TATATTCCTA TATATATATT CCTATATATA TATTCCTATA        60
+     TATATATTCC TATATATATA TTCCTATATA TATATTCCTA TATATATATT CCTATATATA       120
+     TATTCCTATA TATATATTCC TATATATATA TTCCTATATA TATATTCCTA TATATATATT       180
+     CCTATATATA TATTCCTATA TATATATTCC TATATATATA TTCCTATATA TATATTCCTA       240
+     TATATATATT CCTATATATA TATTCCTATA TATATATTCC TATATATATA TTCCTATATA       300
+     TATATTCC                                                                308
+//
+ID   Triton; SV 1; linear; unassigned DNA; STD; UNC; 306 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 306 BP; 153 A; 68 C; 85 G; 0 T; 0 other;
+     GAGAGACAGA CACACAGAGA GAGACAGACA CACAGAGAGA GACAGACACA CAGAGAGAGA        60
+     CAGACACACA GAGAGAGACA GACACACAGA GAGAGACAGA CACACAGAGA GAGACAGACA       120
+     CACAGAGAGA GACAGACACA CAGAGAGAGA CAGACACACA GAGAGAGACA GACACACAGA       180
+     GAGAGACAGA CACACAGAGA GAGACAGACA CACAGAGAGA GACAGACACA CAGAGAGAGA       240
+     CAGACACACA GAGAGAGACA GACACACAGA GAGAGACAGA CACACAGAGA GAGACAGACA       300
+     CACAGA                                                                  306
+//
+ID   Hippocamp_v1; SV 1; linear; unassigned DNA; STD; UNC; 308 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 308 BP; 44 A; 110 C; 55 G; 99 T; 0 other;
+     TGCAGGACAC ACTTCCTGTT CTCCTCTGTG CAGGACACAC TTCCTGTTCT CCTCTGTGCA        60
+     GGACACACTT CCTGTTCTCC TCTGTGCAGG ACACACTTCC TGTTCTCCTC TGTGCAGGAC       120
+     ACACTTCCTG TTCTCCTCTG TGCAGGACAC ACTTCCTGTT CTCCTCTGTG CAGGACACAC       180
+     TTCCTGTTCT CCTCTGTGCA GGACACACTT CCTGTTCTCC TCTGTGCAGG ACACACTTCC       240
+     TGTTCTCCTC TGTGCAGGAC ACACTTCCTG TTCTCCTCTG TGCAGGACAC ACTTCCTGTT       300
+     CTCCTCTG                                                                308
+//
+ID   Hippocamp_v2; SV 1; linear; unassigned DNA; STD; UNC; 319 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages: 
+XX
+SQ   Sequence 319 BP; 99 A; 55 C; 121 G; 44 T; 0 other;
+     GAAGTGTGTC CTGCACAGGG GAGAAACAGG AAGTGTGTCC TGCACAGGGG AGAAACAGGA        60
+     AGTGTGTCCT GCACAGGGGA GAAACAGGAA GTGTGTCCTG CACAGGGGAG AAACAGGAAG       120
+     TGTGTCCTGC ACAGGGGAGA AACAGGAAGT GTGTCCTGCA CAGGGGAGAA ACAGGAAGTG       180
+     TGTCCTGCAC AGGGGAGAAA CAGGAAGTGT GTCCTGCACA GGGGAGAAAC AGGAAGTGTG       240
+     TCCTGCACAG GGGAGAAACA GGAAGTGTGT CCTGCACAGG GGAGAAACAG GAAGTGTGTC       300
+     CTGCACAGGG GAGAAACAG                                                    319
+//
+ID   Hippocamp_v3; SV 1; linear; unassigned DNA; STD; UNC; 319 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 319 BP; 55 A; 121 C; 44 G; 99 T; 0 other;
+     CTCCCCTGTG CAGAACACAC TTCCTGTTTC TCCCCTGTGC AGAACACACT TCCTGTTTCT        60
+     CCCCTGTGCA GAACACACTT CCTGTTTCTC CCCTGTGCAG AACACACTTC CTGTTTCTCC       120
+     CCTGTGCAGA ACACACTTCC TGTTTCTCCC CTGTGCAGAA CACACTTCCT GTTTCTCCCC       180
+     TGTGCAGAAC ACACTTCCTG TTTCTCCCCT GTGCAGAACA CACTTCCTGT TTCTCCCCTG       240
+     TGCAGAACAC ACTTCCTGTT TCTCCCCTGT GCAGAACACA CTTCCTGTTT CTCCCCTGTG       300
+     CAGAACACAC TTCCTGTTT                                                    319
+//
+ID   Hippocamp_v4; SV 1; linear; unassigned DNA; STD; UNC; 319 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 319 BP; 99 A; 55 C; 121 G; 44 T; 0 other;
+     AAGTGTGTCC TGCACAGGGG AGAAACAGGA AGTGTGTCCT GCACAGGGGA GAAACAGGAA        60
+     GTGTGTCCTG CACAGGGGAG AAACAGGAAG TGTGTCCTGC ACAGGGGAGA AACAGGAAGT       120
+     GTGTCCTGCA CAGGGGAGAA ACAGGAAGTG TGTCCTGCAC AGGGGAGAAA CAGGAAGTGT       180
+     GTCCTGCACA GGGGAGAAAC AGGAAGTGTG TCCTGCACAG GGGAGAAACA GGAAGTGTGT       240
+     CCTGCACAGG GGAGAAACAG GAAGTGTGTC CTGCACAGGG GAGAAACAGG AAGTGTGTCC       300
+     TGCACAGGGG AGAAACAGG                                                    319
+//
+ID   Umbriel_v1; SV 1; linear; unassigned DNA; STD; UNC; 308 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 308 BP; 44 A; 110 C; 55 G; 99 T; 0 other;
+     TTCTCCTCTG TGCAGGACAC ACTTCCTGTT CTCCTCTGTG CAGGACACAC TTCCTGTTCT        60
+     CCTCTGTGCA GGACACACTT CCTGTTCTCC TCTGTGCAGG ACACACTTCC TGTTCTCCTC       120
+     TGTGCAGGAC ACACTTCCTG TTCTCCTCTG TGCAGGACAC ACTTCCTGTT CTCCTCTGTG       180
+     CAGGACACAC TTCCTGTTCT CCTCTGTGCA GGACACACTT CCTGTTCTCC TCTGTGCAGG       240
+     ACACACTTCC TGTTCTCCTC TGTGCAGGAC ACACTTCCTG TTCTCCTCTG TGCAGGACAC       300
+     ACTTCCTG                                                                308
+//
+ID   Umbriel_v2; SV 1; linear; unassigned DNA; STD; UNC; 319 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 319 BP; 99 A; 55 C; 121 G; 44 T; 0 other;
+     GAAGTGTGTC CTGCACAGGG GAGAAACAGG AAGTGTGTCC TGCACAGGGG AGAAACAGGA        60
+     AGTGTGTCCT GCACAGGGGA GAAACAGGAA GTGTGTCCTG CACAGGGGAG AAACAGGAAG       120
+     TGTGTCCTGC ACAGGGGAGA AACAGGAAGT GTGTCCTGCA CAGGGGAGAA ACAGGAAGTG       180
+     TGTCCTGCAC AGGGGAGAAA CAGGAAGTGT GTCCTGCACA GGGGAGAAAC AGGAAGTGTG       240
+     TCCTGCACAG GGGAGAAACA GGAAGTGTGT CCTGCACAGG GGAGAAACAG GAAGTGTGTC       300
+     CTGCACAGGG GAGAAACAG                                                    319
+//
+ID   Umbriel_v3; SV 1; linear; unassigned DNA; STD; UNC; 319 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 319 BP; 55 A; 121 C; 44 G; 99 T; 0 other;
+     CTCCCCTGTG CAGAACACAC TTCCTGTTTC TCCCCTGTGC AGAACACACT TCCTGTTTCT        60
+     CCCCTGTGCA GAACACACTT CCTGTTTCTC CCCTGTGCAG AACACACTTC CTGTTTCTCC       120
+     CCTGTGCAGA ACACACTTCC TGTTTCTCCC CTGTGCAGAA CACACTTCCT GTTTCTCCCC       180
+     TGTGCAGAAC ACACTTCCTG TTTCTCCCCT GTGCAGAACA CACTTCCTGT TTCTCCCCTG       240
+     TGCAGAACAC ACTTCCTGTT TCTCCCCTGT GCAGAACACA CTTCCTGTTT CTCCCCTGTG       300
+     CAGAACACAC TTCCTGTTT                                                    319
+//
+ID   Umbriel_v4; SV 1; linear; unassigned DNA; STD; UNC; 319 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 319 BP; 99 A; 55 C; 121 G; 44 T; 0 other;
+     AAGTGTGTCC TGCACAGGGG AGAAACAGGA AGTGTGTCCT GCACAGGGGA GAAACAGGAA        60
+     GTGTGTCCTG CACAGGGGAG AAACAGGAAG TGTGTCCTGC ACAGGGGAGA AACAGGAAGT       120
+     GTGTCCTGCA CAGGGGAGAA ACAGGAAGTG TGTCCTGCAC AGGGGAGAAA CAGGAAGTGT       180
+     GTCCTGCACA GGGGAGAAAC AGGAAGTGTG TCCTGCACAG GGGAGAAACA GGAAGTGTGT       240
+     CCTGCACAGG GGAGAAACAG GAAGTGTGTC CTGCACAGGG GAGAAACAGG AAGTGTGTCC       300
+     TGCACAGGGG AGAAACAGG                                                    319
+//
+ID   Sycorax_v1; SV 1; linear; unassigned DNA; STD; UNC; 304 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 304 BP; 80 A; 128 C; 64 G; 32 T; 0 other;
+     CATCGTGGAC ACACACCGCC ATCGTGGACA CACACCGCCA TCGTGGACAC ACACCGCCAT        60
+     CGTGGACACA CACCGCCATC GTGGACACAC ACCGCCATCG TGGACACACA CCGCCATCGT       120
+     GGACACACAC CGCCATCGTG GACACACACC GCCATCGTGG ACACACACCG CCATCGTGGA       180
+     CACACACCGC CATCGTGGAC ACACACCGCC ATCGTGGACA CACACCGCCA TCGTGGACAC       240
+     ACACCGCCAT CGTGGACACA CACCGCCATC GTGGACACAC ACCGCCATCG TGGACACACA       300
+     CCGC                                                                    304
+//
+ID   Sycorax_v2; SV 1; linear; unassigned DNA; STD; UNC; 304 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 304 BP; 80 A; 128 C; 48 G; 48 T; 0 other;
+     GCCATCTTGG ACACACACCG CCATCTTGGA CACACACCGC CATCTTGGAC ACACACCGCC        60
+     ATCTTGGACA CACACCGCCA TCTTGGACAC ACACCGCCAT CTTGGACACA CACCGCCATC       120
+     TTGGACACAC ACCGCCATCT TGGACACACA CCGCCATCTT GGACACACAC CGCCATCTTG       180
+     GACACACACC GCCATCTTGG ACACACACCG CCATCTTGGA CACACACCGC CATCTTGGAC       240
+     ACACACCGCC ATCTTGGACA CACACCGCCA TCTTGGACAC ACACCGCCAT CTTGGACACA       300
+     CACC                                                                    304
+//
+ID   GAP_chr22_27bp; SV 1; linear; unassigned DNA; STD; UNC; 324 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 324 BP; 84 A; 120 C; 84 G; 36 T; 0 other;
+     CACGACATCG CTAACGAGGA CGCCGTCCAC GACATCGCTA ACGAGGACGC CGTCCACGAC        60
+     ATCGCTAACG AGGACGCCGT CCACGACATC GCTAACGAGG ACGCCGTCCA CGACATCGCT       120
+     AACGAGGACG CCGTCCACGA CATCGCTAAC GAGGACGCCG TCCACGACAT CGCTAACGAG       180
+     GACGCCGTCC ACGACATCGC TAACGAGGAC GCCGTCCACG ACATCGCTAA CGAGGACGCC       240
+     GTCCACGACA TCGCTAACGA GGACGCCGTC CACGACATCG CTAACGAGGA CGCCGTCCAC       300
+     GACATCGCTA ACGAGGACGC CGTC                                              324
+//
+ID   GAP_43bp; SV 1; linear; unassigned DNA; STD; UNC; 301 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 301 BP; 70 A; 112 C; 77 G; 42 T; 0 other;
+     GAGGAGACCC TGCTCCACCT CCACCTGGAC CCAGTGTAGA CAGGAGGAGA CCCTGCTCCA        60
+     CCTCCACCTG GACCCAGTGT AGACAGGAGG AGACCCTGCT CCACCTCCAC CTGGACCCAG       120
+     TGTAGACAGG AGGAGACCCT GCTCCACCTC CACCTGGACC CAGTGTAGAC AGGAGGAGAC       180
+     CCTGCTCCAC CTCCACCTGG ACCCAGTGTA GACAGGAGGA GACCCTGCTC CACCTCCACC       240
+     TGGACCCAGT GTAGACAGGA GGAGACCCTG CTCCACCTCC ACCTGGACCC AGTGTAGACA       300
+     G                                                                       301
+//
+ID   GAP_41bp; SV 1; linear; unassigned DNA; STD; UNC; 328 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 328 BP; 40 A; 72 C; 128 G; 88 T; 0 other;
+     AGGGTGCTGA GTCTCTGTGA TGAGGCCGTC CTGGGCACTG TAGGGTGCTG AGTCTCTGTG        60
+     ATGAGGCCGT CCTGGGCACT GTAGGGTGCT GAGTCTCTGT GATGAGGCCG TCCTGGGCAC       120
+     TGTAGGGTGC TGAGTCTCTG TGATGAGGCC GTCCTGGGCA CTGTAGGGTG CTGAGTCTCT       180
+     GTGATGAGGC CGTCCTGGGC ACTGTAGGGT GCTGAGTCTC TGTGATGAGG CCGTCCTGGG       240
+     CACTGTAGGG TGCTGAGTCT CTGTGATGAG GCCGTCCTGG GCACTGTAGG GTGCTGAGTC       300
+     TCTGTGATGA GGCCGTCCTG GGCACTGT                                          328
+//
+ID   GAP_37bp_v2; SV 1; linear; unassigned DNA; STD; UNC; 333 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 333 BP; 63 A; 126 C; 135 G; 9 T; 0 other;
+     CCACCCACCC TGGGCACCGA CGGGGGGAAG GCCGGGACCA CCCACCCTGG GCACCGACGG        60
+     GGGGAAGGCC GGGACCACCC ACCCTGGGCA CCGACGGGGG GAAGGCCGGG ACCACCCACC       120
+     CTGGGCACCG ACGGGGGGAA GGCCGGGACC ACCCACCCTG GGCACCGACG GGGGGAAGGC       180
+     CGGGACCACC CACCCTGGGC ACCGACGGGG GGAAGGCCGG GACCACCCAC CCTGGGCACC       240
+     GACGGGGGGA AGGCCGGGAC CACCCACCCT GGGCACCGAC GGGGGGAAGG CCGGGACCAC       300
+     CCACCCTGGG CACCGACGGG GGGAAGGCCG GGA                                    333
+//
+ID   GAP_29bp_v1; SV 1; linear; unassigned DNA; STD; UNC; 319 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 319 BP; 66 A; 154 C; 55 G; 44 T; 0 other;
+     TGCATCTCCC CGAGCCCACG ATCCCACAGT GCATCTCCCC GAGCCCACGA TCCCACAGTG        60
+     CATCTCCCCG AGCCCACGAT CCCACAGTGC ATCTCCCCGA GCCCACGATC CCACAGTGCA       120
+     TCTCCCCGAG CCCACGATCC CACAGTGCAT CTCCCCGAGC CCACGATCCC ACAGTGCATC       180
+     TCCCCGAGCC CACGATCCCA CAGTGCATCT CCCCGAGCCC ACGATCCCAC AGTGCATCTC       240
+     CCCGAGCCCA CGATCCCACA GTGCATCTCC CCGAGCCCAC GATCCCACAG TGCATCTCCC       300
+     CGAGCCCACG ATCCCACAG                                                    319
+//
+ID   SAT-VAR_rnd-6_family-1431; SV 1; linear; unassigned DNA; STD; UNC; 4905 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 4905 BP; 924 A; 1619 C; 1885 G; 456 T; 21 other;
+     CCTGTGTTGT GGAAGGAAAA CACAAACGGC GAGGCAGAGG TCCCCCCCCA CGGGCGAAAG        60
+     TGCCTCCCCA CCGCGCATGC GCGGGGCCCA GGGGACCCTG GGCGTCCCTG GTTCGCGCCC       120
+     ACGGAGCGCC TCGGCCCACG GGGGCCAGCC CAAGGCGGCA GGAAGGCTTG AAAGGGGAGG       180
+     TCGAGGCACC TGTGTTGTGG AAGGAAAACA CAAACGGCGA GGCAGAGGTC CCCCCCCACG       240
+     GGCGAAAGTG CCTCCCCACC GCGCATGCGC GGGGCCCAGG GGACCCTGGG CATCCCTGGT       300
+     TCGCGCCCAC AGAGCGCCTC GGCCCACGGG GGCCAGCCCA AGGCGGCAGG AAGGCTTGAA       360
+     AGGGGAGGTC GAGGCACCTG TGTTGTGGAA GGAAAACACA AACGGCGAGG CAGAGGTCCC       420
+     CCCCACGGGC GAAAGTGCCT CCCCACCGCG CATGCGCGGG GCCCAGGGGA CCCTGGGCGT       480
+     CCCTGGTTTC ACGCCCACGG AGCGCCTCGG CCCACGGGGG CCAGCCCAAG GCGGCAGGAA       540
+     GGCTTGAAAG GGGAGGTCGA GGCACCTGTG TTGTGGAAGG AAAACACAAA CGGCGAGGCA       600
+     GAGGTCCCCC CCCACGGGCG AAAGTGCCTC CCCACCGCGC ATGCGCGGGG CCCAGGGGAC       660
+     CCTGGGCGTC CCTGGTTCGC GCCCACGGAG CGCCTCGGGC CCACGGGGGC CAGCCCAAGG       720
+     CGGCAGGAAG GCTTGAAAGG GGAGGTCGAG GCACCTGTGT TGTGGAAGGA AAACACAAAC       780
+     GGCGAGGCAG AGGTCCCCCC CACGGGCGAA AGTGCCTCCC CACCGCGCAT GCGCGGGGCC       840
+     CAGGGGACCC TGGGCGTCCC TGGTTCATGC CCACGGAGCG CCTCGGGCCC ACGGGGGCCA       900
+     GCCCAAGGCG GCAGGAAGGC TTGAAAGGGG AGGTCGAGGC ACCTGTGTTG TGGAAGGAAA       960
+     ACACAAACGG CGNGGCAGAG GTCCCCCCCA CGGGCGAAAG TGCCTCCCCA CCGCGCATGC      1020
+     GCGGGGCCCA GGGGACCCTG GGCGTCCCTG GTTCGCGCCC ACGGAGCGCC TCGGGCCCAC      1080
+     GGGGGCCAGC CCAAGGCGGC AGGAAGGCTT GAAAGGGGAG GTCGAGGCAC CTGTGTTGTG      1140
+     GAAGGAAAAC ACAAACGGCG AGGCAGAGGT CCCCCCCCAC GGGCGAAAGT GCCTCCCCAC      1200
+     CGCGCATGCG CGGGGCCCAG GGGACCCTGG GCGTCCCTGG TTCGCGCCCA CGGAGCGCCT      1260
+     CCGGCCCACG GGGGCCAGCC CAAGGCGGCA GGAAGGCTTG AAAGGGGAGG TCGAGGCACC      1320
+     TGTGTTGTGG AAGGAAAACA NAAACGGCGC GGCAGAGGTC CCCCCCACGG GCGAAAGTGC      1380
+     CTCCCCACCG CGCATGCGCG GGGCCCAGGG GACCCTGGGC GTCCCTGGTT CGCGCCCACG      1440
+     GAGTGCCTCG GGCCCACGGG GGCCAGCCCA AGGCGGCAGG AAGGCTTGAA AGGGGAGGTC      1500
+     GAGGCACCTG TGGTGTGGAA GGAAAACACA AACGGCGCGG CAGAGGTCCC CCCCACGGGC      1560
+     GAAAGTGCCT CCCCACCGCG CATGCGCGGG GCCCAGGGGA CCCTGGGCGT CCCTGGTTCA      1620
+     CGCCCACGGA GCGCCTCGGG CCCACGGGGG CCAGCCCAAG GCGGCAGGAA GGCTTGAAAG      1680
+     GGGAGGTCGA GGCACCTGTG TTGTGGAAGG AAAACACAAA CGGCGAGGCA GAGGTCCCCC      1740
+     CCACGGGCGA AAGTGCCTCC CCACCGCGCA TGCGCGGGGC CCAGGGGACC CTGGGCGTCC      1800
+     CTGGTTCGCG CCCACGGAGC GCCTCGGCCC ACGGGGGCCA GCCCAAGGCG GCAGGAAGGC      1860
+     TTGAAAGGGG AGGTCGAGGC ACCTGTGNTG TGGAAGGAAA ACACAAACGG CGCGGCAGAG      1920
+     GTCCCCCCCA CGGGCGAAAG TGCCTCCCCA CCGCGCATGC GCGGGGCCCA GGGGACCCTG      1980
+     GGCGTCCCTG GTTCGCGCCC ACGGAGCGCC TCGGGCCCAC GGGGGCCAGC CCAAGGCGGC      2040
+     AGGAAGGCTT GAAAGGGGAG GTCGAGGCAC CTGTGNTGTG GAAGGAAAAC ACAAACGGCG      2100
+     NGGCAGAGGT CCCCCCCACG GGCGAAAGTG CCTCCCCACC GCGCATGCGC GGGGCCCAGG      2160
+     GGACCCTGGG CGTCCCTGGT TCGCGCCCAC GGAGCCCCGG GCCCACGGGG GCCAGCCCAA      2220
+     GGCGGCAGGA AGGCTTGAAA GGGGAGGTCG AGGCACCTGT GNTGTGGAAG GAAAACACAA      2280
+     ACGGCGAGGC AGAGGTCCCC CCCCACGGGC GAAAGTGCCT CCCCACCGCG CATGCGCGGG      2340
+     GCCCAGGGGA CCCTGGGCGT CCCTGGTTCG CGCCCACGGA GCGCCTCGGG CCCACGGGGG      2400
+     CCAGCCCAAG GCGGCAGGAA GGCTTGAAAG GGGAGGTCGA GGCACCTGTG NTGTGGAAGG      2460
+     AAAACACAAA CGGCGAGGCA GAGGTCCCCC CCCACGGGCG AAAGTGCCTC CCCACCGCGC      2520
+     ATGCGCGGGG CCCAGGGGAC CCTGGGCGTC CCTGGTTCGC GCCCACGGAG CGCCTCGGCC      2580
+     CACGGGGGCC AGCCCAAGGC GGCAGGAAGG CTTGAAAGGG GAGGTCGAGG CACCTGTGTT      2640
+     GTGGAAGGAA AACACAAACG GCGAGGCAGA GGTCCCCCCC ACGGGCGAAA GTGCCTCCCC      2700
+     ACCGCGCATG CGCGGGGCCC AGGGGACCCT GGGCGTCCCT GGTTCACGCC CACGGAGCGG      2760
+     CCTCGGGCCC ACGGGGGCCA GCCCAAGGCG GCAGGAAGGC TTGAAAGGGG AGGTCGAGGC      2820
+     ACCTGTGNTG TGGAAGGAAA ACANAAACGG CGAGGCAGAG GTCCCNCCAC GGGGAAAGTG      2880
+     CCTCCCCACC GCGCATGCGC GGGGCCCAGG GGACCCTGGG CGTCCCTGGT TCGCGCCCAC      2940
+     GGAGCGCCTG GGCCCACGGG GGCCAGCCCA AGGCGGCAGG AAGGCTTGAA AGGGGAGGTC      3000
+     GAGGCACCTG TGTTGTGGAA GGAAAACACA AACGGCGAGG CAGAGGTCCC CGCCGCGCAT      3060
+     GCGCGGGGCC CAGGGGACCC TGGGCGTCCC TGGTTCGCGC CCACGGAGCG CCTCGGCCCC      3120
+     ACGGGGGCCA GCCCAAGGCG GCAGGAAGGC TTGAAAGGGG AGGTCGAGGC ACCTGTGTGT      3180
+     GGAAGGAAAA CACAAACGGC GAGGCAGAGC AGGGNCCCCG GCCCCNGGCG AACGCGCCTC      3240
+     CCCGCCGCGC ATGCGCGGGG CCCAGGGGAC CCTGGGCGTC CCGGGTTCGC GCCCACGGAG      3300
+     CGCCTGGGCC CCGCGGGGGN CNGCCCAAGG CGGCAGGGAG GCTTGAAAGG GGAGGTCGAG      3360
+     GCACCTGTGT GTGGAAGGAA AACACAAACG GCGAGGCAGA GCAGGGGTCC CGGCCCCTGG      3420
+     CCACCCCACG CCCTCCCCGC CGCGCATGCG CGGGGTCCCG GGGACCCTGG GGTCCCNGGT      3480
+     TCGCGCCCNC GGAGCGGCTG GGCCCCGCGG GGGCCGGCCC AAGGCGGCAG GGAGGCTTGA      3540
+     AAGGGGAGGT CGAGGCACCT GGTGTGGAAG GAAAACACAA ACGGCGAGGC AGAGGTCCCC      3600
+     CCCACGGGCG AAAGTGCCTC CCCGCCGCGC ATGCGCGGGG CCCAGGGGAC CCTGGGCGTC      3660
+     CCTGGTTCGC GCCCACGGAG CGCCTCGGCC CACGGGGGCC AGCCCAAGGC GGCAGGAAGG      3720
+     CTTGAAAGGG GAGGTCGAGG CACCTGTGNT GTGGAAGGAA AACACAAACG GCGAGGCAGA      3780
+     GGTCCCCCCC ACGGGCGAAA GTGCCNCCCC GCCGCGCATG CGCGGGGCCC AGGGGACCCT      3840
+     GGGCGTCCCT GGTTCGCGCC CACGGAGCGC CTCGGGCCCA CGGGGGCCAG CCCAAGGCGG      3900
+     CAGGAAGGCT TGAAAGGGGA GGTCGAGGCA CCTGTGNTGT GGAAGGAAAA CACAAACGGC      3960
+     GCGGCAGAGG TCCCCCCCAC GGGCGAAAGT GCCTCCCCGC CGCGCATGCG CGGGGCCCAG      4020
+     GGGACCCTGG GCGTCCCTGG TTCGCGCCCA CGGAGCGCCT CGGGCCCACG GGGGCCAGCC      4080
+     CAAGGCGGCA GGAAGGCTTG AAAGGGGAGG TCGAGGCACC TGTGNTGTGG AAGGAAAACA      4140
+     CAAACGGCGN GGCAGAGGTC CCCCCCACGG GCGAAAGTGC CTCCCCACCG CGCATGCGCG      4200
+     GGGCCCAGGG GACCCTGGGC GTCCCTGGTT CGCGCCCACG GAGCGCCTCG GCCCACGGGG      4260
+     GCCAGCCCAA GGCGGCAGGA AGGCTTGAAA GGGGAGGTCG AGGCACCTGT GTTGTGGAAG      4320
+     GAAAACACAA ACGGCGAGGC AGAGGTCCCC CCCGGGCGAA AGTGCCTCCC CGCCGCGCAT      4380
+     GCGCGGGGCC CAGGGGACCC TGGGCGTCCC TGGTTCGCGC CCACGGAGCG CCTCGGGCCC      4440
+     ACGGGGGCCA GCCCAAGGCG GCAGGAAGGC TTGAAAGGGG AGGTCGAGGC ACCTGTGTTG      4500
+     TGGAAGGAAA ACACAAACGG CGAGGCAGAG GTCCCCCCCA CGGGCGAAAG TGCCTCCCCG      4560
+     CCGCGCATGC GCGGGGCCCA GGGGACCCTG GGCGTCCCTG GTTCGCGCCC ACGGAGCGCC      4620
+     TCGGCCCACG GGGGCCAGCC CAAGGCGGCA GGAAGGCTTG AAAGGGGAGG TCGAGGCACC      4680
+     TGTGTTGTGG AAGGAAAACA CAAACGGCGA GGCAGAGGTC CCCCCGCCAC GGGCGAAAGT      4740
+     GCCTCCCCAC CGCGCATGCG CGGGGCCCAG GGGACCCTGG GCGTCCCTGG TTCGCGCCCA      4800
+     CGGAGCGCCT CGGGCCCACG GGGGCCAGCC CAAGGCGGCA GGAAGGCTTG AAAGGGGAGG      4860
+     TCGAGGCACC TGTGTTGTGG AAGGAAAACA CAAACGGCGA GGCAG                      4905
+//
+ID   SAT-VAR_rnd-6_family-1569; SV 1; linear; unassigned DNA; STD; UNC; 336 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 336 BP; 120 A; 60 C; 72 G; 84 T; 0 other;
+     TGGAATTCAT ACAAATTGCA GACTGCAGTG GAATTCATAC AAATTGCAGA CTGCAGTGGA        60
+     ATTCATACAA ATTGCAGACT GCAGTGGAAT TCATACAAAT TGCAGACTGC AGTGGAATTC       120
+     ATACAAATTG CAGACTGCAG TGGAATTCAT ACAAATTGCA GACTGCAGTG GAATTCATAC       180
+     AAATTGCAGA CTGCAGTGGA ATTCATACAA ATTGCAGACT GCAGTGGAAT TCATACAAAT       240
+     TGCAGACTGC AGTGGAATTC ATACAAATTG CAGACTGCAG TGGAATTCAT ACAAATTGCA       300
+     GACTGCAGTG GAATTCATAC AAATTGCAGA CTGCAG                                 336
+//
+ID   COMP-subunit_FAM90A_rnd-6_family-663; SV 1; linear; unassigned DNA; STD; UNC; 2511 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Satellite                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 2511 BP; 711 A; 590 C; 529 G; 641 T; 40 other;
+     ACACGATCAC ACATCAGCCT GCATTCCAGG TGCATGCTTC TATTTGCACA TAGATTGCAG        60
+     GGATGATATG CAAACAAAAA TGTTGACTTG GTGTTTGGAA GTTCAGAGTG GAAGGGAAAC       120
+     TTCCTTGCTA ACCTTTTATG ATATTTAGAG TTTCTAAACG TGAATACGTA ATACATTTAG       180
+     AAATCTTAGT TAATAAGAAA AGCCTCTGTT CCTGGCCTCT TGCTGGCACA TGTCAGGTGG       240
+     AAATGGGGCT GTCATGCTAA TGTGTGCAAA CTGAGAAAAA TCCAAGAATG GGAGTCTGCT       300
+     TTTTTCATCA TACAAATAAT TGTTAATAGA AACAGTATGA TAATTGCTCA TTGATATACC       360
+     ACGCATATTC TATTAGATAA TAATAAATTT CTGAAATTTG AACTATACTT ACACATGGAA       420
+     ATTGAAATAT ATGGATGAAA CATTGTGGCT TATATAGGCA ATTGTTTTAT TGGCATTTTA       480
+     CNAACCGATC ATCATTCCTC ATGGCGCGGG TTCATGTGAT ATCAAGGAGC TTGTTTTGTT       540
+     TGGNAAAGGC AGTGANGACC ACAAGAATGA CCGCAAGNAC TGAAGTACAA TGGAGACNCC       600
+     NACAATGNCT TGTCTAATAT TTAAATCATT TCGTTGTCTT CCCAGGNTAT TTCTCATCCT       660
+     GATAGCTCTC ATCCGCATCG TNTGGGTCCC ATTAGCACAG ATATCTCCGA ATGGGCNACT       720
+     CTTCCATTAT ATCCAGTCAA TTGCTGGTTA CCTTGGGCCT CCAACTGGGG GAGGGCAGGG       780
+     GCTGCTGGCC ACCTCCTCAT CTACAGTAAG AGTCAATGAG CAGTTAAGTG GATACTGAAA       840
+     ACCATTTATC CTGCTGGAGT GAGAAATAAA TGGTTTCTTT CAATAGCGTA GTAAAATGCA       900
+     TCTTTTCCAA ACTATTTATA TGACTCAAGG CCCATCTCAA TTTCAGATGT GGTTAGCCTC       960
+     AATTCCTGAT TCTCACCAAG GTGTGTAATG TCATCCACGG CCCAGTGCAG AGGAACACAG      1020
+     GTGCTGCCGT CAGACTGCCA GGGTCCGATC CCGCCTCCTC ACTCACCCCG GGAGATCCCT      1080
+     TTAAGCCAGG AGTCAACAGC GAGGACGGAA ACATGAATGT GCTTTTNAAA GTCCTGAAAG      1140
+     TTCAGAGGNN GACCGTCAAT TTCTCCTNCG CCCCTGGGCA CACACCAGGA GAACTCTGTC      1200
+     TCCAGGTTNA AGNAAGTGCC TGTGAGAGAG TTGTGTCCCT CAGATTCCGT TCACCACAGG      1260
+     TGACACTCGA TGCAACCCCA AACCTCTTCT GCACAATCCC AAGGGGTGCT GACTAATCCA      1320
+     ANCCAAAGGC TGTGATGTTT GGCAGNGGCA GAGGCAGAAA AGGCCAGGTG TTCTGGGAAA      1380
+     GATCACCTTT AAATAATAAG CAAGAAAGAT GAAAACACAG CACNCTCAAT AGCCCAGAGA      1440
+     GACAGTTCTN ACTATTATGC CAATAAACCC GGAAAAGACC AAACCCAACN TGACACATAT      1500
+     TTCCTGTTTC NTTTTGATTT CATGCCCCCT CCCTCAGCCT CCCAAGCAGC AGGGATACCC      1560
+     CGAAGGCCCC TGGGAACTCT CTCCNATTGG ATCCTACGTG GAAAGTAGTT ACCTACCTGN      1620
+     AAAGTCTCCC CATCATCAGA TATGCTCTCC ACAATCAAAT CTTTAGAAAC ACAAACACCA      1680
+     GGATAAGTCA TTAGAGAGAG GCCCACCCAC TCCTCCCACC CCAGCTGAAG CCACGGTGCT      1740
+     TCGCACAGGA TCCCCTGGTN TTTCCTCTGG GCTCACAGAT ATCCCTACAG CCTCTCTGGN      1800
+     CATGGTTTTA TACTTGCAAA ATCATTTGCT CTCACCAGAC CCCNAATCCT CCTTCCCAAA      1860
+     AGGAGCCCAG AATCAGGTTT CTGTACCCTA GAGNCGGCAA GTTTTTTCCT CAGGAAGTGA      1920
+     GTTATTTCAG GGTACGTACC ACTCTGCCGG TGTCGATGGC ACCTGCAATT AGAGAAAAGA      1980
+     AAACACTATG AGGATCAGAT CATGCCGCGC GCGTCGCACA GGTCTGTTAT TCNCTCGGCG      2040
+     ACNTTAGAAA ACNAATGGGA AACAGTGGTC GAGTCAANGT CAAAGCCCCC AAAACAAGCA      2100
+     TAGAGGACAC CTGTGGAAAA GACAAGAGCT TTTCCCGCAG AATTTATCTT TNAAGTCTAT      2160
+     NTAGGTTGGC AANTGCACAA TNCTTAATCC AAGGGGGAAA ACTGCTGCGG AGGGAAACGC      2220
+     CTCTGCATTG CAGTGGATCG TGGATGCTGC CATCTACCAC ACCCCAGTGT GCCNGGCATG      2280
+     GGTTGGTGAG AGGCTGCCAA TCAATAGCAC CACACCAAGG GAATTGCGGA CGTCGTAAAT      2340
+     AGTCCACATT GGCAGATGTT CATGTCTACA TTTGATTAAA CTGCAGATGN CATCGATAAT      2400
+     GCACACTGNC AGATNTTCAT GTCTACATCT GATTGGAAAG AAGCCAGGAA AGTAACATTT      2460
+     CTGTTCAAGA CAAAGAAAAG TGTCTTACAT TGGCAGCATC TTCTTTTTTA C               2511
+//
+ID   COMP-subunit_DAZ_rnd-1_family-85; SV 1; linear; unassigned DNA; STD; UNC; 1868 BP.
+XX
+XX                                                                                        
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                  
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                     
+XX
+SQ   Sequence 1868 BP; 677 A; 322 C; 291 G; 573 T; 5 other;
+     CAGCTCCGGT GNTTTGGAGG TAATACTCTC GTTTACTCCT ATTCTTATTT AAGCGTAATT        60
+     AACAGCAAAG CATTTCTGTT TCTCTTCTAC AAATTTTCTA TTGCTGGTAA AGCCAGAGGC       120
+     AGATTCTACG CAGATACATG CTAATTCTAA AGCCACGTGA ATACTACCTT TCTTTGATTA       180
+     TATAGTCTAT CATTATGTGG ACCTGCCATT GCTTAAGCAC ATAAAAACCT GAGGGCAAAA       240
+     AAGGCACTGT TGCTCCCATG GGAGTTTATA ATCGGGTTAA CAAGAAAGTA ACAACAACAA       300
+     ATAAAACATT AATATAAAGA ATCACTTAAA AATATTTATA GGCATATATG ACATGGAAAA       360
+     AAATCAAGAA TGAACAGGAA GTCTATGTTT GGCTAATTCA CTTAACGTCA AGGACAACAT       420
+     AATCCCTTTG CTCCCCAACA GGCCCCTACG GTGGCATCTT AAAAAATCAA TCAATAAATA       480
+     AAAGGAAACC AAAACTATTA AAATATTCCT ACACATTTTC AAAAACACAT GAGAAACACA       540
+     ATATTGAAGT ACTTATCCTG CTGTCTCCTT TTTTATTATA ATAAAAGTAA CAGAAAGGAA       600
+     AACTNAAGTA CTTTATGTTT CTAGTCCATG ACGTTCTTGT TACTTTTACA TTGGAAACTT       660
+     CACCTTTCTC CAAATTTTCG GGAGTTGGCA ATGTGGAAAC CTCAAAGATA CTAGCTCTTT       720
+     CAGTTTATTA CCATAGATAT AATTATGGGT CATAGATATA CTCGTATCTA TGAAAAGAGA       780
+     CCCAGAGAAT TACTATCGTG AAACAGCCAG CTAAAATGAA AATATAATTG GAATTCTGTG       840
+     CTCTGAAAAG TGGGTCATAA TTTTATTTCA CTCTATCTCC CTAAGAAAAT TCATGAAAGT       900
+     CAGTTTGGAT GTTTCATTCA GCTATTTGAC AGCAAAGATG AAAACTACAT CCAGAAATGA       960
+     AGAAGGGGAC ACCAAATCTC AGAAATCTGT TCTACAGAAA AGTTATTGCC AAGTATATTC      1020
+     CTGTCAAAAT ACTACTTCAT TACTTCTAAA TAAGACAGAG GTCTTCATTC TACACTAATT      1080
+     CTAAGTGTTT CCTTAAATTT TAGGTACACT TCACTAGTTT AAAATGACCA ACTATTCAGG      1140
+     AAATTTGTAT AAACAAGTTA AAGGCCTCAA TAATACCTGA AAGCAAATCA TTTTACTCCC      1200
+     TCTTACATTA CCTGATAATT ATATACAGGC AACTGATATC CAGTGGTGAC CTGAANTGGT      1260
+     GAATTTGGAT AAGCAGGAAA TGCCTGAAAA GAAAGGTTGC AGAAAAAAAT GAATACGGTA      1320
+     AACCATTTTT TTAAAATTAG AAAGAAATAT NATTCCCAAT ATAACAAAAA TATTACAAAA      1380
+     GGTAAAATAT CGTTTTTCTA CATACAACAA TGCAGAATTC TAAATGAATG ACTGACTTTA      1440
+     TGAAGAAAGA AAGATTCTAT GTCAAGTGCT ACACTTTGGG TGTGAAGGGG GAACAAATGA      1500
+     CAAAAGAATT GACTATTTCA CCAAAGTTTA CCTTATACTG TGTACTTATT CACACCCAGA      1560
+     AGTTATTTCT TACACTGGTG ATAAGGCTCC ATTAAGACAG ATTGCAANGT AAGTTAAATT      1620
+     AATACATTTG CTATTTCCCT GTCAGAATAT TTCTAGACTG TTTTGTATCA GACAATATTA      1680
+     TAGGGTAATA TGTAGTTCTA CAGATGTTAT GGCTTTGTCT GTACTTCATT CCGAAAAACT      1740
+     AAGTGCAGTC TATAATCCAA TACTGGAGAA GAGAAAGTAT AATGTCTTAT ATGTTTCAAT      1800
+     AAATTCTTAT TGTTTGAAAA CATACAGGTA GCAGCATACA TGAATACACC CAGATTCAGT      1860
+     AATGGCTC                                                               1868
+//
+ID   COMP-subunit_DAZ_rnd-1_family-113; SV 1; linear; unassigned DNA; STD; UNC; 582 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominidae                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 582 BP; 182 A; 94 C; 85 G; 218 T; 3 other;
+     TACTGTGAGC CATTACTGAA TCTGGGTGTA TTCATGTATG CTGCTACCTG TATGTTTTCA        60
+     AACAATAAGA ATTTATTGAA ACATATAAGA CATTATACTT TCTCTTCTCC AGTATTGGAT       120
+     TATAGACTGC ACTTAGTTTT TCGGAATGAA GTACAGACAA AGCCATAACA TCTGTAGAAC       180
+     TACATATTAC CCTATAATAT TGTCTGATAC AAAACAGTCT AGAAATATTC TGACAGGGAA       240
+     ATAGCAAATG TATTAATTTA ACTTACNTTG CAATCTGTCT TAATGGAGCC TTATCACCAG       300
+     TGTAAGAAAT AACTTCTGGG TGTGAATAAG TACACAGTAT AAGGTAAACT TTGGTGAAAT       360
+     AGTCAATTCT TTTGTCATTT GTTCCCCCTT CACACCCAAA GTGTAGCACT TGACATAGAA       420
+     TCTTTCTTTC TTCATAAAGT CAGTCATTCA TTTAGAATTC TGCATTGTTG TATGTAGAAA       480
+     AACGATATTT TACCNTTTNT AATATTTTTG TTATATTGGG AATTATATTT CTTTCTAATT       540
+     TTAAAAAATG GTTTACCGTA TTCATTTTTT TCTGCAACCT TT                          582
+//
+ID   COMP-subunit_TSPY_rnd-1_family-82; SV 1; linear; unassigned DNA; STD; UNC; 1532 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 1532 BP; 486 A; 306 C; 249 G; 491 T; 0 other;
+     TACATAAATG TGGGATGTAA TATGTAATCG TGATAAAATA AACTGGATTT TTTGTATAAG        60
+     TTATACATAT AAATGTAATG CCGAGACACT GATAAGACAA CTCATGGTCT TATCTCAATA       120
+     CTTAGTGTCT TCATGTAACA TATGTCCTTT AGGATAGTTA TAGTCCGTTT TCTTTCCAGG       180
+     AGAGACAGAT GAGAATGCAG AAATGTTAAA GTGCAAGGGA CGGAAGCTTC CAGCTGTGCC       240
+     CACCTGTAAC CTGACGTAGA CAGTTCCACC GTTTGCTTCA TTAATCATGC CAAAGGCTCT       300
+     AATGCAAATG TGGTACAGAG TCACATGTTT TTGTATCTAC ATGATAGAAA CTATAACTTC       360
+     GTCCCTATAT AGAAGGGTAT ATAGCATATG CCTCAGTGAT AAATATAAGT GAATCATTGA       420
+     TCAGTAGGAA ACCATTTTAA AAGTCTTTCA TAACAGAACA AAATCCCTGA AAACATTTTC       480
+     TTCTCAATCT CTGAGTTTTC TTACACGGCT TATGAATCTC TAGCCATACT AAAGAGATAG       540
+     TATGCTGCTC TTCCCACAAA TTATTCATTG TATATAATTC CCGTAATCTA ATAACAGTAC       600
+     CTTTACACCT CAGGGTTTAA AATGACTCCA ACCTTTTTCT GTTTCTCCAA TTAAAATAAC       660
+     TTTTTTAAGG TTTAATCTTC AGTAATTTTT TGTAGTAATA TTTTTGAAGG TATTTGACCA       720
+     GGATGATTTG CTTATATACC TACCTGACGT CTCCCTTTCT TCTGAATACA TATTTTATTA       780
+     CCCACCTATT AGATCTAAGT TTAAGAAGTT GGAATAGGGA TTTAAATCTA AATTCTACAT       840
+     TTGAATTTAC AGGAGTCAGC GAGTCCGGGA AGTGCCTTTA TGCGCAGACC AATATCTGGC       900
+     AATGGCACTA GGAGACAAAT AAGCTTTACC AGTCTCAAAG CCCTGGCTAC TACAGTGAAT       960
+     CCACCCTTCT CCTGGATCTT ATCTACTTCA GCAAAAGAAG GCCACCCACT AAACCAGGCC      1020
+     CTTGTACTTT GGGTGGAAAC TCCTAAGTCC TCTAGTCTCC TCAAACAGAC AGCCAGGCTG      1080
+     CCAATTTCCA CAATAATAAT TTCTATAGCA CTGAGTCTTT GGTAGCCTTG TAACTATAGC      1140
+     TACTGATGCT ACAGTCTGGT CCCTGTATGA TAAAACACCA GAGCAACAGA AACAAAAATA      1200
+     TTGACTGAAG CCTTCTAAAA TCTCTCTAAA TATACCTTCA ATAAATATGG TTTTTTTTAC      1260
+     AGAACGACTG CTTTCAGCTT CCTGAACTAA CGCTTGGCCT TCGCTAGTTG TCACTGTTGA      1320
+     AATTGATTCA AAAGTGTACA TTTAACATGA AAGTCAACAC AGAATTTCAT GTGTCAGCAA      1380
+     CTAAAATTTT CAAAATGTTG CAAAATACAA ATGTGAAACT GTATTTGTGA AATTTACCAT      1440
+     TCATTGAAAT TATATTTTCA TACCTACCCA GGCACAGAAT TTTTTATAAC TGTCTGCATG      1500
+     TTCTCCTCAT GTGGGGGAAA AACAGCATCA GC                                    1532
+//
+ID   COMP-subunit_TSPY_rnd-1_family-25; SV 1; linear; unassigned DNA; STD; UNC; 3462 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 3462 BP; 929 A; 741 C; 822 G; 926 T; 44 other;
+     ATTGAGTGGC AGTGATGGTA TGTTGTTAAT GTACAATATN TTCCTGTATA TAGCATACGT        60
+     CTATGCTCAT CAGATATTTT CAGGTAAAAA AAGATAGTCN TTCCAGTAGT TTGAGCCATT       120
+     ATAGCAATTT CCACCAGGGG ATTTCANAGT CCGATTCCAG TTGTGGGCAA CAGTGATTAA       180
+     CATAATGGTN ATTAATGAGA AGAGATTTTG AGACGTCCAG CCGCGTTTCC ATGTCAGTGC       240
+     CTTGTTTGCA GTATTATGAA GAAAGAGTGC ATTGGACTGG ATACTAAGAA AAACATTGAA       300
+     TTATTTTTCT TGCCTCTATA ACATCAAAGG ACAATTAGAG ATATAGAAAC NATGGAACAT       360
+     TTCACAGCAT GGCTTGACAT TTCACTGAAC TTTTATCCTT TTAACCATGT ACAAAGTTTG       420
+     TTACCTATGC AAAGGTAGGA CTGCNANAGG AAGACAGAGG TGGAGTCAGA GGTCACAATC       480
+     CACAGCAAGG TGACACTCTT GTTGATCGCA CCTTGAGAGC CGAATTAGAG CGAGAATTAA       540
+     CTTTCCGGTT GCCGTAAGAG AACAAGGAGA ATGAAGCTAC CAGCAGTTAA CAGTATTGGA       600
+     TTAATTGAAA TGAAGGTGGA CAGAGTTTTT TGGCTTTCCA TCAAATTGAG TAAAGAAAAG       660
+     GTAACCGCTT ATCNAATTTC ACACACGTAC AATTGTGGAT TAATTAAAAG ATTACACAAC       720
+     CCATATATTA TGGGTNTCTC ATATAAGTGT ATATATACAT GGGCAAACTC GCAGTGTGCC       780
+     AGTATGTGTC TATATCCAAA TATATACAAA TCCATGNCCA ACAGTTAGCA AGTGAGAAAT       840
+     TACTCTCCCA TTTCACCATT CCCTTTCCTA GAATTTTTTC ACAAATATAA TTTTTCCATA       900
+     TATTTGAAGC CTACTCTCTG GAGGCATGTA ATGCATGCAT GCAGTAAACC TGTGCGATAT       960
+     CACAATGTTG GTGTCAGAGA AAACNATAAC ACCGGTGTTA TAAAAGATTA ATTGTGAGGA      1020
+     GAAAGTTATG CTTCGCATTA CTACAAATAC ACAAGTATGA TTTCATCCAA AGCTGAAATC      1080
+     AGTCAATATA ATTTGTTTTT AATGTTTTAT TTAAAATCCT TAATTTCAAC AGGATTACTC      1140
+     GAGAAAAATA ACGTTATTGG TANTAAATAA TGTTGACGTA TTCCCTTTAA TTGTTGATTA      1200
+     TTTAAAATGT CAGTAAAATA GTAAANGGCA CTGTACAATG TAGTTTCATG AAGCATTCTT      1260
+     TATGGTTTTC ATAAAATTGA TAGTCTCCAT GGAATATTTT AAGACTGAGG AAGTTCCATA      1320
+     TATCATTTGA TTGTACTTTC ACTTTATTAC TTGCTTGCAT GTCATAACTG ATGGAAATAA      1380
+     AACTATGTAT ATTTACAAAT ATGAAAAACA TGGATTTTTG TTTACGTTTT CTAGTGAGAC      1440
+     ACAGTTACCA ATAATTTTAT CTATATAGGA AAATTTTTAC AAACCCAAAG TTCTAACGTT      1500
+     TCTTTTCTTT GAAGTTTCGT ATTTCAGTCT AGGTATGNAA TGGAATTGGC TGTGATCATT      1560
+     CTTTGATTTC ACTGTTATTT GTGAGTTTCT GATATGCTTT TAGGAATGTA TAGAGTTTAA      1620
+     CGCTTGCTTT CTTCTTCTTC CTCTACCTTT GGACCTGTAT ATGCGATGTC TGCAGTAATG      1680
+     TGCAGCGCTA TCTGACATAC GGTTGCTGAA AGATACAAGC ATATATAGAA TTCTTCGTTT      1740
+     CAGTGAATCT TTAGGAACAG ACAAGTAACC TGAGAGATAA TTACGGTATG AATGTAAGCA      1800
+     AGCAGTTTAT CATAGAGGTA CAATAAGGGT GAAAATAAAT TTAAAAATAC ATGCCTCATC      1860
+     CAAAACATGA GGTAGTAAAA ATGAAAAATT TAAGTTGGCA TAAAGAACAC TTTAAAAGTT      1920
+     CTGATTCTTT CTGGTGAGAG CAAGGAGCTC GGAAACCATG AGGAAGTCCT GCTAAGCTAC      1980
+     GTGATGGATT TGCAGGTCAG GCTGGGGAGC CTGGGTCTGN GGGAGGGGTC CAGNGTCCGG      2040
+     GTCAGGTTGA GGTCCCCCTG GGGCCCGGGG GTGTCTCAGC GGGAGAGCTG GGAAGGGGAA      2100
+     ACGCATGCTT CACCCCAGCT AGNAGGCCAC CTCAGCCCAG CTAGATGAAA TGGTCCCTTG      2160
+     ATCCAAGCCC TCTTTCTCCT TCTTGGNCNG GCAGGTGGAG GAACTCAGCC ATCCCGGNTA      2220
+     CCGGCGGCAG GATGAAGTTT TCCTTTCGTC ACAACCTTTA CTTCCGCAAC GAAGTGATCA      2280
+     CTAAGGAGTA TTGCGTTGGC ATCCTCGGTG AGGAGTGCCT CCCAGCATGG TAGGGGGGGT      2340
+     GGTGCGTGGG AGGGTGGGCC TGGCGTGAGC CTTCCCGACT CCTCTCCCTC CAGGATACAG      2400
+     GGCGTCTCGT TCCACTGCAG TCCAGTGGTT CTGGGATCAT GAAGGTGAAG GCCCCAGCTG      2460
+     CAGGCAGNAC ACCNCCTGCC TGAGCTTCTT CAGCTGGTTG GCTGACCGTG ACTGCCCGGG      2520
+     TTNCGGCAGG ATTGCTGAGG TGGGGCTCGC CGTGGGGCAT CATGGGAAAG GACCTTGCTG      2580
+     GNCATTCCTT GGCNTCTGGG GAATTGGCTT TGAACCGTGA CCTGACCTGT CACGACCCAC      2640
+     TTCCGCAGTC CCCCAGATCA TCAGCCAGGG CCTGTGGCTC AATCCCCTGC AGTACTACCC      2700
+     AAGGGGGTNA GGCCCTCAGA GAGGGAACAG AGAGGAGGCC AGGCGAGCAG CCCAGGGCTG      2760
+     GGGGCTGAGA GGCCTNTGGG TCCTGGAGCT GGGCCNCACA TGGAGAACCC AAGGCTCAGG      2820
+     GAGGAGACTG CAGTGAGCAA TCCCAGGCCA TCCGTGGGCT GGNGGAGAAA NGCCCATCAG      2880
+     GGAACTGTAA CACCCACATT TCAGGATCGG GGNACCTTAA GCCGCTTAAT AGGCATAAGT      2940
+     GGCTAAGGTC AGTGGGTGAG AAGCCAGGGT CAAGGGATAG CTGCCTCATC ATCCCTCGCC      3000
+     AGCTCTTCCC TGCCCTGAGG CCTGCTACCA CCTGGGGCTC AGTTTGGGCT CAACCAGGGC      3060
+     CCTCTCACCC TCCACGCGGA TGCCCACCTG AGGCCCGTCT AGGTCTGCGT CCTCCCAGAA      3120
+     TGNCTCTCCC AGGCCCGTCA TGTTCCGTTT CGATGACCCC AGGCTCCCCT GACATGCTTN      3180
+     NTCCCCTCCG CCATCCTCAC TCACNCTGGC AACTCCCCAC CCTGCCTTCC CANANAAGNC      3240
+     AGGCCACCGC ACAGGGAATC TGGAGGACCA CACTGGGCTC ACAGGGGAGG AAATGTGAAG      3300
+     AGATNGCAAA ACGGANCGGG ACCTTCNGTG TGTGTCCAGG GAGGGAACCT GGCTGGGNAT      3360
+     TAAGGCCCAC CTGAGTANTG GTGNGGACAC CCAGTGTCAG TTATCTTGGC CCTGAGCTTG      3420
+     TGCACACAAA CACGCACATT GTCTAAACGG CATTGACATC AC                         3462
+//
+ID   COMP-subunit_TSPY_rnd-1_family-153; SV 1; linear; unassigned DNA; STD; UNC; 155 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 155 BP; 64 A; 26 C; 38 G; 27 T; 0 other;
+     TGAAAATCCC AATGAATGCT GATGATGAGT TGAAAGATAG AAATTCCAGG CACAGAGGCT        60
+     ATAGTCCATG AATTGAAACC TTCAGTGCAT GTTTCAAAAC AAGACGTGAG GAGGAGGAAG       120
+     AAAAAAGCAA AAAACACAAA GCCATGGCAG GGCCA                                  155
+//
+ID   COMP-subunit_TSPY_rnd-1_family-148; SV 1; linear; unassigned DNA; STD; UNC; 319 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 319 BP; 90 A; 48 C; 35 G; 146 T; 0 other;
+     CATCATTATT CCCACACTTT AGTTTTTCAG AATTGATTCT GTTGTTTCTT TTCTAATTCT        60
+     TTATTGAAAT ATCTAGTACA TTAATTTTCA AGTTATTAGA GAAATATTTG TCTGTAAACT       120
+     CCTATTGTAA TATCACTTTT CTTGCTACTC ACAGATTTAA TCTTTAATAT TGGCGGTATC       180
+     ATTGAGTTCT AAGTACATTT CAATTCCTAG TATGATAATC TATGAATTGC TGAGAAATAG       240
+     TGTTTACAAT TTTGTTGTTC TATTTCCACT TAAGTTTATT TTTACTTCTG CTAACTCAAT       300
+     TGAAAATTCT TTACTAATT                                                    319
+//
+ID   COMP-subunit_TSPY_rnd-1_family-147; SV 1; linear; unassigned DNA; STD; UNC; 99 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 99 BP; 37 A; 20 C; 18 G; 24 T; 0 other;
+     TGAGAAAAAT AAGACCCACT GCAAAAGGTT GCCACAGAAA AGATTAAACA TTTCAGCAAC        60
+     TTCTATCTTC TGTCATGGAA GCCAAGGTTA TTTGGACCA                               99
+//
+ID   COMP-subunit_RBMY_rnd-1_family-60; SV 1; linear; unassigned DNA; STD; UNC; 1988 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 1988 BP; 655 A; 394 C; 291 G; 643 T; 5 other;
+     TGATAAAATC CCAACCACTC TAGATTATTC CTATTTGTAA GAACTTATTA CTAAACCATT        60
+     ACTTACAACA ACCATTGTCA AAACNTTCAA GAAAAAATTA ACATGAGTAC CTCCCAAGAC       120
+     AAAACACTTA CTTTCCACTA TTTAAACTAG GAACATTTAA TTTCATTATG CTATGCACTT       180
+     GAGAAACTTA GCTGGTTCAC TTTTGATTTA GGTGAAAAAA AAAGTTTTCA TTACCGTTAT       240
+     CCCCTTCAGT CACAGAATGC TTCAAGTAGA ATGTTCCGGA TGTCTTAAAC TTTAGTATCA       300
+     ACCACATCTA ATTATTTCCT TTGACCTGTA CTATTCCTCT AAAAGATAAA CGTTTTATGG       360
+     TGAGGCAGAC AGTTTTGTAG TCTTTCTGAA GACTTCTCAA ACATTTTAAG CTTGTAAGTT       420
+     TTTAAAGAGA AACAGCCTAA TTAGAAAACT TGTGCAGCTT GCAAGGGAGA CGTAACATAT       480
+     GCCTAATTTT GTATCTATTT ATGTTCAAAG AAACAAAGGA AAATGTTCAA CAAACAACGC       540
+     AATTTACTCT CCTATTGAAT TTGCTTTTAA GCATGTGCGG CTAAGCAATA ACATCAGGCA       600
+     TTTTGCATTA CATGTAAAAT TTTATTCTGA AAATTTTAAT GTAGATATTA CATCTAAACA       660
+     GATAGTTTTC AAATAGCATT AACAAGTATG AAATTACTTT GAAAAAAATT CCTTTTCCTT       720
+     TGAATACCTC AAAAAATTCA TGGAGGAAGT TAGTATCTAC CTCTCTCCAC AAAACCAACA       780
+     TGTTTCTTTT AGTAATACGC AGGTAACGAT GCAGAAATAA CATTTCAATT TTCGATTTGC       840
+     AAACAAGGTT TGGTATGCAA TAACTATTAT TTTGAATACT TGCTTTAATA TCTGCTTCAG       900
+     TCTCCTTTTT CAGATCGACT TTCCCCACCA TCTCCTGTAG ATGCCACATA ACTTGAGCTA       960
+     CCATATGCTT CACGAGGAGC AGGGTGCACC CTATCCAGAG AAGGTGGATT CCTTCGGTCT      1020
+     TTTCTGCCAA CGTGCTCACG ACCACAGGAA TAAAAATCAC CACAGCTCCT TGAGTAACTC      1080
+     TCCCGACTTC TGCCATATCT ATCTCGTGTA TTGCTATAAT CATGGCGGCT GCTTCCACCA      1140
+     TAAGACATCC GAGGCCCTCG TGCAGGTGGT GCACCATGAG AGGTCCCTGC AGGGTTGATA      1200
+     AAATAATATG TTGGACTACA TTTAAACATT TTTACTGCTA TCACTAAAGC ATGAATTAGT      1260
+     TAAAGTACTA TTTGGAAATA TCTGCTTTCC TCCGCCTTTG TTGACAGGAT ATTAATTANG      1320
+     CCTGCAATAG TCAGAAGGTT TTATTTAAAA GAAGTGTAAG AGTAGTATTT TGAAGCTTAA      1380
+     CAAATTTAAT TCTAAAGTAA ACGTTGAGTC ACATTTTCTG AACGTGAACT GAAGTTCTCA      1440
+     CCTTCATATC ATTCCCTATG CTTTATACTG TTAAGAATAC TCAATATTTA AACATGTTAT      1500
+     ATTTGTCCTT TATAATTTTC CTTAGAATTT CATTAAAATA ACGATCTGGT CTATTAAATA      1560
+     NAATTCTGTA ATTTACAAAT CCATCCCGGA CCCTTACCGT ATCTCTGAAA TGCATCTCTG      1620
+     TAAGAACTTC CACTTGGACG TTCAGAATGA TCTCTACCAC GGGCCTCACC GTAGCCATCA      1680
+     CGATCACTAA ATTGAAAAAA AAAAAAGTCT TCTTAATGTC AGAATGAACA ATTTAAGAAA      1740
+     TCTATTTGAC AAATCCAGAA AACGTTNTAG TACCTATATC CTCTAGAGGA ATGTTCATCC      1800
+     CGACTAGAAT GACCATAATC ACGGTATGCA TAGCCTCTAG ATGGTGGAGC ATAATCCCTA      1860
+     GTTTCTCGGG AACTTGGATG ATTTCTGTGT GCATAAGTTT AAGCAACAAA TTTTAAATTT      1920
+     TCAACTTCTA GTATCCAAAA CATAACTAAN TTACAACTTA AACACAATTA AATTGCCAAA      1980
+     CATCTAAA                                                               1988
+//
+ID   COMP-subunit_RBMY_rnd-1_family-203; SV 1; linear; unassigned DNA; STD; UNC; 176 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 176 BP; 48 A; 30 C; 21 G; 75 T; 2 other;
+     AATTGGTTTA GTTATTTNGG TCCAAATCTT TTTATTTTTA TCATTCGATG ATNTCTTAAA        60
+     CCTTTAAGCA ATCCCCTGTC TGAAACTTTA TGCTGTTGTT TATGTTTTAT ACACTTCACT       120
+     TCCCAAAAGT ATGAGGTTTA AAGCGTTTCC ATTCATATCA TCAATTAAAT CTGATA           176
+//
+ID   COMP-subunit_RBMY_rnd-1_family-199; SV 1; linear; unassigned DNA; STD; UNC; 801 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 801 BP; 236 A; 161 C; 102 G; 290 T; 12 other;
+     TTAACCCATC ACACATTCTA TGGAAGAATG TGGCACATCT NTTTTTTACA ATATATAATC        60
+     CACTTCATCT TTGTATTCAC ATCACTGATT TGAAAGTTTC AGTGTCCCAA TGAAACTCGT       120
+     GTCATTTAAA AAAAAAATGA GNTTACTTAT TCAGAGTGAT TAGTCACATT ACTCATTATG       180
+     AGTTGTTTCT TGTTNGATCT GCTAACACTT ACATAAAATG TCCCCATATG ATTTACAATT       240
+     CTATATTNAC TCTAGAAACG TTTCTGTAAA TGTGATCCTT GTTTGATCTC ATTAAGTTTT       300
+     CTTGCCTTAC TCATTTCTTA TNTTGCCTTA GACGTGCCCC TAAAAAACGA CTCTTAATAT       360
+     AGTACTTCAN GTNATTTCTC AGAAATGCTT AAATGTCCTA ATTAATTTCA TAATAACATT       420
+     TTTCACTGTA ATCTTTTCTA CAGGCCANAG CAATTTTTGA AAACAGTTCA GCTAATAATG       480
+     CGATTTAAAA ATTACATGGC TTTTGTTATT TGGGGGAAGG NCTTAAATCC CTTACAAGAC       540
+     CNCTTGCAGC CACATCGCCN GTTGTTCCTA CCTTGAAACT TCTTTTGTTA TTTCTGGGCC       600
+     CAAAATATTT TCCCCAGATT TGCCCACGGC TGCTTCCTTC CCAGTGTTCC GAAGTCAGCC       660
+     AAAATTCCTT AAACTGTTAA TTCCCCCTGA AAACTCNAAG AACCTCCTTT ATTGGCCATC       720
+     TTAACATTTA TGTGCATATA ACATTCATAT TTATTTTTAC ACAATAAAAT ATGTGAGATG       780
+     AAGTAATTTA GAAATAACGT T                                                 801
+//
+ID   COMP-subunit_RBMY_rnd-1_family-188; SV 1; linear; unassigned DNA; STD; UNC; 435 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 435 BP; 147 A; 68 C; 72 G; 144 T; 4 other;
+     CAAATAAAAT TATTTAAATG GGGGCATCCT TCATATTGCA ACTTAGGAAA ATTACAATAG        60
+     CTTTTCTTAT CTAATTTTTA GAAACGAGAT TTTTGTCAGG TACGTANTAA AATGCAGCAT       120
+     TTGTCCATGA AGTCAGTGCC CCTTTGCTCT GNATGTTACA AATTTTACAT ATTTAAAGTA       180
+     AGAAATACTA AAAAGATGTC AGCCTCTGGA AGGGAATTTT ACTTGAGTTT TCAACACAGT       240
+     ATGTAATAAA ATTTTATCTT TTTAGCTTAT TTATATCTAA ATATAGATNN TTTTTTACCA       300
+     TTTACAGCAC AATGGTAGAA GCAGATCGTC CTGGCAAGCT TTTCATTGGT GGCCTCAATA       360
+     GAGAAACCAA TGAAAAGACG CTTAAAGCAG TATTTGGGAA ACATGGTCCC ATATCGGAAG       420
+     GTAACTCTTA AAACC                                                        435
+//
+ID   COMP-subunit_RBMY_rnd-1_family-179; SV 1; linear; unassigned DNA; STD; UNC; 340 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 340 BP; 114 A; 57 C; 43 G; 125 T; 1 other;
+     ACAGTAAGAT ACACAAGACT AGGGAGTTTT ATCTTTTCAC TTCATCCTCA CAATCCTACA        60
+     TTATAGGTGA ATGAAAACAC AACTTCATAA CATGAATAAC TCACTTGAAA ATCAAAGTTG       120
+     GTAACTTCTC CCTTTAAAAT TATTTGCACC CTTACCCTAT AAAAATTGAT GATCTTGTCA       180
+     AAATTTTTCA AGAAAATACT TCCTCCTTGC AGATTAGTCT GTTAATTGTA AGAATTATGG       240
+     ACTGTAAAAC TTCTGGAACT TCATGTATTT CATTTCTTTA GGTTGTATAA TCAGGAAAAT       300
+     TAATTGGTTT AGTTATTTNG GTCCAAATAT TTTTATCATT                             340
+//
+ID   COMP-subunit_RBMY_rnd-1_family-1589; SV 1; linear; unassigned DNA; STD; UNC; 1460 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 1460 BP; 432 A; 298 C; 194 G; 529 T; 7 other;
+     CACCACANNA CAAAAAAAAT CAACTGTCTT TTTAATTTTT CCTTTACCTA TCCTTAGTTG        60
+     CATAACCATC ATCTCTTGGT GACATACGGT CATTTCTCCA GGAAGAGATT GGCTCTCTGC       120
+     GTGGAGGACC TCCATAATTC TCTCTTCCAC GTGACATGGG ACCTTTAATA TTAAAATGAT       180
+     GGAACATTAT GTAAAGAACA CCAAATCTGA AACACTATTT TCTCTTCTCT CAAACAACTT       240
+     TTTAAAATTA TTTCTTCTAT GACTCCATTC TTCGTTCCCT AAATTACTAG ACAGTCATGA       300
+     CACTGTGAAT ATTTCTTATG GCTTTGGATA ATCCCATGGC TCCCGCAAGG CCAGTTCTTC       360
+     TAACGAAGCT GAAGGCAGAC ATTAATTCTT AGGTAAAAGT TCATTTGTAA TGGTTAATAA       420
+     CTACTTAGTT ATTATTTTCC TTTTCATATG AATTACTGAT GACTACNAAT GACACAGGGA       480
+     AAACATGTAA AACCATCAAA CTCTTCACTG ATTTTAAAGT TTACATACAT TGTCCTTTCT       540
+     CAGCCGAAGA AGGTAAATTT TCCCATGTCG TTCAATCCAT CTCACACACA CAAAATACTG       600
+     CTACCTTTGA ACGACTGCAT GCTAAATTTT TACATAAAAG TTCTTTATCT CTAAGTGGTT       660
+     GGCTCTATCT TAAATGTTGA CAAATTAAAA TGTACTAGTG AAGATTTTCT AATGATGGCC       720
+     AAGATTTACT TTTACTGCAA TAAGCAATAC TGTTAAAGGG GTCATTACAA CATTGTTGCT       780
+     ATTTCAAAAT AGAAAGNTTC TCCTTTAATA TACTCTTCAC GTGCTATTCC TTAGAGGTCA       840
+     GTCTTTCACC TATGATATGT TCACTGGCTA ATTTTCCAAT GGAAATGTGT TGGCTTGTGT       900
+     ATCCTGAAGT CAATAAATAC CTAACTTCAC CGATACTCTA CGTATGAAAT GTAAAATTGA       960
+     AAATGGCAGT TTTCAATTTC CTCCATATTA GGATGGAGGA CTAAGTAAGA ATTTTAATTT      1020
+     GTTCTGCTTA AACTTCTTTG CTAAGAACTT TTATTTATTG TCTTGCTTTC TTCTGTTCAG      1080
+     TCTGCAATCT TACAATTCTC CTTCTCAAAA ATATTACTTC TATTCAATCC TACCGCTCAC      1140
+     CTCATGTTGC TTAGTTCTAA ATTCTCTCCT CAAATAATTT CAAATCTTAC ACTAAGGATC      1200
+     TTGTGTTAAT GTTTAAACAT CCCGGTACAA TCTTAATTAT TGATTTACAT CCCCCTATAT      1260
+     TTCACAACTC TGCACTTCTG TGATATCCAC TTAATTTAAG AATNTTGGAC TCCTTCATGT      1320
+     CTACCTTTCA AGCCTTAANT TTATTTTTAA ATAATATTTA AGCCCAGTGA CTCCTTNTCT      1380
+     GCTAAATGCT CTTGTAGTTC TTTTGAATCT TCATATAAGC AGTAAGAATG CCTTGCACAT      1440
+     AAGCATTATT GAGGTCTCAG                                                  1460
+//
+ID   COMP-subunit_RBMY_rnd-1_family-154; SV 1; linear; unassigned DNA; STD; UNC; 1125 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 1125 BP; 373 A; 218 C; 143 G; 385 T; 6 other;
+     ATATGTAAAA ATTGACCCCT CATTTCTATT GNGTAAATCA CTCATAAATA TCATTTTCAG        60
+     TGACTCANCC TCCAGCAAAG AAAGATACAT ACATATCTGT GAAGCAGTGG TTTTTAGACC       120
+     TTTCCAGAGT CACAGACTCT TTTCAGAAAT TAAAGTTCTA CATTTCTTAA ATTGAAAATG       180
+     CTTTACGGCA GGCCAATGTA CAAACTCTCC GTATCAAAAT TACAAAGCAA TACATTTGCA       240
+     TAGATGTTTG CACATGTATA CACAAGAAAA CAAATATTGC AAAATCAATC TTAAGTACTG       300
+     AGTTACTTTT TCCTGTTGGA AAGTTTTAAA TATTCCATCG TATTTTGATA ATACAACTGA       360
+     TACGAAGTTC TGGGCCCCAA AGTAGAAAAC TCTAAAGTAT AATGAATATA AATGAGTTCT       420
+     GCAGAAAACC NGTTGAGTAC AGGCAATCAG CATTCATAAA CTCAATTCAG TTTGAAATNT       480
+     GTGTTATTTC AATGCAAACT TATTACAATT TTAAAACAAA TTTTAGATAT TAGTTCAATC       540
+     ATTCTTATAA TACACCTTTA TGTACTTAGA AATAANTTTG CTTATTATCA ATAAGTTAAT       600
+     TTTCTGTTCA TACAGGAAAT AAATAAAATT GAGAAATTTC GATATCTTCA AACTTATTTT       660
+     CTTTCAGTCC TATGGTTCCA TCTTTATATT TTAAAACATT ACCCAAGTGT CCTTCATGTG       720
+     AGGGAAGCCA CCCTCTTGTT CCTCCACTAC TTCCTCTTGC AGATCTCAGA CTTCCTGAAG       780
+     GGCTTCTGTT TCTCGAAGAA GNTGGTGGTC TCCGCCTACC ACCACTTTGA AAAGATGGTT       840
+     TCTTGGCTTG TTCTACTTTT ATTGCTTTTC CATCCAAAGA CTAAAAGTAT TAAGGGTACT       900
+     ATCAATAACA TTGGCACATT TAACCTAAGC ACATTTTACA AACATTTTTA CATCAACTAT       960
+     AGTTCAATTC TAGATATTTT CTCCCAAAAG CAAACTTTTT TTTCTCCTAA AATGAACACG      1020
+     TCTTTCGCAA TGCCAAATTT GAGACATTTA CTGAGCACAT GCCTTCCATT AAGGGATCAA      1080
+     ACACAAATTC TATTATTCAA ATTCCTTGAA AACTCCTCCA TTATT                      1125
+//
+ID   COMP-subunit_RBMY_rnd-1_family-131; SV 1; linear; unassigned DNA; STD; UNC; 1435 BP.
+XX
+XX
+CC   RepeatMasker Annotations:                                                            
+CC       Type: Unknown                                                                    
+CC       SubType:                                                                         
+CC       Species: Hominoidea                                                              
+CC       SearchStages: 50                                                                 
+CC       BufferStages:                        
+XX
+SQ   Sequence 1435 BP; 532 A; 246 C; 228 G; 425 T; 4 other;
+     AAATTTGAGG CTACAGTAAG CCGTCGTCTC ACATAGTGCA CTCTCACCTA GTAAGAGCAA        60
+     GACTCCAACC CAGCAAAGTC ACCGAACAAG CAATTTTTAG ATTGGGACAC CAGGGGACCT       120
+     AGGAAATGGA AGAATTCATT AGATNAAGAA GCCTACCATC AAAGAATACT GCTAGGAACT       180
+     TTTAGAAAAA TTAAGGGGAA TTNTCTAGCA AACACAGGAT TAAAAGGAAT GTTGGCCTCA       240
+     CTCTAATCAC TTCTTTGATC TGCAATGAGA AGCTCAAGTA TTTCTTCAAC ATAAATCTGA       300
+     AATGTACCTA GTGAGATAGA AACTATAATA AAAGCTATCG ATCAGTAATT ATGCCCACGT       360
+     ATGTGTCACT TCTCTTTTGT TCGATGAACT TAAAGTTAAG CATCCAGNTA AAATAGCTCA       420
+     TTTTTAGTCA TACAAAAACT ACGGTCTTTC TGTCAGGTAG CATTTACCTT GGCCTCCCAT       480
+     CCAACTATTG CTTCTTGCCA CAGCAGAAGG AGCAGATTTT TTAGGAGGAG GACCTCCACT       540
+     TCTTGAAGAT GGACCTCTTT TAACTGGAAT GGGTCCCCTA GAAGAACTCA TGTTGAGATC       600
+     AGGAGTGTAT CCACCATCAT CTGTATTTCA AACAAAATCT TTTTAGTTAA CTAACGTCAC       660
+     TGTTTCTTAA ATGGCTAAGT TTTAGTTGTT TACAAANATT TTCTACATAT TATAATCTTA       720
+     CAAATTCACA TTTTGTCTAA ACTAATAAAA TTAGCATTTC TACATGAAAT TAGTACAATT       780
+     CAAGCAATAA AAGTCCGTTT AGAAAATCTA GAAAGAAACT CAAGAATCAT AATATATTGG       840
+     TGTGAGAGAG AGATGTGGGA AAATGGGGAG TGAACGGGGA GCAGAAATCT ATCAGTAAAA       900
+     TATCTAAGTA TAATATACAT AAAAATATTA AAAGAAAAAT GATAAATGAC TGTTTATATC       960
+     ATTCTGTTAT GAGGAAAAAT TTTCAAAGCA TATCATAAAG ATAAACTAAA TTCCATTCAA      1020
+     AGAAACTCAA ATATTTACAA TATCAAAAAG TGACACATCA GGAAAATACA TTATCTCTAA      1080
+     AATTTGTTAA CATAATATAG AATTCTTACA ATTCCCTTAT GAAACACTAA TTTTCAGATT      1140
+     AGACTATGCT AAATTTTAAT AATCTTTAAG AATTGCATAT TCGGTAATAT AAAAATATTT      1200
+     TTATACATCT ACAAAAACGT AGATATATGC CAATTGCCAG GTGGTGTTAC AGGTTAGAAT      1260
+     ACGCACATTC TCGTACGTGG CAGAGTATTA TTGAACCTCA CCCTCAAGAT CAGTGGAGAC      1320
+     AAAATAACCG TGAAGCTATG CATCTTAAAA TGGAGCAAAC ACTGCAATTT CAACTTGAAA      1380
+     ACACATCTCC AATTAATTAC ACGTCTGGTT ATTAAAACTC AAAGTTAAAT GTTAG           1435
+//

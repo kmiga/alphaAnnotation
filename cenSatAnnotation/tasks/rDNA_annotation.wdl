@@ -29,6 +29,7 @@ workflow annotateRDNA {
 
     output {
         File rDNAbed = finalizeFiles.rDNAbed
+        File rDNAraw = finalizeFiles.rDNAraw
     }
     
     parameter_meta {
