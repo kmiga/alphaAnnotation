@@ -1,7 +1,7 @@
 version 1.0
 
 
-import "https://raw.githubusercontent.com/human-pangenomics/hpp_production_workflows/8a9bafa71b85927071c93ffc8b8c6581ce274d52/annotation/wdl/workflows/repeat_masker.wdl" as RepeatMasker
+import "https://raw.githubusercontent.com/human-pangenomics/hpp_production_workflows/b5c6039e3f0e4e5c03c970e277a12605fb8a5012/annotation/wdl/workflows/repeat_masker.wdl" as RepeatMasker
 import "./tasks/rDNA_annotation.wdl" as rDNA_annotation
 import "../identify-hSat2and3/identify-hSat2and3.wdl" as hSat2and3
 import "../alphaSat-HMMER/alphaSat-HMMER.wdl" as alphaSat
@@ -222,11 +222,13 @@ task renameFinalOutputs {
 
             ## RepeatMasker: Not all RM outputs can be renamed in this way -- for example per-chrom files in the tar.gz and bigbed outputs
             awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{sequence_id_key} ~{RMBed} > ~{fName}.RepeatMasker.bed
-            awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{sequence_id_key} ~{RMOut} > ~{fName}.RepeatMasker.out
+            awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $5; next} {if ($5 in map) $5 = map[$1]} 1' ~{sequence_id_key} ~{RMOut} > ~{fName}.RepeatMasker.out
             awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{sequence_id_key} ~{RMrmskBed} > ~{fName}.RepeatMasker.rmsk.bed
             awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{sequence_id_key} ~{RMrmskAlignBed} > ~{fName}.RepeatMasker.rmskAlign.bed
-            awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{sequence_id_key} ~{RMMaskedFasta} > ~{fName}.RepeatMasker.masked.fasta
-
+            zcat ~{RMMaskedFasta} \
+                | awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} /^>/ {split($0,a,">"); if (a[2] in map) print ">"map[a[2]]; else print $0; next} {print}' ~{sequence_id_key} - \
+                | gzip > ~{fName}.RepeatMasker.masked.fasta.gz
+    
             ## ASat
             awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{sequence_id_key} ~{as_hor_sf_bed} > ~{fName}.as_hor_sf.bed
             awk 'BEGIN {OFS="\t"} NR==FNR {map[$2] = $1; next} {if ($1 in map) $1 = map[$1]} 1' ~{sequence_id_key} ~{as_strand_bed} > ~{fName}.as_strand.bed
@@ -243,7 +245,7 @@ task renameFinalOutputs {
             cp  ~{RMOut} ~{fName}.RepeatMasker.out
             cp  ~{RMrmskBed} ~{fName}.RepeatMasker.rmsk.bed
             cp  ~{RMrmskAlignBed} ~{fName}.RepeatMasker.rmskAlign.bed
-            cp  ~{RMMaskedFasta} ~{fName}.RepeatMasker.masked.fasta
+            cp  ~{RMMaskedFasta} ~{fName}.RepeatMasker.masked.fasta.gz
 
             ## ASat
             cp  ~{as_hor_sf_bed} ~{fName}.as_hor_sf.bed
@@ -262,7 +264,7 @@ task renameFinalOutputs {
         File final_repeatMaskerOut="~{fName}.RepeatMasker.out"
         File final_rmskBed="~{fName}.RepeatMasker.rmsk.bed"
         File final_rmskAlignBed="~{fName}.RepeatMasker.rmskAlign.bed"
-        File final_rmMaskedFasta="~{fName}.RepeatMasker.masked.fasta"
+        File final_rmMaskedFasta="~{fName}.RepeatMasker.masked.fasta.gz"
 
         File final_as_hor_sf_bed="~{fName}.as_hor_sf.bed"
         File final_as_strand_bed="~{fName}.as_strand.bed"
