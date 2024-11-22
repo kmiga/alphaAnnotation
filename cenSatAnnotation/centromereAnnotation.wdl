@@ -1,7 +1,7 @@
 version 1.0
 
 
-import "https://raw.githubusercontent.com/human-pangenomics/hpp_production_workflows/b5c6039e3f0e4e5c03c970e277a12605fb8a5012/annotation/wdl/workflows/repeat_masker.wdl" as RepeatMasker
+import "https://raw.githubusercontent.com/human-pangenomics/hpp_production_workflows/8ab3b2f1af4af0f484b5eed1d8ed313b9c93529b/annotation/wdl/workflows/repeat_masker.wdl" as RepeatMasker
 import "./tasks/rDNA_annotation.wdl" as rDNA_annotation
 import "../identify-hSat2and3/identify-hSat2and3.wdl" as hSat2and3
 import "../alphaSat-HMMER/alphaSat-HMMER.wdl" as alphaSat
