@@ -51,6 +51,11 @@ task identify_hSat2and3 {
 		## Call annotation script:
 		perl /opt/chm13_hsat/Assembly_HSat2and3_v3.pl $INPUT_FILE || true 
 
+		## v0.3 of the script (rarely) creates regions that have start > stop such as:
+		## HG01786#2#CM089530.1	59222541	59222563	HSat2	0	-	59222541	59222563	51,51,102
+		## remove these to avoid problems downstream. In the future, fix the perl script.
+		for f in *HSat2and3_Regions.bed; do awk -F'\t' '$2 <= $3' "$f" > tmp.bed && mv tmp.bed "$f"; done 
+
 		# In case of empty output 
 		if ! test -f *HSat2and3_Regions.bed; \
 		then echo -e 'chrFAKE\t0\t1\tHSat3\t0\t-\t0\t1\t120,161,187' > placeholder.HSat2and3_Regions.bed \
