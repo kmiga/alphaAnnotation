@@ -4,11 +4,13 @@ workflow identify_hSat2and3_wf {
 
 	input {
 		File input_fasta
+		String fName=sub(basename(input_fasta), "\.(fa|fasta)(\.gz)?$", "")
 	}
 
 	call identify_hSat2and3 {
 		input:
-			input_fasta = input_fasta
+			input_fasta = input_fasta,
+			fName = fName
 	}
 
 	output {
@@ -20,6 +22,7 @@ workflow identify_hSat2and3_wf {
 task identify_hSat2and3 {
 	input {
 		File input_fasta
+		String fName
 
 		Int memSizeGB   = 4
 		Int threadCount = 2
@@ -36,13 +39,14 @@ task identify_hSat2and3 {
 
 	command <<<
 		set -eux -o pipefail
-
-		INPUT_FILE="~{input_fasta}"
-
-		if [[ $INPUT_FILE =~ \.gz$ ]]; then
-			gunzip -f $INPUT_FILE
-			INPUT_FILE="${INPUT_FILE%.gz}"
+		# unzip the fasta if it is zipped 
+		if [[ ~{input_fasta} =~ \.gz$ ]] ; then
+			gunzip -fc ~{input_fasta} > ~{fName}.fa 
+		else 
+			cat ~{input_fasta} > ~{fName}.fa 
 		fi
+
+		INPUT_FILE=~{fName}.fa 
 
 		## localize kmer files 
 		cp /opt/chm13_hsat/HSat2_kmers.txt .
@@ -50,6 +54,11 @@ task identify_hSat2and3 {
 
 		## Call annotation script:
 		perl /opt/chm13_hsat/Assembly_HSat2and3_v3.pl $INPUT_FILE || true 
+
+		## v0.3 of the script (rarely) creates regions that have start > stop such as:
+		## HG01786#2#CM089530.1	59222541	59222563	HSat2	0	-	59222541	59222563	51,51,102
+		## remove these to avoid problems downstream. In the future, fix the perl script.
+		for f in *HSat2and3_Regions.bed; do awk -F'\t' '$2 <= $3' "$f" > tmp.bed && mv tmp.bed "$f"; done 
 
 		# In case of empty output 
 		if ! test -f *HSat2and3_Regions.bed; \

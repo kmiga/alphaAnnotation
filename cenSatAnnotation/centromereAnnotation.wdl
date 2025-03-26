@@ -11,18 +11,16 @@ import "./tasks/gap_Annotation.wdl" as gapWorkflow
 workflow centromereAnnotation {
     input {
         File fasta 
-        File rDNAhmm_profile="../utilities/rDNA1.0.hmm"
-        File AS_hmm_profile="../utilities/AS-HORs-hmmer3.4-071024.hmm"
-        File AS_hmm_profile_SF="../utilities/AS-SFs-hmmer3.0.290621.hmm"
-        File? additionalRMModels="../utilities/xy_apes_y_human_newmodels.embl"
+        File rDNAhmm_profile="../../utilities/rDNA1.0.hmm"
+        File AS_hmm_profile="../../utilities/AS-HORs-hmmer3.4-071024.hmm"
+        File AS_hmm_profile_SF="../../utilities/AS-SFs-hmmer3.0.290621.hmm"
+        File? additionalRMModels="../../utilities/xy_apes_y_human_newmodels.embl"
         String fName=sub(basename(fasta), "\.(fa|fasta)(\.gz)?$", "")
 
         File? repeatMaskerBed
     }
 
-    if (!defined(repeatMaskerBed)) {
-            Boolean? runRM = true
-        }
+    Boolean runRM = if (!defined(repeatMaskerBed)) then true else false
 
     if (!defined(repeatMaskerBed)) {
         call RepeatMasker.RepeatMasker as RepeatMasker {
@@ -157,7 +155,7 @@ task renameFinalOutputs {
 
         ## RepeatMasker
         cp  ~{RMBed} ~{fName}.RepeatMasker.bed
-        if ~{runRM} ; then
+        if ~{runRM}; then
             cp  ~{RMOut} ~{fName}.RepeatMasker.out
             cp  ~{RMrmskBed} ~{fName}.RepeatMasker.rmsk.bed
             cp  ~{RMrmskAlignBed} ~{fName}.RepeatMasker.rmskAlign.bed
