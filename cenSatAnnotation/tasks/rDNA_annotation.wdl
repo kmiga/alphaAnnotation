@@ -50,7 +50,14 @@ task createArray {
     }
     command <<<
 
-    awk '/^>/ { file=substr($1,2) ".fa" } { print > file }' ~{fasta}
+    # unzip the fasta if it is zipped 
+        if [[ ~{fasta} =~ \.gz$ ]] ; then
+            gunzip -fc ~{fasta} > ~{fName}.fa 
+        else 
+            cat ~{fasta} > ~{fName}.fa 
+        fi
+    
+    awk '/^>/ { file=substr($1,2) ".fa" } { print > file }' ~{fName}.fa
 
     >>>
     output {
