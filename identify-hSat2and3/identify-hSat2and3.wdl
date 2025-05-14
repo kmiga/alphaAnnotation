@@ -4,11 +4,13 @@ workflow identify_hSat2and3_wf {
 
 	input {
 		File input_fasta
+		String fName=sub(basename(input_fasta), "\.(fa|fasta)(\.gz)?$", "")
 	}
 
 	call identify_hSat2and3 {
 		input:
-			input_fasta = input_fasta
+			input_fasta = input_fasta,
+			fName = fName
 	}
 
 	output {
@@ -20,6 +22,7 @@ workflow identify_hSat2and3_wf {
 task identify_hSat2and3 {
 	input {
 		File input_fasta
+		String fName
 
 		Int memSizeGB   = 4
 		Int threadCount = 2
@@ -36,13 +39,14 @@ task identify_hSat2and3 {
 
 	command <<<
 		set -eux -o pipefail
-
-		INPUT_FILE="~{input_fasta}"
-
-		if [[ $INPUT_FILE =~ \.gz$ ]]; then
-			gunzip -f $INPUT_FILE
-			INPUT_FILE="${INPUT_FILE%.gz}"
+		# unzip the fasta if it is zipped 
+		if [[ ~{input_fasta} =~ \.gz$ ]] ; then
+			gunzip -fc ~{input_fasta} > ~{fName}.fa 
+		else 
+			cat ~{input_fasta} > ~{fName}.fa 
 		fi
+
+		INPUT_FILE=~{fName}.fa 
 
 		## localize kmer files 
 		cp /opt/chm13_hsat/HSat2_kmers.txt .
