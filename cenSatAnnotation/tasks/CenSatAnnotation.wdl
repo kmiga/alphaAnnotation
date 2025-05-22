@@ -8,7 +8,7 @@ workflow cenSatAnnotation{
          File HSatBed
          File rDNABed
          File gapBed
-         String fName=basename(sub(sub(sub(sub(RMOut, "\\.bed$", ""), "\\.fastq$", ""), "\\.fa$", ""), "\\.fasta$", ""))
+         String fName=basename(sub(sub(sub(sub(RMOut, "\\.bed$", ""), "\\.formatted_repeat_masker$", ""), "\\.fa$", ""), "\\.fasta$", ""))
         
          Int threadCount = 4
          Int preemptible = 1
