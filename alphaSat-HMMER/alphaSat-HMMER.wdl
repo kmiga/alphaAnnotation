@@ -73,43 +73,57 @@ workflow alphaSat_HMMER_workflow {
 }
 
 task split_fasta {
-	input {
-		File input_fasta
+    input {
+        File input_fasta
+        Int numberOfOutputs = 16
 
-		Int memSizeGB   = 4
-		Int threadCount = 1
-		Int addldisk    = 10
-	}
+        Int threadCount = 2
+        Int memSizeGB   = 16
+        Int diskSize    = 32
+        Int preemptible = 1
+    }
+    command <<<
 
-	parameter_meta {
-		input_fasta: "Genomic assemblies. Files must be in fa or fa.gz format."
-	}
+        ## first check if assembly_fa needs to be unzipped 
+        if [[ ~{input_fasta} =~ \.gz$ ]]; then
+            gunzip -fc ~{input_fasta} > asm.fa
+        else
+            cat ~{input_fasta} > asm.fa
+        fi 
 
-	# Estimate disk size required
-	Int input_fasta_size         = ceil(size(input_fasta, "GB"))    
-	Int final_disk_dize          = input_fasta_size * 4 + addldisk
+        samtools faidx asm.fa
+        cat asm.fa.fai | awk '{print $1"\t0\t"$2}' | bedtools sort -i - > asm.bed
 
-	command <<<
-		set -eux -o pipefail
+        # this script will split the whole genome bed file into as many bed files as requested (default 16)
+        # without splitting any contig it keeps either a whole config in each bed file or none of it
+        # the total length of the output bed files are as close as possible to each other to make sure
+        # running the following tasks on one split does not take way longer than others
+        mkdir -p output 
+        python3 ${SPLIT_BED_CONTIG_WISE_PY} \
+            --bed asm.bed  \
+            --n ~{numberOfOutputs} \
+            --dir output \
+            --prefix asm_split
 
-		## make output directory
-		mkdir split
+        # create one fasta per bed file
+        for BED in $(find output)
+        do
+            cat ${BED} | \
+                cut -f1 | \
+                seqtk subseq asm.fa  - > ${BED%%.bed}.fa 
+        done
 
-		## split fasta into contigs/scaffolds/chromosomes
-		faSplit byname ~{input_fasta} split/
-	>>>
-
-	output {
-		Array[File] split_fasta_out = glob("split/*.fa")
-	}
-
-	runtime {
-		memory: memSizeGB + " GB"
-		cpu: threadCount
-		disks: "local-disk " + final_disk_dize + " SSD"
-		docker: "quay.io/biocontainers/ucsc-fasplit@sha256:2ddc814ba3e8075a31e13ec1fc737c34c501bc0586546e2b0670ca71e25348c4"
-		preemptible: 1
-	}
+    >>>
+    output {
+        Array[File] split_fasta_out = glob("output/*.fa")
+    }
+    runtime {
+        cpu: threadCount        
+        memory: memSizeGB + " GB"
+        disks: "local-disk " + diskSize + " SSD"
+        docker: "mobinasri/flagger:v1.1.0"
+        preemptible : preemptible
+    }
 }
 
 task alphaSat_HMMER {

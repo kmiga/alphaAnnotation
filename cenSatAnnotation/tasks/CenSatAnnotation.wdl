@@ -200,7 +200,7 @@ task createAnnotations {
         bedtools sort -i HSAT23.bed > HSAT23.sorted.bed
 
         # Merge any rDNA annotations that are adjacent to the gaps 
-        cat ~{rDNABed} ~{gapBed} | bedtools sort -i stdin | bedtools merge -d 40000 -i stdin | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "rDNA", "0", ".", $2, $3, "102,47,144"}' > rDNA.merged.bed 
+        cat ~{rDNABed} ~{gapBed} | awk '{print $1"\t"$2"\t"$3}' | bedtools sort -i stdin | bedtools merge -d 40000 -i stdin | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "rDNA", "0", ".", $2, $3, "102,47,144"}' > rDNA.merged.bed 
 
         # now resolve any existing overlaps within any of the files and record any instances of overlaps 
         # first find overlaps and add to final tracking file 
