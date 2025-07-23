@@ -44,7 +44,7 @@ workflow centromereAnnotation {
 
     call alphaSat.alphaSat_HMMER_workflow as alphaSat_HMMER_workflow {
         input:
-            input_fasta=fasta,
+            fasta=fasta,
             hmm_profile=AS_hmm_profile,
             hmm_profile_SF=AS_hmm_profile_SF,
             assembly_id=fName
